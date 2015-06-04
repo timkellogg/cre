@@ -1,0 +1,25 @@
+<h1>Your results</h1>
+<p class="search-term">You searched:<%= @phrase %></p>
+<p class="limiters">You selected the following options:
+</p>
+
+<h3>Your search delivered <%= @result.count %> results</h3>
+
+<% if @result.any? %>
+	<% @result.each do |result| %> 
+		<div class="result-item row">
+			<p class="result-heading"><%= result["title"] %>, Congressional Section: <%= result["congress"] %>, <%= result["date"] %></p>
+			<p class="result-source-data"><%= result["volume"] %> Vol., #<%= result["number"]%>, <%= result["chamber"] %></p>
+			<p class="result-text"><%= result["speaking"][0] %></p>
+			<p class="result-link">Source: <%= result["origin_url"] %></p>
+		</div>
+		<hr>
+	<% end %>
+<% else %>
+	<div id="result-none">
+		<p>Oh, no! There were no results for <%= @phrase %>. Search <a href="/textsearch">again?</a></p>
+	</div>
+<% end %>
+
+
+  
