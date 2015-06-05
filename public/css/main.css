@@ -164,6 +164,26 @@ input, textarea, select, .uneditable-input {
 	color: white;
 }
 
+/* Tables */
+.table-heading {
+	border-bottom: 2px solid darkgray;
+}
+
+.table-title {
+	font-weight: bold;
+	width: 100px;
+
+}
+
+.table-content {
+	text-align: left;
+}
+
+td {
+	white-space: nowrap;
+}
+
+
 /* Widgets */
 
 .tooltip.top .tooltip-inner {

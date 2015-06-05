@@ -1,4 +1,57 @@
-<h2>Results</h2>
+<h2>Your results</h2>
+<% if !@delimiters.empty? %>
+<p class="limiters">You searched:</p>	
+	<ul>
+	<% @delimiters.split(',').each do |line|  %>
+		<li><%= line %></li>
+	<% end %>
+	</ul>
+<% end %>
 
-<%= @result %>
+
+<h3>Your search delivered <%= @result.count %> results</h3>
+
+<% if @result.any? %>
+	<% @result.each do |result| %> 
+		<table class="table table-striped table-hover table-condensed">
+		  <tr>
+		    <th class="table-heading" colspan="15"><%= result["name"] %>, (<%= result["party"] %>)</th>
+		  </tr>
+		  <tr>
+		    <td class="table-title" colspan="1">FEC ID:</td>
+		    <td class="table-content" colspan="14"><%= result["fec_id"] %></td>
+		  </tr>
+		  <tr>
+		    <td class="table-title" colspan="1">Incumbent:</td>
+		    <td class="table-content" colspan="14"><%= result["is_incumbent"] %></td>
+		  </tr>
+		  <tr>
+		    <td class="table-title" colspan="1">Not Seeking Election:</td>
+		    <td class="table-content" colspan="14"><%= result["not_seeking_reelection"] %></td>
+		  </tr>
+		  <tr>
+		    <td class="table-title" colspan="1">Elected:</td>
+		    <td class="table-content" colspan="14"><%= result["election_year"] %></td>
+		  </tr>
+		  <tr>
+		    <td class="table-title" colspan="1">State:</td>
+		    <td class="table-content" colspan="14"><%= result["state"] %></td>
+		  </tr>
+		  <tr>
+		    <td class="table-title" colspan="1">Office:</td>
+		    <td class="table-content" colspan="14"><%= result["office"] %></td>
+		  </tr>
+		  <tr>
+		    <td class="table-title" colspan="1"></td>
+		    <td class="table-content" colspan="14"></td>
+		  </tr>
+		</table>	
+	<% end %>
+<% else %>
+	<div id="result-none">
+		<p>Oh, no! There were no results. Search <a href="/finances/candidates">again?</a></p>
+	</div>
+<% end %> 
+
+
 
