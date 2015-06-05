@@ -76,7 +76,7 @@ post '/textsearch' do
 		@end_date = "&end_date=#{end_date}"
 	end
 
-
+	
 	# Replace spaces and commas with underscores to make valid html request url 
 	@phrase.sub!(' ', '_')
 	@phrase.sub!(',', '_')

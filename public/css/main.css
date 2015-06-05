@@ -78,7 +78,6 @@ a {
 }
 
 
-
 #main-menu {
 	margin-top: 50px;
 	padding: 10px;
@@ -131,10 +130,6 @@ a {
 /* Forms */
 
 
-
-
-
-
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   margin-bottom: 15px; 
@@ -168,3 +163,14 @@ input, textarea, select, .uneditable-input {
 	background-color: #680000;
 	color: white;
 }
+
+/* Widgets */
+
+.tooltip.top .tooltip-inner {
+    background-color: #000;
+}
+.tooltip.top .tooltip-arrow {
+      border-top-color: #000;
+}
+
+

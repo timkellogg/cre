@@ -30,5 +30,12 @@ $(document).ready(function() {
 
         });
 
+    $(function () {
+        $('#cr_pages').tooltip();
+        $('#bioguide_id').tooltip();
+        $('#title').tooltip();
+    });
+
+
 
 });
