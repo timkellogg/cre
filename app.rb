@@ -31,26 +31,60 @@ end
 
 
 post '/textsearch' do 
-	# state         =  params.fetch "state"
-	# party 			  =  params.fetch "party"
-	# chamber       =  params.fetch "chamber"
-	# start_date    =  params.fetch "start_date"
-	# end_date      =  params.fetch "end_date" 
-	@phrase          =  params.fetch "phrase"
-	# percentages   =  params.fetch "percentages"
-	# api_response  =  RestClient.get 'capitolwords.org/api/1/'
-	
-	# Replace spaces with underscores to make valid html request url 
-	@phrase.sub!(' ', '_')
 
-	api_result = RestClient.get "capitolwords.org/api/1/text.json?phrase=#{@phrase}&page=0&apikey=" + ENV['SUNLIGHT_API_KEY']
+	@phrase = params.fetch "phrase"
+
+	title = params.fetch "title"
+	if title.empty?
+		@title = "" 
+	else 
+		@title = "&title=#{title}"
+	end
+
+	state = params.fetch "state"
+	if state.empty? 
+		@state = ""
+	else 
+		@state = "&state=#{state}"
+	end
+
+    party = params.fetch "party"
+    if party.empty?
+    	@party = ""
+    else 
+    	@party = "&party=#{party}"
+    end 
+
+    chamber = params.fetch "chamber"
+    if chamber.empty?
+    	@chamber = ""
+    else 
+    	@chamber ="&chamber=#{chamber}"
+    end
+
+	start_date = params.fetch "start_date"
+	if start_date.empty?
+		@start_date = ""
+	else 
+		@start_date = "&start_date=#{start_date}"
+	end
+
+	end_date = params.fetch "end_date" 
+	if end_date.empty?
+		@end_date = ""
+	else 
+		@end_date = "&end_date=#{end_date}"
+	end
+
+
+	# Replace spaces and commas with underscores to make valid html request url 
+	@phrase.sub!(' ', '_')
+	@phrase.sub!(',', '_')
+
+	api_result = RestClient.get "capitolwords.org/api/1/text.json?phrase=#{@phrase}&page=0#{@state}#{@chamber}#{@party}
+									#{@start_date}#{@end_date}#{@title}&apikey=" + ENV['SUNLIGHT_API_KEY']
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
- 	
-	# JSON attributes to bring to view 
-	# @title         = @result[0]["title"]
-	# @speaker_state = @result[0]["speaker_state"]
-	# @date 				 = @result[0]["date"]
 
 	erb :output
 end

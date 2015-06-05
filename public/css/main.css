@@ -1,0 +1,170 @@
+.result-item {
+	margin: 10px;
+	line-height: 1.4em;
+}
+
+.result-heading {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.result-text { 
+	font-style: italic;
+
+}
+
+.result-item:nth-of-type(even) {
+	background-color: #CCC;
+}
+
+/* Typography */
+h1, h3, p, li {
+	font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+	color: #FFFAF0;
+}
+
+#top-panel {
+	background-color: #680000 ;
+}
+
+.secondary-heading {
+	padding: 5px;
+	margin-left: 20px;
+}
+
+#link-home {
+	margin-top: 50px;
+	border: 2px solid #680000;
+	border-radius: 5px;
+	padding: 8px 35px;
+	text-decoration: none;
+}
+
+#link-home:hover {
+	background-color: #680000;
+	color: #FFFAF0;
+}
+
+#link-home a {
+	color: #680000; 
+}
+#link-home:hover a {
+	text-decoration: none;
+	color: #FFFAF0;
+}
+
+#link-home:visited {
+	color: #680000;
+	background-color: white;
+}
+
+a {
+	color: black;
+	font-size: 1em;
+}
+
+/* Lists */
+
+
+/* Main Page */
+.menu-item {
+	border: 1px solid black;
+	min-height: 120px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+
+
+#main-menu {
+	margin-top: 50px;
+	padding: 10px;
+	cursor: pointer;
+}
+/* images */
+
+.svg:hover path {
+    fill: white;
+}
+
+.svg {
+	max-height: 125px;
+	max-width: 100px;
+}
+
+.menu-item a,
+.menu-item p {
+	color:  black;
+}
+
+
+.menu-item a:hover,
+.menu-item p:hover {
+	color: #FFFAF0;
+}
+
+#menu-congress {
+	background-color: blue;
+}
+
+#menu-speaking {
+	background-color: red;
+}
+
+#menu-politician {
+	background-color: orange;
+}
+
+#menu-money {
+	background-color: green;
+}
+
+
+.img {
+	margin: auto;
+}
+
+
+/* Forms */
+
+
+
+
+
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  margin-bottom: 15px; 
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Buttons */
+
+.btn-container {
+	text-align: center;
+}
+
+.btn {
+	width: 200px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 2px solid #680000;
+	color: #680000;
+	background-color: #FFF;
+}
+.btn:hover {
+	-webkit-transition-duration: 0.25s;
+	transition-duration: 0.25s;
+	-webkit-transition-property: background-color;
+	-moz-transition-property: background-color;
+	-ms-transition-property: background-color;
+	-o-transition-property: background-color;
+	transition-property: background-color;	
+	background-color: #680000;
+	color: white;
+}
