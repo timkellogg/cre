@@ -10,11 +10,6 @@ Dotenv.load
 
 get '/' do 
 	erb :index
-	# jhash = JSON.parse(api_result) 
-end
-
-get '/textsearch' do
-	erb :textsearch
 end
 
 get '/legislators' do 
@@ -27,7 +22,6 @@ end
 
 # Finance Routes 
 get '/finance' do
-
 	erb :finance 
 end
 
@@ -36,10 +30,27 @@ get '/finance/candidates' do
 	erb :"finance/candidates"
 end
 
+post '/finance/candidates' do 
+	
+	# Retrieving form data and parsing into output/api formats
+	@state = params.fetch "state"
+	@delimiters = ""
+
+	# API call to campaign finance api  
+	api_result = RestClient.get "realtime.influenceexplorer.com/api//candidates/?format=json&page=1&page_size=10&apikey="  + ENV['SUNLIGHT_API_KEY']
+	base       = JSON.parse(api_result)
+	@result    = base["results"]
+
+	erb :"finance/candidates/results"
+end
 
 
 
 # Congressional Full-Text Search Portal
+get '/textsearch' do
+	erb :textsearch
+end
+
 post '/textsearch' do 
 
 	# Retrieving form data and parsing it into output/api formats 
