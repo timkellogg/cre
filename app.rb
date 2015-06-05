@@ -25,19 +25,32 @@ get '/bills' do
 	erb :bills 
 end
 
-get '/finance' do 
+# Finance Routes 
+get '/finance' do
+
 	erb :finance 
 end
 
+# Finance/candidates
+get '/finance/candidates' do 
+	erb :"finance/candidates"
+end
 
+
+
+
+# Congressional Full-Text Search Portal
 post '/textsearch' do 
 
+	# Retrieving form data and parsing it into output/api formats 
 	@phrase = params.fetch "phrase"
+	@delimiters = ""
 
 	title = params.fetch "title"
 	if title.empty?
 		@title = "" 
 	else 
+		@delimiters << "Title: #{title},"
 		@title = "&title=#{title}"
 	end
 
@@ -45,6 +58,7 @@ post '/textsearch' do
 	if state.empty? 
 		@state = ""
 	else 
+		@delimiters << "State: #{state},"
 		@state = "&state=#{state}"
 	end
 
@@ -52,6 +66,7 @@ post '/textsearch' do
     if party.empty?
     	@party = ""
     else 
+    	@delimiters << "Party: #{party},"
     	@party = "&party=#{party}"
     end 
 
@@ -59,6 +74,7 @@ post '/textsearch' do
     if chamber.empty?
     	@chamber = ""
     else 
+    	@delimiters << "Chamber: #{chamber}," 
     	@chamber ="&chamber=#{chamber}"
     end
 
@@ -66,6 +82,7 @@ post '/textsearch' do
 	if start_date.empty?
 		@start_date = ""
 	else 
+		@delimiters << "From #{start_date},"
 		@start_date = "&start_date=#{start_date}"
 	end
 
@@ -73,25 +90,24 @@ post '/textsearch' do
 	if end_date.empty?
 		@end_date = ""
 	else 
+		@delimiters << "To #{end_date}"
 		@end_date = "&end_date=#{end_date}"
 	end
-
 	
+
 	# Replace spaces and commas with underscores to make valid html request url 
 	@phrase.sub!(' ', '_')
 	@phrase.sub!(',', '_')
 
+	# API call to capitol words 
 	api_result = RestClient.get "capitolwords.org/api/1/text.json?phrase=#{@phrase}&page=0#{@state}#{@chamber}#{@party}
 									#{@start_date}#{@end_date}#{@title}&apikey=" + ENV['SUNLIGHT_API_KEY']
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 
-	erb :output
+	erb :"textsearch/results" 
 end
 
 
-get '/output' do 
-
-end
 
 

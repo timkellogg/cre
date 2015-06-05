@@ -1,7 +1,15 @@
-<h1>Your results</h1>
-<p class="search-term">You searched:<%= @phrase %></p>
-<p class="limiters">You selected the following options:
-</p>
+<h2>Your results</h2>
+<p class="search-term">You searched: <%= @raw %></p>
+<% if !@delimiters.empty? %>
+<p class="limiters">Your results were limited to:</p>	
+	<ul>
+	<% @delimiters.split(',').each do |line|  %>
+		<li><%= line %></li>
+	<% end %>
+	</ul>
+<% end %>
+
+
 
 <h3>Your search delivered <%= @result.count %> results</h3>
 
