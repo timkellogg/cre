@@ -76,42 +76,47 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
+
+	// create canvas elements based upon the number of results 
+	var apiData = '<%= @result %>';
+
+	for(var i = 0; i < apiData.length; i++ ) {
+
 		// Expenditures Chart 
 		var expensesData = {
-	    labels: ["$ to Support", "$ to Oppose"],
-	    datasets: [
-	        {
-	            fillColor: "rgba(220,220,220,0.5)",
-	            strokeColor: "rgba(220,220,220,0.8)",
-	            highlightFill: "rgba(220,220,220,0.75)",
-	            highlightStroke: "rgba(220,220,220,1)",
-	            data: [1980923, 1879832]
-	        }
-	    ]
-	};
+			labels: ["$ to Support", "$ to Oppose"],
+			datasets: [
+				{
+		            fillColor: "rgba(220,220,220,0.5)",
+		            strokeColor: "rgba(220,220,220,0.8)",
+		            highlightFill: "rgba(220,220,220,0.75)",
+		            highlightStroke: "rgba(220,220,220,1)",
+		            data: [apiData[i]["expenditures_supporting"], apiData[i]["expenditures_opposing"]]
+				}
+			]
+		}
 
-	// Get the context of the canvas element we want to select
-	var ctx = document.getElementById("expensesChart").getContext("2d");
-	var myBarChart = new Chart(ctx).Bar(expensesData);
+		var ctx = document.getElementById("expensesChart").getContext("2d");
+		var myBarChart = new Chart(ctx).Bar(expenseData);
+	
+		// Contributions vs Expenditures 
+		var totalData = { 
+			labels: ["Receipts", "Contributions", "Disbursements"],
+			datasets: [
+				{
+				    fillColor: "rgba(220,220,220,0.5)",
+		            strokeColor: "rgba(220,220,220,0.8)",
+		            highlightFill: "rgba(220,220,220,0.75)",
+		            highlightStroke: "rgba(220,220,220,1)",
+		            data: [1980923, 1879832, 234]
+				}
+			]
+		}
 
+		var ctx = document.getElementById("totalChart").getContext("2d");
+		var myBarChart = new Chart(ctx).Bar(totalData);
 
-	// Contributions vs Expenditures 
-	var totalData = { 
-		labels: ["Receipts", "Contributions", "Disbursements"],
-		datasets: [
-			{
-			    fillColor: "rgba(220,220,220,0.5)",
-	            strokeColor: "rgba(220,220,220,0.8)",
-	            highlightFill: "rgba(220,220,220,0.75)",
-	            highlightStroke: "rgba(220,220,220,1)",
-	            data: [1980923, 1879832, 234]
-			}
-		]
-	}
-
-	var ctx = document.getElementById("totalChart").getContext("2d");
-	var myBarChart = new Chart(ctx).Bar(totalData);
-
+	}; //end for loop for creating charts 
 
 });
 
