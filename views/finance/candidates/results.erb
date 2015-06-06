@@ -81,10 +81,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-    
-	var apiData = '<%= @result.to_json %>';
 
-	console.log( typeof apiData	);
+	var apiData = <%= @result.to_json %>;
+
 	for(var i = 0; i < 10; i++ ) {
 
 		// Build Canvas for 1st Chart
