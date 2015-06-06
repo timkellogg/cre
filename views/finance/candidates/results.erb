@@ -89,14 +89,14 @@
 		// Build Canvas for 1st Chart
 		var expensesChart = $('<canvas />').attr({
 			id: "expensesChart" + i,
-			width: 400,
+			width: 450,
 			height: 350
 		});
 
 		// Build Canvas for 2nd Chart 
 		var totalChart = $('<canvas />').attr({
 			id: "totalChart" + i,
-			width: 400,
+			width: 450,
 			height: 350
 		});
 
@@ -105,12 +105,12 @@
 		$('#totalChartContainer' + i).append(totalChart);
 
 		// Construct Expenses Chart Data
-		// Catch null values to prevent empty chart rendering 
-		if (apiData[i]["expenditures_supporting"] === 0 && apiData[i]["expenditures_opposing"] === 0) {
+		// Catch undefined values to prevent empty chart rendering 
+		if (apiData[i]["expenditures_supporting"] === undefined && apiData[i]["expenditures_opposing"] === undefined) {
 			console.log("caught null");
 
 			// Append message 
-			$('#expensesChartContainer' + i).append('<p class="no-data">No data available</p>');
+			$('#expensesChartContainer' + i).css('background-color', 'blue');
 
 
 		} else {
