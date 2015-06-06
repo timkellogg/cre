@@ -75,14 +75,21 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
-
-	// create canvas elements based upon the number of results 
+    
 	var apiData = '<%= @result %>';
 
 	for(var i = 0; i < apiData.length; i++ ) {
 
-		// Expenditures Chart 
+		// Build Canvas Elements and Append to DOM after Tables 
+		var expensesChart = $('<canvas />').attr({
+			id: "expensesChart" + i,
+			width: 400,
+			height: 350
+		});
+
+
+
+		// Construct Expenses Chart Data
 		var expensesData = {
 			labels: ["$ to Support", "$ to Oppose"],
 			datasets: [
@@ -96,10 +103,11 @@
 			]
 		}
 
+		// Build Expenses Chart
 		var ctx = document.getElementById("expensesChart").getContext("2d");
 		var myBarChart = new Chart(ctx).Bar(expenseData);
 	
-		// Contributions vs Expenditures 
+		// Construct Receipts Chart Data
 		var totalData = { 
 			labels: ["Receipts", "Contributions", "Disbursements"],
 			datasets: [
@@ -108,11 +116,12 @@
 		            strokeColor: "rgba(220,220,220,0.8)",
 		            highlightFill: "rgba(220,220,220,0.75)",
 		            highlightStroke: "rgba(220,220,220,1)",
-		            data: [1980923, 1879832, 234]
+		            data: [apiData[i]["total_receipts"], apiData[i]["total_contributions"], apiData["total_disbursements"] ]
 				}
 			]
 		}
 
+		// Build Receipts Chart
 		var ctx = document.getElementById("totalChart").getContext("2d");
 		var myBarChart = new Chart(ctx).Bar(totalData);
 
