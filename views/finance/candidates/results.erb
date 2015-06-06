@@ -105,22 +105,35 @@
 		$('#totalChartContainer' + i).append(totalChart);
 
 		// Construct Expenses Chart Data
-		var expensesData = {
-			labels: ["$ to Support", "$ to Oppose"],
-			datasets: [
-				{
-		            fillColor: "rgba(220,220,220,0.5)",
-		            strokeColor: "rgba(220,220,220,0.8)",
-		            highlightFill: "rgba(220,220,220,0.75)",
-		            highlightStroke: "rgba(220,220,220,1)",
-		            data: [apiData[i]["expenditures_supporting"], apiData[i]["expenditures_opposing"]]
-				}
-			]
+		// Catch null values to prevent empty chart rendering 
+		if (apiData[i]["expenditures_supporting"] === 0 && apiData[i]["expenditures_opposing"] === 0) {
+			console.log("caught null");
+
+			// Append message 
+			$('#expensesChartContainer' + i).append('<p class="no-data">No data available</p>');
+
+
+		} else {
+			// Build Valid Charts 
+			var expensesData = {
+				labels: ["$ to Support", "$ to Oppose"],
+				datasets: [
+					{
+			            fillColor: "rgba(220,220,220,0.5)",
+			            strokeColor: "rgba(220,220,220,0.8)",
+			            highlightFill: "rgba(220,220,220,0.75)",
+			            highlightStroke: "rgba(220,220,220,1)",
+			            data: [apiData[i]["expenditures_supporting"], apiData[i]["expenditures_opposing"]]
+					}
+				]
+			}
+
+			// Build Expenses Chart 
+			var ctx = $(expensesChart)[0].getContext("2d");
+			var myBarChart = new Chart(ctx).Bar(expensesData);
 		}
 
-		// Build Expenses Chart 
-		var ctx = $(expensesChart)[0].getContext("2d");
-		var myBarChart = new Chart(ctx).Bar(expensesData);
+
 	
 		// Construct Totals Chart Data
 		var totalData = { 
