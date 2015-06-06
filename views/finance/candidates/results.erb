@@ -12,8 +12,9 @@
 <h3>Your search delivered <%= @result.count %> results</h3>
 
 <% if @result.any? %>
-	<% @result.each do |result| %> 
+	<% @result.each_with_index do |result, index| %> 
 	<div class="col-md-12">
+		<p class="result-number"><%=index + 1%></p>
 		<table class="table table-striped table-hover table-condensed">
 		  <tr>
 		    <th class="table-heading" colspan="15"><%= result["name"] %>, (<%= result["party"] %>)</th>
@@ -57,11 +58,16 @@
 		</table>	
 	</div>
 	<div class="chart-container row">
-		<div class="col-md-6">
-			<canvas id="expensesChart" width="400" height="350"></canvas>
+		<div class="col-md-6 chart-container" id="expensesChartContainer<%=index%>">
+			<!-- <canvas id="expensesChart" width="400" height="350"></canvas> -->
+			<!-- Dynamic loading -->
+
+
 		</div>
-		<div class="col-md-6">
-			<canvas id="totalChart" width="400" height="350"></canvas>
+		<div class="col-md-6 chart-container" id="totalChartContainer<%=index%>">
+			<!-- <canvas id="totalChart" width="400" height="350"></canvas> -->
+			<!-- Dynamic loading -->
+
 		</div>
 	</div>
 	<% end %>
@@ -76,18 +82,28 @@
 <script type="text/javascript">
 	$(document).ready(function() {
     
-	var apiData = '<%= @result %>';
+	var apiData = '<%= @result.to_json %>';
 
-	for(var i = 0; i < apiData.length; i++ ) {
+	console.log( typeof apiData	);
+	for(var i = 0; i < 10; i++ ) {
 
-		// Build Canvas Elements and Append to DOM after Tables 
+		// Build Canvas for 1st Chart
 		var expensesChart = $('<canvas />').attr({
 			id: "expensesChart" + i,
 			width: 400,
 			height: 350
 		});
 
+		// Build Canvas for 2nd Chart 
+		var totalChart = $('<canvas />').attr({
+			id: "totalChart" + i,
+			width: 400,
+			height: 350
+		});
 
+		// Append DOM elements 
+		$('#expensesChartContainer' + i).append(expensesChart);
+		$('#totalChartContainer' + i).append(totalChart);
 
 		// Construct Expenses Chart Data
 		var expensesData = {
@@ -103,11 +119,11 @@
 			]
 		}
 
-		// Build Expenses Chart
-		var ctx = document.getElementById("expensesChart").getContext("2d");
-		var myBarChart = new Chart(ctx).Bar(expenseData);
+		// Build Expenses Chart 
+		var ctx = $(expensesChart)[0].getContext("2d");
+		var myBarChart = new Chart(ctx).Bar(expensesData);
 	
-		// Construct Receipts Chart Data
+		// Construct Totals Chart Data
 		var totalData = { 
 			labels: ["Receipts", "Contributions", "Disbursements"],
 			datasets: [
@@ -116,13 +132,13 @@
 		            strokeColor: "rgba(220,220,220,0.8)",
 		            highlightFill: "rgba(220,220,220,0.75)",
 		            highlightStroke: "rgba(220,220,220,1)",
-		            data: [apiData[i]["total_receipts"], apiData[i]["total_contributions"], apiData["total_disbursements"] ]
+		            data: [apiData[i]["total_receipts"], apiData[i]["total_contributions"], apiData[i]["total_disbursements"] ]
 				}
 			]
 		}
 
-		// Build Receipts Chart
-		var ctx = document.getElementById("totalChart").getContext("2d");
+		// Build Total Chart
+		var ctx = $(totalChart)[0].getContext("2d");
 		var myBarChart = new Chart(ctx).Bar(totalData);
 
 	}; //end for loop for creating charts 
