@@ -66,6 +66,11 @@ a {
 	font-size: 1em;
 }
 
+.no-data {
+	color: red;
+	text-align: center;
+}
+
 /* Lists */
 
 

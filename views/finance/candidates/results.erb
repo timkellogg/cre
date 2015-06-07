@@ -82,9 +82,11 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
+	// Store json data from ruby into variable 
 	var apiData = <%= @result.to_json %>;
 
-	for(var i = 0; i < 10; i++ ) {
+	// Loop over each result 
+	for(var i = 0; i < apiData.length; i++ ) {
 
 		// Build Canvas for 1st Chart
 		var expensesChart = $('<canvas />').attr({
@@ -104,16 +106,16 @@
 		$('#expensesChartContainer' + i).append(expensesChart);
 		$('#totalChartContainer' + i).append(totalChart);
 
-		// Construct Expenses Chart Data
-		// Catch undefined values to prevent empty chart rendering 
-		if (apiData[i]["expenditures_supporting"] === undefined && apiData[i]["expenditures_opposing"] === undefined) {
-			console.log("caught null");
+		// Catch zero to prevent empty expenses chart rendering 
+		if ((apiData[i]["expenditures_supporting"] == 0) && (apiData[i]["expenditures_opposing"] == 0)) {
 
-			// Append message 
-			$('#expensesChartContainer' + i).css('background-color', 'blue');
-
+			// Build no data warning element for expenses chart
+			$('#expensesChartContainer' + i).append('<p class="no-data">No Data to Display</p>');
+			$('#expensesChartContainer' + i).css('background-color', 'lightgray')
+											.css('opacity', .3);
 
 		} else {
+
 			// Build Valid Charts 
 			var expensesData = {
 				labels: ["$ to Support", "$ to Oppose"],
@@ -133,25 +135,32 @@
 			var myBarChart = new Chart(ctx).Bar(expensesData);
 		}
 
+		// Catch zero to prevent empty total chart rendering 
+		if ((apiData[i]["total_receipts"] == 0) && (apiData[i]["total_contributions"] == 0) && apiData[i]["total_disbursements"] == 0) {
+			
+			// Build no data warning element for total chart
+			$('#totalChartContainer' + i).append('<p class="no-data">No Data to Display</p>');	
 
-	
-		// Construct Totals Chart Data
-		var totalData = { 
-			labels: ["Receipts", "Contributions", "Disbursements"],
-			datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-		            strokeColor: "rgba(220,220,220,0.8)",
-		            highlightFill: "rgba(220,220,220,0.75)",
-		            highlightStroke: "rgba(220,220,220,1)",
-		            data: [apiData[i]["total_receipts"], apiData[i]["total_contributions"], apiData[i]["total_disbursements"] ]
-				}
-			]
+		} else {
+
+			// Construct Totals Chart Data
+			var totalData = { 
+				labels: ["Receipts", "Contributions", "Disbursements"],
+				datasets: [
+					{
+					    fillColor: "rgba(220,220,220,0.5)",
+			            strokeColor: "rgba(220,220,220,0.8)",
+			            highlightFill: "rgba(220,220,220,0.75)",
+			            highlightStroke: "rgba(220,220,220,1)",
+			            data: [apiData[i]["total_receipts"], apiData[i]["total_contributions"], apiData[i]["total_disbursements"] ]
+					}
+				]
+			}
+
+			// Build Total Chart
+			var ctx = $(totalChart)[0].getContext("2d");
+			var myBarChart = new Chart(ctx).Bar(totalData);
 		}
-
-		// Build Total Chart
-		var ctx = $(totalChart)[0].getContext("2d");
-		var myBarChart = new Chart(ctx).Bar(totalData);
 
 	}; //end for loop for creating charts 
 
