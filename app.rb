@@ -7,6 +7,14 @@ require 'rest_client'
 require 'dotenv'
 Dotenv.load
 
+# Load all lib files 
+configure do
+  $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib")
+  Dir.glob("#{File.dirname(__FILE__)}/lib/*.rb") { |lib| 
+    require File.basename(lib, '.*') 
+  }
+end
+
 
 get '/' do 
 	erb :index

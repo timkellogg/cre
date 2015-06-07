@@ -25,11 +25,11 @@
 		  </tr>
 		  <tr>
 		    <td class="table-title" colspan="1">Incumbent:</td>
-		    <td class="table-content" colspan="14"><%= result["is_incumbent"] %></td>
+		    <td class="table-content" colspan="14"><%= convert_boolean(result["is_incumbent"]) %></td>
 		  </tr>
 		  <tr>
 		    <td class="table-title" colspan="1">Not Seeking Election:</td>
-		    <td class="table-content" colspan="14"><%= result["not_seeking_reelection"] %></td>
+		    <td class="table-content" colspan="14"><%= convert_boolean(result["not_seeking_reelection"]) %></td>
 		  </tr>
 		  <tr>
 		    <td class="table-title" colspan="1">Elected:</td>
@@ -37,11 +37,11 @@
 		  </tr>
 		  <tr>
 		    <td class="table-title" colspan="1">State:</td>
-		    <td class="table-content" colspan="14"><%= result["state"] %></td>
+		    <td class="table-content" colspan="14"><%= convert_abbreviation(result["state"]) %></td>
 		  </tr>
 		  <tr>
 		    <td class="table-title" colspan="1">Office:</td>
-		    <td class="table-content" colspan="14"><%= result["office"] %></td>
+		    <td class="table-content" colspan="14"><%= get_chamber(result["office"]) %></td>
 		  </tr>
 		  <tr>
 		    <td class="table-title" colspan="1">Outstanding Loans:</td>
