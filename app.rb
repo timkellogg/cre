@@ -98,7 +98,7 @@ post '/finance/candidates' do
 	# API call to campaign finance api  
 	api_result = RestClient.get "realtime.influenceexplorer.com/api//candidates/?format=json&page=1
 								#{@fec_id}#{@office}#{@state}#{@term_class}#{@party}#{@is_incumbent}
-								&page_size=10&apikey=" + ENV['SUNLIGHT_API_KEY']
+								&page_size=50&apikey=" + ENV['SUNLIGHT_API_KEY']
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 
@@ -173,10 +173,9 @@ post '/textsearch' do
 
 	# API call to capitol words 
 	api_result = RestClient.get "capitolwords.org/api/1/text.json?phrase=#{@phrase}&page=0#{@state}#{@chamber}#{@party}
-									#{@start_date}#{@end_date}#{@title}&apikey=" + ENV['SUNLIGHT_API_KEY'] 					
-	@result = api_result.to_json	
-	# base       = JSON.parse(api_result)
-	# @result    = base["results"]
+									#{@start_date}#{@end_date}#{@title}&apikey=" + ENV['SUNLIGHT_API_KEY'] 						
+	base       = JSON.parse(api_result)
+	@result    = base["results"]
 
 
 	erb :"textsearch/results" 

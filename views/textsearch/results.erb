@@ -9,11 +9,10 @@
 	</ul>
 <% end %>
 
-
+<% if @result.any? %>
 
 <h3>Your search delivered <%= @result.count %> results</h3>
 
-<% if @result.any? %>
 	<% @result.each do |result| %> 
 		<div class="result-item row">
 			<p class="result-heading"><%= result["title"] %>, Congressional Section: <%= result["congress"] %>, <%= result["date"] %></p>
