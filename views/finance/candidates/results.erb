@@ -16,9 +16,7 @@
 	<div class="col-md-12">
 		<p class="result-number"><%=index + 1%></p>
 		<table class="table table-striped table-hover table-condensed">
-		  <tr>
-		    <th class="table-heading" colspan="15"><%= result["name"] %>, (<%= result["party"] %>)</th>
-		  </tr>
+		  <tr><th class="table-heading" colspan="15"><%= result["name"] %>, (<%= result["party"] %>)</th></tr>
 		  <tr>
 		    <td class="table-title" colspan="1">FEC ID:</td>
 		    <td class="table-content" colspan="14"><%= result["fec_id"] %></td>
@@ -45,35 +43,26 @@
 		  </tr>
 		  <tr>
 		    <td class="table-title" colspan="1">Outstanding Loans:</td>
-		    <td class="table-content" colspan="14">$<%= result["outstanding_loans"] %></td>
+		    <td class="table-content text-loan" colspan="14">$<%= comma_numbers(result["outstanding_loans"]) %></td>
 		  </tr>
 		  <tr>
 		    <td class="table-title" colspan="1">Cash on Hand:</td>
-		    <td class="table-content" colspan="14">$<%= result["cash_on_hand"] %></td>
+		    <td class="table-content text-cash" colspan="14">$<%= comma_numbers(result["cash_on_hand"]) %></td>
 		  </tr>
 		  <tr>
 		    <td class="table-title" colspan="1">Cash Accurate as of:</td>
-		    <td class="table-content" colspan="14"><%= result["cash_on_hand_date"] %></td>
+		    <td class="table-content" colspan="14"><%= convert_nil(result["cash_on_hand_date"]) %></td>
 		  </tr>
 		</table>	
 	</div>
 	<div class="chart-container row">
-		<div class="col-md-6 chart-container" id="expensesChartContainer<%=index%>">
-			<!-- <canvas id="expensesChart" width="400" height="350"></canvas> -->
-			<!-- Dynamic loading -->
-
-
-		</div>
-		<div class="col-md-6 chart-container" id="totalChartContainer<%=index%>">
-			<!-- <canvas id="totalChart" width="400" height="350"></canvas> -->
-			<!-- Dynamic loading -->
-
-		</div>
+		<div class="col-md-6 chart-container" id="expensesChartContainer<%=index%>"></div>
+		<div class="col-md-6 chart-container" id="totalChartContainer<%=index%>"></div>
 	</div>
 	<% end %>
 <% else %>
 	<div class="row" id="result-none">
-		<p>Oh, no! There were no results. Search <a href="/finances/candidates">again?</a></p>
+		<p>Oh, no! There were no results. Search <a href="/finance/candidates">again?</a></p>
 	</div>
 <% end %> 
 

@@ -26,6 +26,18 @@ h1 {
 	color: #FFFAF0;
 }
 
+.text-loan {
+	color: red;
+}
+
+.text-cash {
+	color: darkgreen;
+}
+
+.result-number {
+	font-size: 18px;
+}
+
 #top-panel {
 	background-color: #680000 ;
 }

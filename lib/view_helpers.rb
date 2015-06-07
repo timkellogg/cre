@@ -37,3 +37,28 @@ def convert_abbreviation(abbreviation)
 	state_hash[abbreviation]
 end
 
+# Convert nill values to meaningful output
+def convert_nil(value)
+	if value.nil? || value == 0 
+		"No Information"
+	else 
+		value 
+	end
+end
+
+
+# Convert string to decimal-delimited set
+def comma_numbers(number, delimiter = ',')
+  number.to_s.reverse.gsub(%r{([0-9]{3}(?=([0-9])))}, "\\1#{delimiter}").reverse
+end
+
+
+
+
+
+
+
+
+
+
+
