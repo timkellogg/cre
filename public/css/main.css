@@ -34,6 +34,15 @@ h1 {
 	color: darkgreen;
 }
 
+.text-info {
+	font-variant: italic;
+	font-weight: bold;
+	color: black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+}
+
 .result-number {
 	font-size: 18px;
 }
@@ -182,10 +191,17 @@ input, textarea, select, .uneditable-input {
 	border-bottom: 2px solid darkgray;
 }
 
+.table-sub-heading {
+	height: 36px;
+	text-decoration: underline;
+	letter-spacing: 2px;
+	font-size: 18px;
+	color: darkblue;
+}
+
 .table-title {
 	font-weight: bold;
 	width: 100px;
-
 }
 
 .table-content {

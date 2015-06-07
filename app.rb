@@ -15,7 +15,6 @@ configure do
   }
 end
 
-
 get '/' do 
 	erb :index
 end
@@ -32,6 +31,67 @@ end
 get '/finance' do
 	erb :finance 
 end
+
+get '/finance/districts' do 
+	erb :"finance/districts"
+end
+
+post '/finance/districts' do 
+
+	# Retrieving form data and parsing into output/api formats 
+	@delimiters = ""
+
+	state = params.fetch "state"
+	if state.empty?
+		@state = ""
+	else
+		@delimiters << "State: #{state}," 
+		@state = "&state=#{state}"
+	end
+
+	office = params.fetch "office"
+	if office.empty?
+		@office = ""
+	else 
+		@delimiters << "Office: #{office},"
+		@office = "&office=#{office}"
+	end
+
+	office_district = params.fetch "office_district"
+	if office_district.empty?
+		@office_district = ""
+	else 
+		@delimiters << "Office District: #{office_district},"
+		@office_district = "&office_district=#{office_district}"
+	end
+
+	term_class = params.fetch "term_class"
+	if term_class.empty?
+		@term_class = ""
+	else 
+		@delimiters << "Re-Election Year: #{term_class},"
+		@term_class = "&term_class=#{term_class}"
+	end
+
+
+	incumbent_party = params.fetch "incumbent_party"
+	if incumbent_party.empty?
+		@incumbent_party = ""
+	else 
+		@delimiters << "Incumbent Party: #{incumbent_party},"
+		@incumbent_party = "&incumbent_party=#{incumbent_party}"
+	end
+
+	# API call to finance  
+	api_result = RestClient.get "realtime.influenceexplorer.com/api//districts/?format=json&page=1&page_size=10
+	                        #{@state}#{@office}#{@office_district}#{@term_class}#{@incumbent_party}&apikey=" + ENV['SUNLIGHT_API_KEY']
+	base       = JSON.parse(api_result)
+	@result    = base["results"]
+
+	erb :"finance/districts/results"
+
+end
+
 
 # Finance/candidates
 get '/finance/candidates' do 
@@ -104,6 +164,9 @@ post '/finance/candidates' do
 
 	erb :"finance/candidates/results"
 end
+
+
+
 
 
 

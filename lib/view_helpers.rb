@@ -11,6 +11,19 @@ def get_chamber(value)
 	end
 end
 
+# Convert 'R', 'D', and 'I' to 'Republican', 'Democrat', 'Independent'
+def get_party(value)
+	if value == 'D'
+		'Democrat'
+	elsif value == 'I'
+		'Independent'
+	elsif value == 'R'
+		'Republican'
+	else 
+		'Other'
+	end 
+end
+
 # Convert False & True to No and Yes
 def convert_boolean(bool) 
 	if bool == false 
@@ -40,11 +53,19 @@ end
 # Convert nill values to meaningful output
 def convert_nil(value)
 	if value.nil? || value == 0 
-		"No Information"
+		"No Information Available"
 	else 
 		value 
 	end
 end
+
+def convert_to_na(value)
+	if value.nil? || value == ""
+		"NA"
+	else 
+		value 
+	end
+end 
 
 
 # Convert string to decimal-delimited set
