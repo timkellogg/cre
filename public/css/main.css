@@ -69,6 +69,12 @@ a {
 .no-data {
 	color: red;
 	text-align: center;
+	padding-top: -175px;
+}
+
+.no-data-container {
+	background-color: white;
+	height: 50px;
 }
 
 /* Lists */

@@ -80,7 +80,7 @@ $(document).ready(function() {
     scaleShowLabels: true,
 
     // Interpolated JS string - can access value
-    scaleLabel: "<%=value%>",
+    scaleLabel: "$<%=value%>",
 
     // Boolean - Whether the scale should stick to integers, not floats even if drawing space is there
     scaleIntegersOnly: true,
