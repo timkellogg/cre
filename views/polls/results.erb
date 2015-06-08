@@ -34,72 +34,38 @@
 		  	<td class="table-title" colspan="1">Method:</td>
 		  	<td class="table-content" colspan="14"><%= result["method"] %></td>
 		  </tr>
-		  <tr><th class="table-sub-heading" colspan="15">Poll Questions</th></tr>
-		  <% result["questions"].each do |question| %>
+		  <tr><th class="table-sub-heading" colspan="15">Poll Topics</th></tr>
+		  <!-- Topic of Polls -->
+		  <% result["questions"].each_with_index do |question, index| %>
+		  <tr><td class="table-tertiary-heading" colspan="15"><%= question["name"] %></td></tr>
 		  <tr>
-		  	<td class="table-title" colspan="1">Topic:</td>
-		  	<td class="table-content" colspan="14"><%= question["name"] %></td>
+		  	<td class="table-title" colspan="1">Pool:</td>
+		  	<td class="table-content" colspan="14"><%= question["subpopulations"][0]["name"] %></td> 
 		  </tr>
+		  <tr>
+		  	<td class="table-title" colspan="1">Population:</td>
+		  	<td class="table-content" colspan="14"><%= question["subpopulations"][0]["observations"] %></td>
+		  </tr>
+		  <tr>
+		  	<td class="table-title" colspan="1">Error Margin:</td>
+		  	<td class="table-content" colspand="14"> <%= question["subpopulations"][0]["margin_of_error"] %></td>
+		  </tr>
+			  <!-- Poll Responses -->
+			  <% question["subpopulations"][0]["responses"].each do |response| %>
+			  	<tr>
+			    	<td class="table-title" colspan="1"><%= response["choice"] %></td>
+			    	<td class="table-content" colspan="14"><%= response["value"] %></td>
+			  	</tr>
+			  <% end %>
 		  <% end %>
-		</table>	
-	</div>
-		<div class="chart-container row">
-		<div class="col-md-6 chart-container" id="chart1<%=index%>"></div>
-		<div class="col-md-6 chart-container" id="chart2<%=index%>"></div>
-	</div>
+		</table>
+	</div>	
 	<% end %>
 <% else %>
 	<div class="row" id="result-none">
 		<p>Oh, no! There were no results. Search <a href="/finance/candidates">again?</a></p>
 	</div>
 <% end %> 
-
-// <script type="text/javascript">
-// 	$(document).ready(function() {
-
-// 	// Store json data from ruby into variable 
-// 	var apiData = <%= @result.to_json %>;
-
-// 	// Loop over each result 
-// 	for(var i = 0; i < apiData.length; i++ ) {
-
-// 		// Build Canvas for 1st Chart
-// 		var chart1 = $('<canvas />').attr({
-// 			id: "expensesChart" + i,
-// 			width: 450,
-// 			height: 350
-// 		});
-
-// 		// Append DOM elements 
-// 		$('#chart1' + i).append(chart1);
-
-
-// 		// Build Valid Charts 
-// 		var chart1Data = {
-// 			labels: [],
-// 			datasets: [
-// 				{
-// 					label: apiData["questions"][0]["name"],
-// 		            fillColor: "rgba(220,220,220,0.5)",
-// 		            strokeColor: "rgba(220,220,220,0.8)",
-// 		            highlightFill: "rgba(220,220,220,0.75)",
-// 		            highlightStroke: "rgba(220,220,220,1)",
-// 		            data: [apiData[i]["expenditures_supporting"], apiData[i]["expenditures_opposing"]]
-// 				}
-// 			]
-// 		}
-
-
-// 		// Build Expenses Chart 
-// 		var ctx = $(chart1)[0].getContext("2d");
-// 		var myPieChart = new Chart(ctx).Pie(chart1Data);
-
-// 	}; //end for loop for creating charts 
-
-// });
-
-
-// </script>
 
 
 

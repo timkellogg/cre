@@ -222,6 +222,13 @@ input, textarea, select, .uneditable-input {
 	color: darkblue;
 }
 
+.table-tertiary-heading { 
+	height: 28px;
+	font-size: 14px;
+	color: darkred;
+	font-weight: bold;
+}
+
 .table-title {
 	font-weight: bold;
 	width: 100px;
@@ -238,8 +245,6 @@ td {
 /* Footer */
 
 .footer {
-	position: relative;
-	bottom: 0;
 	width: 100%;
 	height: 60px;
 	box-sizing: border-box;
