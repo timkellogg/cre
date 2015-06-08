@@ -52,14 +52,6 @@ post '/polls' do
 	@topic = params.fetch "topic"
 	@delimiters = ""
 
-	state = params.fetch "state"
-	if state.empty?
-		@state = ""
-	else 
-		@delimiters << "State: #{state},"
-		@state = "&state=#{state}"
-	end
-
 	after = params.fetch "after"
 	if after.empty?
 		@after = ""
@@ -76,15 +68,10 @@ post '/polls' do
 		@before = "&before=#{before}"
 	end
 
-	# Replace spaces and commas with underscores to make valid html request url 
-	@topic.sub!(' ', '-')
-	@topic.sub!(',', '-')
-
-	api_result = RestClient.get "http://elections.huffingtonpost.com/pollster/api/polls"
+	api_result = RestClient.get "http://elections.huffingtonpost.com/pollster/api/polls.json?page=1&topic=#{@topic}#{@before}#{@after}"
 	@result    = JSON.parse(api_result)
 
 	erb :"/polls/results"
-
 end
 
 

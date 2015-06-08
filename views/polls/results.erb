@@ -1,3 +1,105 @@
-<h2>Results</h2>
+<h2>Your results</h2>
+<% if !@delimiters.empty? %>
+<p class="limiters">You searched for <%= @result %>:</p>	
+	<ul>
+	<% @delimiters.split(',').each do |line|  %>
+		<li><%= line %></li>
+	<% end %>
+	</ul>
+<% end %>
 
-<p><%= @result %></p>
+
+<h3>Your search delivered <%= @result.count %> results</h3>
+
+<% if @result.any? %>
+	<% @result.each_with_index do |result, index| %> 
+	<div class="col-md-12">
+		<p class="result-number"><%=index + 1%></p>
+		<table class="table table-striped table-hover table-condensed">
+		  <tr><th class="table-heading" colspan="15"><%= result["survey_houses"][0]["name"] %></th></tr>
+		  <tr><th class="table-sub-heading" colspan="15">Basic Poll Information</th></tr>
+		  <tr>
+		  	<td class="table-title" colspan="1">Source:</td>
+		  	<td class="table-content" colspan="14"><a href="<%= result["source"]%>"><%= result["source"] %></a></td>
+		  </tr>
+		  <tr>
+		    <td class="table-title" colspan="1">Started:</td>
+		    <td class="table-content" colspan="14"><%= result["start_date"] %></td>
+		  </tr>
+		  <tr>
+		  	<td class="table-title" colspan="1">Ended:</td>
+		  	<td class="table-content" colspan="14"><%= result["end_date"] %></td>
+		  </tr>
+		  <tr>
+		  	<td class="table-title" colspan="1">Method:</td>
+		  	<td class="table-content" colspan="14"><%= result["method"] %></td>
+		  </tr>
+		  <tr><th class="table-sub-heading" colspan="15">Poll Questions</th></tr>
+		  <% result["questions"].each do |question| %>
+		  <tr>
+		  	<td class="table-title" colspan="1">Topic:</td>
+		  	<td class="table-content" colspan="14"><%= question["name"] %></td>
+		  </tr>
+		  <% end %>
+		</table>	
+	</div>
+		<div class="chart-container row">
+		<div class="col-md-6 chart-container" id="chart1<%=index%>"></div>
+		<div class="col-md-6 chart-container" id="chart2<%=index%>"></div>
+	</div>
+	<% end %>
+<% else %>
+	<div class="row" id="result-none">
+		<p>Oh, no! There were no results. Search <a href="/finance/candidates">again?</a></p>
+	</div>
+<% end %> 
+
+// <script type="text/javascript">
+// 	$(document).ready(function() {
+
+// 	// Store json data from ruby into variable 
+// 	var apiData = <%= @result.to_json %>;
+
+// 	// Loop over each result 
+// 	for(var i = 0; i < apiData.length; i++ ) {
+
+// 		// Build Canvas for 1st Chart
+// 		var chart1 = $('<canvas />').attr({
+// 			id: "expensesChart" + i,
+// 			width: 450,
+// 			height: 350
+// 		});
+
+// 		// Append DOM elements 
+// 		$('#chart1' + i).append(chart1);
+
+
+// 		// Build Valid Charts 
+// 		var chart1Data = {
+// 			labels: [],
+// 			datasets: [
+// 				{
+// 					label: apiData["questions"][0]["name"],
+// 		            fillColor: "rgba(220,220,220,0.5)",
+// 		            strokeColor: "rgba(220,220,220,0.8)",
+// 		            highlightFill: "rgba(220,220,220,0.75)",
+// 		            highlightStroke: "rgba(220,220,220,1)",
+// 		            data: [apiData[i]["expenditures_supporting"], apiData[i]["expenditures_opposing"]]
+// 				}
+// 			]
+// 		}
+
+
+// 		// Build Expenses Chart 
+// 		var ctx = $(chart1)[0].getContext("2d");
+// 		var myPieChart = new Chart(ctx).Pie(chart1Data);
+
+// 	}; //end for loop for creating charts 
+
+// });
+
+
+// </script>
+
+
+
