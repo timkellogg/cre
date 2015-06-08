@@ -1,32 +1,12 @@
 /* General */
 
 body {
-	background-color: #fffaf0;
+	background-color: #fff;
 }
 
-
-#index-panel-1 {
-
-}
 
 /* Navigation */
 
-.navbar {
-	background-color: #680000;
-	border-radius: none;
-	height: 70px;
-	color: #fffaf0;
-}
-
-#site-menu {
-  width: 300px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: -300px;
-  background: #428bca;
-  padding: 15px;
-}
 
 .result-item {	
 	margin: 10px;
@@ -60,6 +40,15 @@ h1 {
 
 .main-title {
 	font-size: 2em;
+	color: #fffaf0;
+}
+
+.main-secondary-heading {
+	margin-top: 55px;
+}
+
+.sub-heading {
+	font-weight: bold;
 }
 
 .text-loan {
@@ -92,6 +81,8 @@ h1 {
 	margin-left: 20px;
 }
 
+/* Links */
+
 #link-home {
 	margin-top: 50px;
 	border: 2px solid #680000;
@@ -121,6 +112,10 @@ h1 {
 a {
 	color: black;
 	font-size: 1em;
+}
+
+.display-link {
+	font-size: 24px;
 }
 
 
@@ -155,6 +150,9 @@ a {
 	fill: violet;
 }
 
+#svg-poll:hover path {
+	fill: silver;
+}
 
 .svg {
 	max-height: 125px;
@@ -166,8 +164,6 @@ a {
 	color:  black;
 	font-size: 1.1em;
 }
-
-
 
 
 .img {

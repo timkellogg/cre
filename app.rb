@@ -15,9 +15,16 @@ configure do
   }
 end
 
+### Static Pages ###
+# Main Index
 get '/' do 
 	erb :index
 end
+
+# About 
+get '/about' do 
+	erb :about 
+end 
 
 get '/legislators' do 
 	erb :legislators
@@ -30,6 +37,54 @@ end
 # Finance Routes 
 get '/finance' do
 	erb :finance 
+end
+
+# Polling Routes
+get '/polls' do 
+	erb :polls
+end
+
+
+# HuffPo API 
+post '/polls' do 
+
+	# Retrieving form data and parsing into output/api formats 
+	@topic = params.fetch "topic"
+	@delimiters = ""
+
+	state = params.fetch "state"
+	if state.empty?
+		@state = ""
+	else 
+		@delimiters << "State: #{state},"
+		@state = "&state=#{state}"
+	end
+
+	after = params.fetch "after"
+	if after.empty?
+		@after = ""
+	else 
+		@delimiters << "After #{after},"
+		@after = "&after=#{after}"
+	end
+
+	before = params.fetch "before" 
+	if before.empty?
+		@before = ""
+	else 
+		@delimiters << "To #{before}"
+		@before = "&before=#{before}"
+	end
+
+	# Replace spaces and commas with underscores to make valid html request url 
+	@topic.sub!(' ', '-')
+	@topic.sub!(',', '-')
+
+	api_result = RestClient.get "http://elections.huffingtonpost.com/pollster/api/polls"
+	@result    = JSON.parse(api_result)
+
+	erb :"/polls/results"
+
 end
 
 
