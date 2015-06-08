@@ -1,4 +1,34 @@
-.result-item {
+/* General */
+
+body {
+	background-color: #fffaf0;
+}
+
+
+#index-panel-1 {
+
+}
+
+/* Navigation */
+
+.navbar {
+	background-color: #680000;
+	border-radius: none;
+	height: 70px;
+	color: #fffaf0;
+}
+
+#site-menu {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -300px;
+  background: #428bca;
+  padding: 15px;
+}
+
+.result-item {	
 	margin: 10px;
 	line-height: 1.4em;
 }
@@ -23,7 +53,13 @@ h1, h3, p, li {
 }
 
 h1 {
-	color: #FFFAF0;
+	color: white;
+	font-family: 'Droid Serif', serif;
+	font-weight: 700;
+}
+
+.main-title {
+	font-size: 2em;
 }
 
 .text-loan {
@@ -48,7 +84,7 @@ h1 {
 }
 
 #top-panel {
-	background-color: #680000 ;
+	background-color: #680000;
 }
 
 .secondary-heading {
@@ -88,12 +124,8 @@ a {
 }
 
 
-/* Lists */
-
-
 /* Main Page */
-.menu-item {
-	border: 1px solid black;
+.menu-item {	
 	min-height: 120px;
 	padding-top: 30px;
 	padding-bottom: 30px;
@@ -108,8 +140,21 @@ a {
 /* images */
 
 .svg:hover path {
-    fill: white;
+    fill: darkgreen;
 }
+
+#svg-congress:hover path {
+	fill: #2a003e;
+}
+
+#svg-speaking:hover path {
+	fill: red;
+}
+
+#svg-politician:hover path {
+	fill: violet;
+}
+
 
 .svg {
 	max-height: 125px;
@@ -119,34 +164,16 @@ a {
 .menu-item a,
 .menu-item p {
 	color:  black;
+	font-size: 1.1em;
 }
 
 
-.menu-item a:hover,
-.menu-item p:hover {
-	color: #FFFAF0;
-}
-
-#menu-congress {
-	background-color: blue;
-}
-
-#menu-speaking {
-	background-color: red;
-}
-
-#menu-politician {
-	background-color: orange;
-}
-
-#menu-money {
-	background-color: green;
-}
 
 
 .img {
 	margin: auto;
 }
+
 
 
 /* Forms */
@@ -212,6 +239,15 @@ td {
 	white-space: nowrap;
 }
 
+/* Footer */
+
+.footer {
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	box-sizing: border-box;
+}
 
 /* Widgets */
 
@@ -226,3 +262,18 @@ canvas {
 	display: inline-block;
 }
 
+/* Icons */
+
+.glyphicon.glyphicon-home {
+    font-size: 4em;
+    color: white;
+}
+
+@media(max-width:767px){
+	.main-title {
+		font-size: 1em;
+	}
+}
+@media(min-width:768px){}
+@media(min-width:992px){}
+@media(min-width:1200px){}

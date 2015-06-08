@@ -32,6 +32,8 @@ get '/finance' do
 	erb :finance 
 end
 
+
+
 get '/finance/districts' do 
 	erb :"finance/districts"
 end
@@ -83,7 +85,7 @@ post '/finance/districts' do
 	end
 
 	# API call to finance  
-	api_result = RestClient.get "realtime.influenceexplorer.com/api//districts/?format=json&page=1&page_size=10
+	api_result = RestClient.get "realtime.influenceexplorer.com/api//districts/?format=json&page=1&page_size=100
 	                        #{@state}#{@office}#{@office_district}#{@term_class}#{@incumbent_party}&apikey=" + ENV['SUNLIGHT_API_KEY']
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
