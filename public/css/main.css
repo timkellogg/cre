@@ -226,7 +226,7 @@ a {
 .img-banner-index,
 .img-banner-finance,
 .img-banner-polls,
-.img-banner-records,
+.img-banner-textsearch,
 .img-banner-legislations,
 .img-banner-representatives {	
 	-webkit-background-size: cover;
@@ -245,13 +245,17 @@ a {
 	background: url('images/coverphoto.jpg') no-repeat fixed;
 }	
 
-
-.img-banner-finance {
-	background: url('images/financialportalbanner.jpg') no-repeat center fixed;
+.img-banner-textsearch {
+	background: url('images/textsearchbanner.jpg') no-repeat center center fixed;
 }
 
-.img-banner-polls {
+.img-banner-finance {
+	background: url('images/financialportalbanner.jpg') no-repeat center center fixed;
+}
 
+
+.img-banner-polls {
+	background: url('images/pollportalbanner.jpg') no-repeat center center fixed;
 }
 
 .img-banner-
@@ -286,6 +290,10 @@ a {
 	width: 100%;
 	max-height: 400px;
 	opacity: .6;
+}
+
+.img-fade {
+	opacity: .5;
 }
 
 /* Forms */
