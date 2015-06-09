@@ -7,9 +7,9 @@
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="<%= url("/css/main.css")%>">
-	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
 	<script type="text/javascript" src="<%= url("/js/tooltip.min.js")%>"></script>
 	<script type="text/javascript" src="<%= url("/js/app.js")%>"></script>
@@ -29,15 +29,14 @@
 	<body>
 		<!-- Site container -->
 		<div id="container">
-			<div id="top-panel" class="row">
-				<h1 class="text-center">Political Research Engine</h1>
+			<div id="top-panel" class="col-md-12">
+				<h1>Political Research Engine  <small>Empowering Better Citizenship</small></h1>
 			</div>
 
-			<!-- Content wrapper -->
-			<div id="content-container" class="container">
+			<div id="content-wrapper">			
 				<%= yield %>
-			</div>	
-
+			</div>
+			<hr>
 			<footer class="footer">
 				<p class="muted text-center">Web Design by <a href="http://www.kelloggwebstudio.com">Kellogg Web Studio</a></p>
 			</footer>

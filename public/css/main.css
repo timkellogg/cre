@@ -4,6 +4,14 @@ body {
 	background-color: #fff;
 }
 
+/*Colors
+
+blue: 000080;
+white: FFF;
+black: 000;
+gray: C0C0C0C0;
+
+*/
 
 /* Navigation */
 
@@ -30,6 +38,15 @@ body {
 /* Typography */
 h1, h3, p, li {
 	font-family: 'Raleway', sans-serif;
+}
+
+h3 {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+p {
+	letter-spacing: 1px;
 }
 
 h1 {
@@ -73,7 +90,18 @@ h1 {
 }
 
 #top-panel {
-	background-color: #680000;
+	background-color: white;
+	height: 90px;
+}
+
+#top-panel h1 {
+	color: #000080;
+	font-family: "Helvetica Neue","Arial","sans-serif";
+}
+
+h1 small {
+	color: #C0C0C0C0;
+
 }
 
 .secondary-heading {
@@ -134,30 +162,19 @@ a {
 }
 /* images */
 
-.svg:hover path {
-    fill: darkgreen;
-}
-
-#svg-congress:hover path {
-	fill: #2a003e;
-}
-
-#svg-speaking:hover path {
-	fill: red;
-}
-
-#svg-politician:hover path {
-	fill: violet;
-}
-
-#svg-poll:hover path {
-	fill: silver;
+.svg path {
+	fill: #000;
 }
 
 .svg {
 	max-height: 125px;
 	max-width: 100px;
 }
+
+.svg:hover {
+	opacity: .4;
+}
+
 
 .menu-item a,
 .menu-item p {
@@ -170,7 +187,10 @@ a {
 	margin: auto;
 }
 
-
+.img-full-width {
+	width: 100%;
+	max-height: 400px;
+}
 
 /* Forms */
 
