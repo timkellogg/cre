@@ -15,6 +15,38 @@ gray: C0C0C0C0;
 
 /* Navigation */
 
+
+#navbar-brand:hover {
+	-webkit-transform: scale(1.0);
+	    -ms-transform: scale(1.0);
+	        transform: scale(1.0);
+	opacity: 1.0;
+}
+
+.navbar-navigation {
+	margin-bottom: 5px;
+}
+
+.navbar-navigation {
+	padding: 5px;
+	padding-top: 3px;
+}
+
+.navbar-navigation:hover {
+	text-decoration: none;
+}
+
+.navbar-navigation a:hover {
+	font-weight: bold;
+	text-decoration: none;
+	color: #000;
+	background-color: lightyellow;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
 .result-heading {
 	font-size: 1.1em;
 	font-weight: bold;
@@ -50,6 +82,11 @@ h1 {
 .top-divider {
 	size: 12px;
 	margin-top: -10px;
+}
+
+.navbar-item a {
+	text-transform: uppercase;
+	letter-spacing: 1px;
 }
 
 .main-title {
@@ -100,12 +137,12 @@ ul li {
 	background-color: lightyellow;
 }
 
-#top-panel {
+#main-page-header {
 	background-color: white;
 	height: 90px;
 }
 
-#top-panel h1 {
+#main-page-header h1 {
 	color: #000080;
 	font-family: "Helvetica Neue","Arial","sans-serif";
 	font-size: 30px;
@@ -169,6 +206,40 @@ a {
 }
 /* images */
 
+
+.img-banner-about,
+.img-banner-index,
+.img-banner-finance,
+.img-banner-polls,
+.img-banner-records,
+.img-banner-legislations,
+.img-banner-representatives {	
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	width: auto;
+	height: 400px;
+}
+
+.img-banner-about {
+	background: url('images/aboutbanner.jpg') no-repeat center fixed;
+}
+
+.img-banner-index {
+
+}
+
+
+.img-banner-finance {
+	background: url('images/financialportalbanner.jpg') no-repeat center fixed;
+}
+
+.img-banner-polls {
+
+}
+
+.img-banner-
 .svg path {
 	fill: #000;
 }
@@ -201,8 +272,6 @@ a {
 	max-height: 400px;
 	opacity: .6;
 }
-
-
 
 /* Forms */
 
