@@ -94,6 +94,15 @@ ul li {
 	text-indent: none;
 }
 
+.menu-list li {
+	font-size: 16px;
+	line-height: 36px;
+}
+
+.lightyellow {
+	background-color: lightyellow;
+}
+
 #top-panel {
 	background-color: white;
 	height: 90px;
@@ -186,7 +195,6 @@ a {
 	font-size: 1.1em;
 }
 
-
 .img {
 	margin: auto;
 }
@@ -196,6 +204,8 @@ a {
 	max-height: 400px;
 	opacity: .6;
 }
+
+
 
 /* Forms */
 
