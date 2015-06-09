@@ -89,6 +89,21 @@ h1 {
 	letter-spacing: 1px;
 }
 
+#site-title {
+	margin-top: 75px;
+	margin-left: 10px;
+	font-size: 3.1em;
+	font-weight: 700;
+	letter-spacing: 2px;
+	font-family: 'Open Sans';
+}
+
+#site-title small {
+	text-transform: uppercase;
+	color: lightyellow;
+	padding-left: 2em;
+}
+
 .main-title {
 	font-size: 2em;
 	color: #fffaf0;
@@ -223,12 +238,12 @@ a {
 }
 
 .img-banner-about {
-	background: url('images/aboutbanner.jpg') no-repeat center fixed;
+	background: url('images/aboutbanner.jpg') no-repeat center center fixed;
 }
 
 .img-banner-index {
-
-}
+	background: url('images/coverphoto.jpg') no-repeat fixed;
+}	
 
 
 .img-banner-finance {
