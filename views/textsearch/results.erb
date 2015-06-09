@@ -1,4 +1,8 @@
-<h2>Your results</h2>
+<hr class="top-divider">
+
+<div class="container">
+<h3 class="text-center">Results</h3>
+
 <p class="search-term">You searched: <%= @raw %></p>
 <% if !@delimiters.empty? %>
 <p class="limiters">Your results were limited to:</p>	
@@ -11,15 +15,15 @@
 
 <% if @result.any? %>
 
-<h3>Your search delivered <%= @result.count %> results</h3>
+<p>Result Count: <%= @result.count %> results</p>
 
 	<% @result.each do |result| %> 
-		<div class="result-item row">
-			<p class="result-heading"><%= result["title"] %>, Congressional Section: <%= result["congress"] %>, <%= result["date"] %></p>
-			<p class="result-source-data"><%= result["volume"] %> Vol., #<%= result["number"]%>, <%= result["chamber"] %></p>
-			<p class="result-text"><%= result["speaking"][0] %></p>
-			<p class="result-link">Source: <%= result["origin_url"] %></p>
-		</div>
+		<ul class="result-item row">
+			<li class="result-heading"><%= result["title"] %>, Congressional Section: <%= result["congress"] %>, <%= result["date"] %></li>
+			<li class="result-source-data"><%= result["volume"] %> Vol., #<%= result["number"]%>, <%= result["chamber"] %></li>
+			<li class="result-text"><%= result["speaking"][0] %></li>
+			<li class="result-link">Source: <%= result["origin_url"] %></li>
+		</ul>
 		<hr>
 	<% end %>
 <% else %>
@@ -27,6 +31,5 @@
 		<p>Oh, no! There were no results for <%= @phrase %>. Search <a href="/textsearch">again?</a></p>
 	</div>
 <% end %>
-
-
+</div>
   

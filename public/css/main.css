@@ -15,15 +15,10 @@ gray: C0C0C0C0;
 
 /* Navigation */
 
-
-.result-item {	
-	margin: 10px;
-	line-height: 1.4em;
-}
-
 .result-heading {
-	font-size: 1.2em;
+	font-size: 1.1em;
 	font-weight: bold;
+	color: darkblue;
 }
 
 .result-text { 
@@ -32,7 +27,7 @@ gray: C0C0C0C0;
 }
 
 .result-item:nth-of-type(even) {
-	background-color: #CCC;
+	background-color: #C0C0C0;
 }
 
 /* Typography */
@@ -45,7 +40,7 @@ h3 {
 	letter-spacing: 1px;
 }
 
-p {
+h1, h3, p {
 	letter-spacing: 1px;
 }
 
@@ -53,6 +48,11 @@ h1 {
 	color: white;
 	font-family: 'Droid Serif', serif;
 	font-weight: 700;
+}
+
+.top-divider {
+	size: 12px;
+	margin-top: -10px;
 }
 
 .main-title {
@@ -77,16 +77,21 @@ h1 {
 }
 
 .text-info {
-	font-variant: italic;
 	font-weight: bold;
-	color: black;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	color: #000;
 	
 }
 
 .result-number {
 	font-size: 18px;
+}
+
+ul {
+	list-style: none;
+}
+
+ul li {
+	text-indent: none;
 }
 
 #top-panel {
@@ -97,6 +102,7 @@ h1 {
 #top-panel h1 {
 	color: #000080;
 	font-family: "Helvetica Neue","Arial","sans-serif";
+	font-size: 30px;
 }
 
 h1 small {
@@ -142,11 +148,6 @@ a {
 	font-size: 1em;
 }
 
-.display-link {
-	font-size: 24px;
-}
-
-
 /* Main Page */
 .menu-item {	
 	min-height: 120px;
@@ -172,7 +173,10 @@ a {
 }
 
 .svg:hover {
-	opacity: .4;
+	opacity: .5;
+	-webkit-transform: scale(1.1);
+	    -ms-transform: scale(1.1);
+	        transform: scale(1.1);
 }
 
 
@@ -190,6 +194,7 @@ a {
 .img-full-width {
 	width: 100%;
 	max-height: 400px;
+	opacity: .6;
 }
 
 /* Forms */
@@ -203,6 +208,10 @@ input, textarea, select, .uneditable-input {
   box-sizing: border-box;
 }
 
+.form-control {
+	background-color: lightyellow;
+	color: #000;
+}
 /* Buttons */
 
 .btn-container {
@@ -213,10 +222,14 @@ input, textarea, select, .uneditable-input {
 	width: 200px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	border: 2px solid #680000;
-	color: #680000;
-	background-color: #FFF;
+	border: 2px solid darkblue;
+	color: darkblue;
+	background-color: #fff;
+	border-radius: 0;
+	letter-spacing: 1px;
 }
+
+
 .btn:hover {
 	-webkit-transition-duration: 0.25s;
 	transition-duration: 0.25s;
@@ -225,8 +238,9 @@ input, textarea, select, .uneditable-input {
 	-ms-transition-property: background-color;
 	-o-transition-property: background-color;
 	transition-property: background-color;	
-	background-color: #680000;
+	background-color: darkblue;
 	color: white;
+	border-color: darkblue;
 }
 
 /* Tables */
@@ -285,9 +299,9 @@ canvas {
 
 /* Icons */
 
-.glyphicon.glyphicon-home {
-    font-size: 4em;
-    color: white;
+.glyphicon-search {
+	font-size: 14px; 
+	padding-left: 2px;
 }
 
 @media(max-width:767px){

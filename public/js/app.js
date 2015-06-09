@@ -37,6 +37,32 @@ $(document).ready(function() {
         $('#title').tooltip();
     });
 
+    // Animations 
+    setTimeout(function() {
+        $('.img-fade').fadeTo('slow', 1);
+    }, 500 );
+
+    setTimeout(function() {
+        $('#word-spin').text('Discover').css('background-color', 'lightyellow');
+    }, 1000 );
+
+    setTimeout(function() {
+        $('#word-spin').text('Contribute');
+    }, 1500 );
+
+    setTimeout(function() {
+        $('#word-spin').text('Learn');
+    }, 2000 );
+
+    setTimeout(function() {
+        $('#word-spin').text('Grow');
+    }, 2500 );
+
+    setTimeout(function() {
+        $('#word-spin').text('Research');
+    }, 3000 );
+
+
     // Global chart configurations 
     Chart.defaults.global = {
     // Boolean - Whether to animate the chart
