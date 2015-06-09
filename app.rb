@@ -34,11 +34,6 @@ get '/bills' do
 	erb :bills 
 end
 
-# Finance Routes 
-get '/finance' do
-	erb :finance 
-end
-
 # Polling Routes
 get '/polls' do 
 	erb :polls
@@ -78,6 +73,10 @@ end
 
 get '/finance/districts' do 
 	erb :"finance/districts"
+end
+
+post '/finance/outside-spenders' do 
+	erb :"finance/outside-spenders/results"
 end
 
 post '/finance/districts' do 
@@ -136,6 +135,15 @@ post '/finance/districts' do
 
 end
 
+
+# Finance Routes 
+get '/finance' do
+	erb :finance 
+end
+
+get '/finance/outside-spenders' do 
+	erb :"finance/outside-spenders"
+end
 
 # Finance/candidates
 get '/finance/candidates' do 

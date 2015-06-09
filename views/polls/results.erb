@@ -48,7 +48,7 @@
 		  </tr>
 		  <tr>
 		  	<td class="table-title" colspan="1">Error Margin:</td>
-		  	<td class="table-content" colspand="14"> <%= question["subpopulations"][0]["margin_of_error"] %></td>
+		  	<td class="table-content" colspand="14"> <%= convert_nil(question["subpopulations"][0]["margin_of_error"]) %></td>
 		  </tr>
 			  <!-- Poll Responses -->
 			  <% question["subpopulations"][0]["responses"].each do |response| %>
@@ -63,7 +63,7 @@
 	<% end %>
 <% else %>
 	<div class="row" id="result-none">
-		<p>Oh, no! There were no results. Search <a href="/finance/candidates">again?</a></p>
+		<p>Oh, no! There were no results. Search <a href="/polls">again?</a></p>
 	</div>
 <% end %> 
 
