@@ -1,35 +1,36 @@
 <hr class="top-divider">
 
 <div class="container">
-<h3 class="text-center">Results</h3>
-
-<p class="search-term">You searched: <%= @raw %></p>
-<% if !@delimiters.empty? %>
-<p class="limiters">Your results were limited to:</p>	
-	<ul>
-	<% @delimiters.split(',').each do |line|  %>
-		<li><%= line %></li>
-	<% end %>
-	</ul>
-<% end %>
-
-<% if @result.any? %>
-
-<p>Result Count: <%= @result.count %> results</p>
-
-	<% @result.each do |result| %> 
-		<ul class="result-item row">
-			<li class="result-heading"><%= result["title"] %>, Congressional Section: <%= result["congress"] %>, <%= result["date"] %></li>
-			<li class="result-source-data"><%= result["volume"] %> Vol., #<%= result["number"]%>, <%= result["chamber"] %></li>
-			<li class="result-text"><%= result["speaking"][0] %></li>
-			<li class="result-link">Source: <%= result["origin_url"] %></li>
-		</ul>
-		<hr>
-	<% end %>
-<% else %>
-	<div id="result-none">
-		<p>Oh, no! There were no results for <%= @phrase %>. Search <a href="/textsearch">again?</a></p>
+	<div class="row">
+		<a href="/textsearch" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Search again?</a>
 	</div>
-<% end %>
+
+	<p class="search-term">You searched: <%= convert_result_nil(@raw) %></p>
+	<% if !@delimiters.empty? %>
+	<p class="limiters">Your results were limited to:</p>	
+		<ul>
+		<% @delimiters.split(',').each do |line|  %>
+			<li><%= line %></li>
+		<% end %>
+		</ul>
+	<% end %>
+
+	<% if @result.any? %>
+	<p>Result Count: <%= @result.count %></p>
+
+		<% @result.each_with_index do |result, index| %> 
+			<ul class="result-item row">
+				<li class="result-heading"><%=index + 1%> <%= result["title"] %> , Congressional Section: <%= result["congress"] %>, <%= result["date"] %></li>
+				<li class="result-link"><a href="<%= result["origin_url"] %>"><%= result["origin_url"] %></a></li>
+				<li class="result-source-data"><%= result["volume"] %> Vol., #<%= result["number"]%>, <%= result["chamber"] %></li>
+				<li class="result-text"><%= result["speaking"][0] %></li>
+			</ul>
+			<hr>
+		<% end %>
+	<% else %>
+		<div id="result-none">
+			<p>Oh, no! There were no results for <%= convert_result_nil(@raw) %>. Search <a href="/textsearch">again?</a></p>
+		</div>
+	<% end %>
 </div>
   

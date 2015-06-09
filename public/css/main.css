@@ -26,9 +26,6 @@ gray: C0C0C0C0;
 
 }
 
-.result-item:nth-of-type(even) {
-	background-color: #C0C0C0;
-}
 
 /* Typography */
 h1, h3, p, li {

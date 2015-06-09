@@ -1,72 +1,76 @@
-<h2>Your results</h2>
-<% if !@delimiters.empty? %>
-<p class="limiters">You searched:</p>	
-	<ul>
-	<% @delimiters.split(',').each do |line|  %>
-		<li><%= line %></li>
+<hr class="page-divider">
+
+<div class="container">
+	<div class="row">
+		<a href="/finance/candidates" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Search again?</a>
+	</div>
+
+	<% if !@delimiters.empty? %>
+	<p class="limiters">Your results were limited to:</p>	
+		<ul>
+		<% @delimiters.split(',').each do |line|  %>
+			<li><%= line %></li>
+		<% end %>
+		</ul>
 	<% end %>
-	</ul>
-<% end %>
 
+	<h3>Result Count: <%= @result.count %></h3>
 
-<h3>Your search delivered <%= @result.count %> results</h3>
-
-<% if @result.any? %>
-	<% @result.each_with_index do |result, index| %> 
-	<div class="col-md-12">
-		<p class="result-number"><%=index + 1%></p>
-		<table class="table table-striped table-hover table-condensed">
-		  <tr><th class="table-heading" colspan="15"><%= result["name"] %>, (<%= result["party"] %>)</th></tr>
-		  <tr>
-		    <td class="table-title" colspan="1">FEC ID:</td>
-		    <td class="table-content" colspan="14"><%= result["fec_id"] %></td>
-		  </tr>
-		  <tr>
-		    <td class="table-title" colspan="1">Incumbent:</td>
-		    <td class="table-content" colspan="14"><%= convert_boolean(result["is_incumbent"]) %></td>
-		  </tr>
-		  <tr>
-		    <td class="table-title" colspan="1">Not Seeking Election:</td>
-		    <td class="table-content" colspan="14"><%= convert_boolean(result["not_seeking_reelection"]) %></td>
-		  </tr>
-		  <tr>
-		    <td class="table-title" colspan="1">Elected:</td>
-		    <td class="table-content" colspan="14"><%= result["election_year"] %></td>
-		  </tr>
-		  <tr>
-		    <td class="table-title" colspan="1">State:</td>
-		    <td class="table-content" colspan="14"><%= convert_abbreviation(result["state"]) %></td>
-		  </tr>
-		  <tr>
-		    <td class="table-title" colspan="1">Office:</td>
-		    <td class="table-content" colspan="14"><%= get_chamber(result["office"]) %></td>
-		  </tr>
-		  <tr>
-		    <td class="table-title" colspan="1">Outstanding Loans:</td>
-		    <td class="table-content text-loan" colspan="14">$<%= comma_numbers(result["outstanding_loans"]) %></td>
-		  </tr>
-		  <tr>
-		    <td class="table-title" colspan="1">Cash on Hand:</td>
-		    <td class="table-content text-cash" colspan="14">$<%= comma_numbers(result["cash_on_hand"]) %></td>
-		  </tr>
-		  <tr>
-		    <td class="table-title" colspan="1">Cash Accurate as of:</td>
-		    <td class="table-content" colspan="14"><%= convert_nil(result["cash_on_hand_date"]) %></td>
-		  </tr>
-		</table>	
-	</div>
-	<div class="chart-container row">
-		<div class="col-md-6 chart-container" id="expensesChartContainer<%=index%>"></div>
-		<div class="col-md-6 chart-container" id="totalChartContainer<%=index%>"></div>
-	</div>
-	<% end %>
-<% else %>
-	<div class="row" id="result-none">
-		<p>Oh, no! There were no results. Search <a href="/finance/candidates">again?</a></p>
-	</div>
-<% end %> 
-
-
+	<% if @result.any? %>
+		<% @result.each_with_index do |result, index| %> 
+		<div class="col-md-12">
+			<p class="result-number"><%=index + 1%></p>
+			<table class="table table-striped table-hover table-condensed">
+			  <tr><th class="table-heading" colspan="15"><%= result["name"] %>, (<%= result["party"] %>)</th></tr>
+			  <tr>
+			    <td class="table-title" colspan="1">FEC ID:</td>
+			    <td class="table-content" colspan="14"><%= result["fec_id"] %></td>
+			  </tr>
+			  <tr>
+			    <td class="table-title" colspan="1">Incumbent:</td>
+			    <td class="table-content" colspan="14"><%= convert_boolean(result["is_incumbent"]) %></td>
+			  </tr>
+			  <tr>
+			    <td class="table-title" colspan="1">Not Seeking Election:</td>
+			    <td class="table-content" colspan="14"><%= convert_boolean(result["not_seeking_reelection"]) %></td>
+			  </tr>
+			  <tr>
+			    <td class="table-title" colspan="1">Elected:</td>
+			    <td class="table-content" colspan="14"><%= result["election_year"] %></td>
+			  </tr>
+			  <tr>
+			    <td class="table-title" colspan="1">State:</td>
+			    <td class="table-content" colspan="14"><%= convert_abbreviation(result["state"]) %></td>
+			  </tr>
+			  <tr>
+			    <td class="table-title" colspan="1">Office:</td>
+			    <td class="table-content" colspan="14"><%= get_chamber(result["office"]) %></td>
+			  </tr>
+			  <tr>
+			    <td class="table-title" colspan="1">Outstanding Loans:</td>
+			    <td class="table-content text-loan" colspan="14">$<%= comma_numbers(result["outstanding_loans"]) %></td>
+			  </tr>
+			  <tr>
+			    <td class="table-title" colspan="1">Cash on Hand:</td>
+			    <td class="table-content text-cash" colspan="14">$<%= comma_numbers(result["cash_on_hand"]) %></td>
+			  </tr>
+			  <tr>
+			    <td class="table-title" colspan="1">Cash Accurate as of:</td>
+			    <td class="table-content" colspan="14"><%= convert_nil(result["cash_on_hand_date"]) %></td>
+			  </tr>
+			</table>	
+		</div>
+		<div class="chart-container row">
+			<div class="col-md-6 chart-container" id="expensesChartContainer<%=index%>"></div>
+			<div class="col-md-6 chart-container" id="totalChartContainer<%=index%>"></div>
+		</div>
+		<% end %>
+	<% else %>
+		<div class="row" id="result-none">
+			<p>Oh, no! There were no results. Search <a href="/finance/candidates">again?</a></p>
+		</div>
+	<% end %> 
+</div>
 
 <script type="text/javascript">
 	$(document).ready(function() {

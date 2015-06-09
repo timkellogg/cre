@@ -1,113 +1,120 @@
-<div class="page-header">
-  <h1>Financial Engine<small>Congressional District Spending</small></h1>
-</div>
-<p class="text-info">This search engine allows you to find out the spending by congressional district which includes spending by candidates and spending by indepenent organizations.  However, the cost of the promotion of candidates to members of a corporation or association is not included in the results.</p>
+<hr class="top-divider">
 
-<form action="/finance/districts" method="post">
+<div class="container">
 
-	<div class="form-group">
-		<div class="col-md-3">
-			<label for="office" class="control-label">Office:</label>
-			<select name="office" class="form-control">
-				<option value=""></option>
-				<option value="H">House</option>
-				<option value="S">Senate</option>
-			</select>
-		</div>
+	<div class="row secondary-heading">
+		<h3>Districts' Spending Portal</h3>
+		<p class="text-info">This search engine allows you to find out the spending by congressional district which includes spending by candidates and spending by indepenent organizations.  However, the cost of the promotion of candidates to members of a corporation or association is not included in the results.</p>	
 	</div>
 
-	<div class="form-group">
-	  <div class="col-md-3">
-	    <label for="state" class="control-label">State:</label>
-	    	<select name="state" class="form-control">
-    			<option value=""></option>
-				<option value="AL">AL</option>
-				<option value="AK">AK</option>
-				<option value="AZ">AZ</option>
-				<option value="AR">AR</option>
-				<option value="CA">CA</option>
-				<option value="CO">CO</option>
-				<option value="CT">CT</option>
-				<option value="DE">DE</option>
-				<option value="DC">DC</option>
-				<option value="FL">FL</option>
-				<option value="GA">GA</option>
-				<option value="HI">HI</option>
-				<option value="ID">ID</option>
-				<option value="IL">IL</option>
-				<option value="IN">IN</option>
-				<option value="IA">IA</option>
-				<option value="KS">KS</option>
-				<option value="KY">KY</option>
-				<option value="LA">LA</option>
-				<option value="ME">ME</option>
-				<option value="MD">MD</option>
-				<option value="MA">MA</option>
-				<option value="MI">MI</option>
-				<option value="MN">MN</option>
-				<option value="MS">MS</option>
-				<option value="MO">MO</option>
-				<option value="MT">MT</option>
-				<option value="NE">NE</option>
-				<option value="NV">NV</option>
-				<option value="NH">NH</option>
-				<option value="NJ">NJ</option>
-				<option value="NM">NM</option>
-				<option value="NY">NY</option>
-				<option value="NC">NC</option>
-				<option value="ND">ND</option>
-				<option value="OH">OH</option>
-				<option value="OK">OK</option>
-				<option value="OR">OR</option>
-				<option value="PA">PA</option>
-				<option value="RI">RI</option>
-				<option value="SC">SC</option>
-				<option value="SD">SD</option>
-				<option value="TN">TN</option>
-				<option value="TX">TX</option>
-				<option value="UT">UT</option>
-				<option value="VT">VT</option>
-				<option value="VA">VA</option>
-				<option value="WA">WA</option>
-				<option value="WV">WV</option>
-				<option value="WI">WI</option>
-				<option value="WY">WY</option>
-			</select>  
-   	</div>
+	<form action="/finance/districts" method="post">
 
-	<div class="form-group">
-		<div class="col-md-3">
-			<label for="term_class" class="control-label">Re-Election Year (Senate Only):</label>
-			<select name="term_class" class="form-control">
-				<option value=""></option>
-				<option value="1">2018</option>
-				<option value="3">2016</option>
-				<option value="2">2014</option>
-			</select>
+		<div class="form-group">
+			<div class="col-md-4">
+				<label for="office" class="control-label">Office:</label>
+				<select name="office" class="form-control">
+					<option value=""></option>
+					<option value="H">House</option>
+					<option value="S">Senate</option>
+				</select>
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group">
-		<div class="col-md-3">
-			<label for="incumbent_party" class="control-label">Incumbent Party:</label>
-			<select name="incumbent_party" class="form-control">
-				<option value=""></option>
-				<option value="D">Democrat</option>
-				<option value="I">Independent</option>
-				<option value="R">Republican</option>
-			</select>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<div class="col-md-4">
-			<label for="office_district" class="control-label">Office District (House Only)</label>
-		    <input type="text" class="form-control" placeholder="" name="office_district" id="office_district">
-		</div>
-	</div>
-	
-	  <div class="row btn-container">
-	  	<button class="btn btn-default btn-lg">Search</button>
+		<div class="form-group">
+		  <div class="col-md-2">
+		    <label for="state" class="control-label">State:</label>
+		    	<select name="state" class="form-control">
+	    		<option value=""></option>
+					<option value="AL">AL</option>
+					<option value="AK">AK</option>
+					<option value="AZ">AZ</option>
+					<option value="AR">AR</option>
+					<option value="CA">CA</option>
+					<option value="CO">CO</option>
+					<option value="CT">CT</option>
+					<option value="DE">DE</option>
+					<option value="DC">DC</option>
+					<option value="FL">FL</option>
+					<option value="GA">GA</option>
+					<option value="HI">HI</option>
+					<option value="ID">ID</option>
+					<option value="IL">IL</option>
+					<option value="IN">IN</option>
+					<option value="IA">IA</option>
+					<option value="KS">KS</option>
+					<option value="KY">KY</option>
+					<option value="LA">LA</option>
+					<option value="ME">ME</option>
+					<option value="MD">MD</option>
+					<option value="MA">MA</option>
+					<option value="MI">MI</option>
+					<option value="MN">MN</option>
+					<option value="MS">MS</option>
+					<option value="MO">MO</option>
+					<option value="MT">MT</option>
+					<option value="NE">NE</option>
+					<option value="NV">NV</option>
+					<option value="NH">NH</option>
+					<option value="NJ">NJ</option>
+					<option value="NM">NM</option>
+					<option value="NY">NY</option>
+					<option value="NC">NC</option>
+					<option value="ND">ND</option>
+					<option value="OH">OH</option>
+					<option value="OK">OK</option>
+					<option value="OR">OR</option>
+					<option value="PA">PA</option>
+					<option value="RI">RI</option>
+					<option value="SC">SC</option>
+					<option value="SD">SD</option>
+					<option value="TN">TN</option>
+					<option value="TX">TX</option>
+					<option value="UT">UT</option>
+					<option value="VT">VT</option>
+					<option value="VA">VA</option>
+					<option value="WA">WA</option>
+					<option value="WV">WV</option>
+					<option value="WI">WI</option>
+					<option value="WY">WY</option>
+				</select>  
+	   	</div>
 	  </div>
-	</div>
-</form>
+
+		<div class="form-group">
+			<div class="col-md-6">
+				<label for="term_class" class="control-label">Re-Election Year (Senate Only):</label>
+				<select name="term_class" class="form-control">
+					<option value=""></option>
+					<option value="1">2018</option>
+					<option value="3">2016</option>
+					<option value="2">2014</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-6">
+				<label for="incumbent_party" class="control-label">Incumbent Party:</label>
+				<select name="incumbent_party" class="form-control">
+					<option value=""></option>
+					<option value="D">Democrat</option>
+					<option value="I">Independent</option>
+					<option value="R">Republican</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-6">
+				<label for="office_district" class="control-label">Office District (House Only)</label>
+			    <input type="text" class="form-control" placeholder="" name="office_district" id="office_district">
+			</div>
+		</div>
+		
+	  <div class="row btn-container">
+	  	<button class="btn btn-default btn-lg">Search<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+	  </div>
+
+
+	</form>
+</div>

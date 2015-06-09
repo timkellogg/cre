@@ -231,6 +231,7 @@ post '/textsearch' do
 
 	# Retrieving form data and parsing it into output/api formats 
 	@phrase = params.fetch "phrase"
+	@raw    = @phrase.gsub('_', ' ')
 	@delimiters = ""
 
 	title = params.fetch "title"

@@ -67,13 +67,19 @@ def convert_to_na(value)
 	end
 end 
 
-
 # Convert string to decimal-delimited set
 def comma_numbers(number, delimiter = ',')
   number.to_s.reverse.gsub(%r{([0-9]{3}(?=([0-9])))}, "\\1#{delimiter}").reverse
 end
 
-
+# Check Results Nil
+def convert_result_nil(value)
+	if value.nil? || value == ""
+		"[nothing...]"
+	else 
+		value 
+	end 
+end
 
 
 
