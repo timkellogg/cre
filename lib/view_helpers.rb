@@ -45,7 +45,8 @@ def convert_abbreviation(abbreviation)
 				   "North Dakota", "OH" => "Ohio", "OK" => "Oklahoma", "OR" => "Oregon", "PA" => "Pennsylvania", "RI" =>
 				   "Rhode Island", "SC" => "South Carolina", "SD" => "South Dakota", "TN" => "Tennessee", "TX" => "Texas",
 				   "UT" => "Utah", "VT" => "Vermont", "VA" => "Virginia", "WA" => "Washington", "WV" => "West Virginia", 
-				   "WI" => "Wisconsin", "WY" => "Wyoming"}
+				   "WI" => "Wisconsin", "WY" => "Wyoming"
+				}
 
 	state_hash[abbreviation]
 end
@@ -81,7 +82,16 @@ def convert_result_nil(value)
 	end 
 end
 
-
+# Convert Committee Types into Full Names
+def convert_committee(committee) 
+	committee_hash = {"C" => "Communication Cost", "D" => "Delegate", "E" => "Electioneering", "H" => "House", 
+					  "I" => "Independent Expenditor (Person or Group)", "N" => "PAC - Nonqualified", "O" => "Super PAC",
+					  "P" => "Presidential", "Q" => "PAC - Qualified", "S" => "Senate", "U" => "Single Candidate Independent 
+					  Expenditure", "V" => "PAC with Non-Contribution Account - Qualified", "X" => "Party - Nonqualified", 
+					  "Y" => "Party - Qualified", "Z" => "National Party Nonfederal Account"
+					}
+	committee_hash[committee]
+end
 
 
 

@@ -75,9 +75,50 @@ get '/finance/districts' do
 	erb :"finance/districts"
 end
 
-post '/finance/outside-spenders' do 
+get '/finance/outside_spenders' do 
+	erb :"finance/outside_spenders"
+end
+
+post '/finance/outside_spenders' do 
+
+	# Retrieving form data and parsing into output/api formats 
+	@delimiters = ""
+
+	ctype = params.fetch "ctype"
+	if ctype.empty?
+		@ctype = ""
+	else 
+		@delimiters << "Committee Type: #{ctype},"
+		@ctype = "&ctype=#{ctype}"
+	end 
+
+	fec_id = params.fetch "fec_id"
+	if fec_id.empty?
+		@fec_id = ""
+	else 
+		@delimiters << "FEC id: #{fec_id},"
+		@fec_id = "&fec_id=#{fec_id}"
+	end
+
+	min_ies = params.fetch "min_ies"
+	if min_ies.empty?
+		@min_ies = ""
+	else 
+		@delimiters << "Min. Amount Given: #{min_ies},"
+		@min_ies = "&min_ies=#{min_ies}"
+	end 
+
+	# API call outside finance  
+	api_result = RestClient.get "realtime.influenceexplorer.com/api//outside-spenders/?format=json&page=
+	                            1&page_size=100&#{@ctype}#{@fec_id}#{@min_ies}&apikey=" + ENV['SUNLIGHT_API_KEY']
+	base       = JSON.parse(api_result)
+	@result    = base["results"]
+
+
+
 	erb :"finance/outside-spenders/results"
 end
+
 
 post '/finance/districts' do 
 
