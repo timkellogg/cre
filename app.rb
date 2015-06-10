@@ -79,6 +79,71 @@ get '/finance/pacs' do
 	erb :"finance/pacs"
 end
 
+post '/finance/pacs' do 
+
+	# Retrieving form data and parsing into output/api formats
+	@delimiters = ""
+
+	ctype = params.fetch "ctype"
+	if ctype.empty?
+		@ctype = ""
+	else 
+		@delimiters << "Committee Type: #{ctype},"
+		@ctype = "&ctype=#{ctype}"
+	end
+
+
+	fec_id = params.fetch "fec_id"
+	if fec_id.empty?
+		@fec_id = ""
+	else 
+		@delimiters << "FEC id: #{fec_id},"
+		@fec_id = "&fec_id=#{fec_id}"
+	end
+
+	fec_id = params.fetch "fec_id"
+	if fec_id.empty?
+		@fec_id = ""
+	else 
+		@delimiters << "FEC id: #{fec_id},"
+		@fec_id = "&fec_id=#{fec_id}"
+	end
+
+	min_raised = params.fetch "min_raised"
+	if min_raised.empty?
+		@min_raised = ""
+	else 
+		@delimiters << "FEC id: #{min_raised},"
+		@min_raised = "&min_raised=#{min_raised}"
+	end
+
+	min_spent = params.fetch "min_spent"
+	if min_spent.empty?
+		@min_spent = ""
+	else 
+		@delimiters << "Min. Cash Spent (2014): #{min_spent},"
+		@min_spent = "&min_spent=#{min_spent}"
+	end
+
+	min_coh = params.fetch "min_coh"
+	if min_coh.empty?
+		@min_coh = ""
+	else 
+		@delimiters << "Min. Cash on Hand: #{min_coh},"
+		@min_coh = "&min_coh=#{min_coh}"
+	end
+
+	# API call outside finance  
+	api_result = RestClient.get "realtime.influenceexplorer.com/api//committee/?format=json&page=1&page_size=10
+	                            #{@fec_id}#{@ctype}#{@min_coh}#{@min_spent}#{@min_raised}&apikey=" + ENV['SUNLIGHT_API_KEY']
+
+	base       = JSON.parse(api_result)
+	@result    = base["results"]
+
+
+	erb :"finance/pacs/results"
+end
+
 get '/finance/outside_spenders' do 
 	erb :"finance/outside_spenders"
 end
