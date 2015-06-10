@@ -52,6 +52,11 @@
 			    <td class="table-title" colspan="1">Open Seat:</td>
 			    <td class="table-content" colspan="14"><%= convert_boolean(result["open_seat"]) %></td>
 			  </tr>
+			  <tr>
+			  	<td class="table-title">Profile:</td>
+			  	<td class="table-content"><a href="<%= ENV['FINANCE_BASE_URL'] %><%= result["district_url"] %>">Visit Profile</a></td>
+			  </tr>
+
 			  <tr><th class="table-sub-heading" colspan="15">Financial Summary</th></tr>
 			  <tr>
 			    <td class="table-title" colspan="1">Candidate Money Raised:</td>

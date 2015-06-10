@@ -10,11 +10,9 @@ blue: 000080;
 white: FFF;
 black: 000;
 gray: C0C0C0C0;
-
 */
 
 /* Navigation */
-
 
 #navbar-brand:hover {
 	-webkit-transform: scale(1.0);
@@ -175,36 +173,10 @@ h1 small {
 
 /* Links */
 
-#link-home {
-	margin-top: 50px;
-	border: 2px solid #680000;
-	border-radius: 5px;
-	padding: 8px 35px;
-	text-decoration: none;
-}
-
-#link-home:hover {
-	background-color: #680000;
-	color: #FFFAF0;
-}
-
-#link-home a {
-	color: #680000; 
-}
-#link-home:hover a {
-	text-decoration: none;
-	color: #FFFAF0;
-}
-
-#link-home:visited {
-	color: #680000;
-	background-color: white;
-}
-
-a {
+.navbar-item a {
 	color: black;
-	font-size: 1em;
 }
+
 
 /* Main Page */
 .menu-item {	

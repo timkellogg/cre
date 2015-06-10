@@ -61,7 +61,7 @@ def convert_nil(value)
 end
 
 def convert_to_na(value)
-	if value.nil? || value == ""
+	if value.nil? || value == "" 
 		"NA"
 	else 
 		value 

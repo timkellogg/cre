@@ -101,19 +101,11 @@ post '/finance/pacs' do
 		@fec_id = "&fec_id=#{fec_id}"
 	end
 
-	fec_id = params.fetch "fec_id"
-	if fec_id.empty?
-		@fec_id = ""
-	else 
-		@delimiters << "FEC id: #{fec_id},"
-		@fec_id = "&fec_id=#{fec_id}"
-	end
-
 	min_raised = params.fetch "min_raised"
 	if min_raised.empty?
 		@min_raised = ""
 	else 
-		@delimiters << "FEC id: #{min_raised},"
+		@delimiters << "Min. Cash Raised (2014): #{min_raised},"
 		@min_raised = "&min_raised=#{min_raised}"
 	end
 
@@ -134,7 +126,7 @@ post '/finance/pacs' do
 	end
 
 	# API call outside finance  
-	api_result = RestClient.get "realtime.influenceexplorer.com/api//committee/?format=json&page=1&page_size=10
+	api_result = RestClient.get "realtime.influenceexplorer.com/api//committee/?format=json&page=1&page_size=100
 	                            #{@fec_id}#{@ctype}#{@min_coh}#{@min_spent}#{@min_raised}&apikey=" + ENV['SUNLIGHT_API_KEY']
 
 	base       = JSON.parse(api_result)

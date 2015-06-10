@@ -23,6 +23,18 @@
 			<table class="table table-striped table-hover table-condensed">
 			  <tr><th class="table-heading" colspan="15"><%= result["name"] %>, (<%= result["party"] %>)</th></tr>
 			  <tr>
+			  	<td class="table-title">Candidate Profile:</td>
+			  	<td class="table-content"><a href="<%= ENV['FINANCE_BASE_URL'] %><%= result["candidate_url"] %>">Candidate Profile</a></td>
+			  </tr>
+			  <tr>
+			  	<td class="table-title">Race Profile:</td>
+			  	<td class="table-content"><a href="<%= ENV['FINANCE_BASE_URL'] %><%= result["race_url"] %>">Race Profile</a></td>
+			  </tr>
+			  <tr>
+			  	<td class="table-title">Party Profile:</td>
+			  	<td class="table-content"><a href="<%= ENV['FINANCE_BASE_URL'] %><%= result["ie_url"] %>">Party Profile</a></td>
+			  </tr>			  			  
+			  <tr>
 			    <td class="table-title" colspan="1">FEC ID:</td>
 			    <td class="table-content" colspan="14"><%= result["fec_id"] %></td>
 			  </tr>
