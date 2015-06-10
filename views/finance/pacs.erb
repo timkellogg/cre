@@ -3,14 +3,14 @@
 <div class="container">
 
 	<div class="row secondary-heading">
-		<h3>Congressional District Spending</h3>		
-		<p class="text-info">This search engine allows you to find out spending by organizations classified by the Federal Election Commission (FEC) as outside-spenders. To see a breakdown of these types of organizations visit <a href="http://www.fec.gov/finance/disclosure/metadata/CommitteeTypeCodes.shtml">the FEC's website</a>.</p>
+		<h3>Political Action Committee (PAC) Spending</h3>
+		<p class="text-info">This search engine returns information about candidate committees, leadership PACs, joint fundraising PACs, super PACs, party committees and corporate PACs. </p>	
 	</div>
 
-	<form action="/finance/outside_spenders" method="post" class="form-horizontal">
+	<form action="/finance/districts" method="post">
 
 		<div class="form-group">
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<label for="ctype" class="control-label">FEC Committee Type:</label>
 				<select name="ctype" class="form-control">
 					<option value="C">Communication Cost</option>
@@ -32,19 +32,39 @@
 				</select>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<label for="fec_id" class="control-label">FEC ID:</label>
 				<input type="text" class="form-control" name="fec_id">
 			</div>
+		</div>
+
+		<div class="form-group">		
+			<div class="col-md-4">
+			    <label class="control-label" for="min_raised">Min. Amt Spent during 2014 Cycle:</label>
+			    <div class="input-group">
+			      <div class="input-group-addon">$</div>
+		      		<input type="number" min="0" name="min_raised" id="min_raised" class="form-control" placeholder="Amount">
+		      		<div class="input-group-addon">.00</div>
+		    	</div>
+		 	</div>
 
 			<div class="col-md-4">
-		    	<label class="control-label" for="min_ies">Min. Amt Spent during 2014 Cycle:</label>
-		    	<div class="input-group">
-		      		<div class="input-group-addon">$</div>
-		      		<input type="number" min="0" name="min_ies" id="min_ies" class="form-control" placeholder="Amount">
-		      	<div class="input-group-addon">.00</div>
-		    </div>
-		  </div>
+				<label class="control-label" for="min_spent">Min. Spent during 2014 Cycle:</label>
+				<div class="input-group">
+					<div class="input-group-addon">$</div>
+					<input type="number" min="0" name="min_spent" id="min_spent" class="form-control" placeholder="Amount">
+					<div class="input-group-addon">.00</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<label class="control-label" for="min_coh">Min. Cash on Hand</label>
+				<div class="input-group">
+					<div class="input-group-addon">$</div>
+					<input type="number" min="0" name="min_coh" id="min_coh" class="form-control" placeholder="Amount">
+					<div class="input-group-addon">.00</div>
+				</div>
+			</div>
 		</div>
 			
 	  <div class="row btn-container">

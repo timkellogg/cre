@@ -75,6 +75,10 @@ get '/finance/districts' do
 	erb :"finance/districts"
 end
 
+get '/finance/pacs' do 
+	erb :"finance/pacs"
+end
+
 get '/finance/outside_spenders' do 
 	erb :"finance/outside_spenders"
 end
