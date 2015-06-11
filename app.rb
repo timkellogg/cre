@@ -14,8 +14,7 @@ configure do
     require File.basename(lib, '.*') 
   }
 end
-
-### Static Pages ###
+ 
 # Main Index
 get '/' do 
 	erb :index

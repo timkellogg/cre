@@ -1,36 +1,24 @@
-# View Helper Methods
-
-# Method to switch out abbreviation with state 
-
-# Switch out H and S for house and senate
+# Convert chamber abbr into full name 
 def get_chamber(value)
-	if value == 'H'
-		'House'
-	else 
-		'Senate'
-	end
+	value == 'H' || value == 'h' ? 'House' : 'Senate'
 end
 
 # Convert 'R', 'D', and 'I' to 'Republican', 'Democrat', 'Independent'
 def get_party(value)
-	if value == 'D'
-		'Democrat'
-	elsif value == 'I'
+	if value == 'D' || value == 'd'
+		'Democrat' 
+	elsif value == 'I' || value == 'i'
 		'Independent'
-	elsif value == 'R'
+	elsif value == 'R' || value == 'r'
 		'Republican'
 	else 
 		'Other'
 	end 
 end
 
-# Convert False & True to No and Yes
-def convert_boolean(bool) 
-	if bool == false 
-		'No'
-	else 
-		'Yes'
-	end
+# Convert boolean into no or yes
+def convert_boolean(bool)
+	bool == false ? 'No' : 'Yes'
 end
 
 # Convert State Abbreviation to Full State Name
@@ -47,39 +35,27 @@ def convert_abbreviation(abbreviation)
 				   "UT" => "Utah", "VT" => "Vermont", "VA" => "Virginia", "WA" => "Washington", "WV" => "West Virginia", 
 				   "WI" => "Wisconsin", "WY" => "Wyoming"
 				}
-
 	state_hash[abbreviation]
 end
 
-# Convert nill values to meaningful output
+# Convert nil value into no info display message
 def convert_nil(value)
-	if value.nil? || value == 0 
-		"No Information Available"
-	else 
-		value 
-	end
+	value.nil? || value == 0 ? 'No Information Available' : value 
 end
 
+# Convert nil value into na display message 
 def convert_to_na(value)
-	if value.nil? || value == "" 
-		"NA"
-	else 
-		value 
-	end
-end 
+	value.nil? ? 'NA' : value 
+end
 
 # Convert string to decimal-delimited set
 def comma_numbers(number, delimiter = ',')
   number.to_s.reverse.gsub(%r{([0-9]{3}(?=([0-9])))}, "\\1#{delimiter}").reverse
 end
 
-# Check Results Nil
+# Convert nil result into display message
 def convert_result_nil(value)
-	if value.nil? || value == ""
-		"[nothing...]"
-	else 
-		value 
-	end 
+	value.nil? ? '[nothing...]' : value
 end
 
 # Convert Committee Types into Full Names
