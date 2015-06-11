@@ -191,15 +191,14 @@ h1 small {
 	padding: 10px;
 	cursor: pointer;
 }
+
 /* images */
-
-
 .img-banner-about,
 .img-banner-index,
 .img-banner-finance,
 .img-banner-polls,
 .img-banner-textsearch,
-.img-banner-legislations,
+.img-banner-legislators,
 .img-banner-representatives {	
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -225,7 +224,6 @@ h1 small {
 	background: url('images/financialportalbanner.jpg') no-repeat center center fixed;
 }
 
-
 .img-banner-polls {
 	background: url('images/pollportalbanner.jpg') no-repeat center center fixed;
 }
@@ -233,6 +231,10 @@ h1 small {
 .img-banner-
 .svg path {
 	fill: #000;
+}
+
+.img-banner-legislators {
+	background: url('images/legislatorbanner.jpg') no-repeat center center fixed;
 }
 
 .svg {
@@ -369,6 +371,11 @@ canvas {
 }
 
 /* Icons */
+
+.glyphicon-home {
+	color: #000;
+	font-size: 20px;
+}
 
 .glyphicon-search {
 	font-size: 14px; 

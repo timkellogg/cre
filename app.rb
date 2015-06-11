@@ -30,6 +30,102 @@ get '/legislators' do
 	erb :legislators
 end
 
+post '/legislators' do 
+
+	# Retrieving form data and parsing into output/api formats 
+	@delimiters = ""
+
+	first_name = params.fetch "first_name"
+	if first_name.empty?
+		@first_name = ""
+	else 
+		@delimiters << "First Name: #{first_name},"
+		@first_name = "&first_name=#{first_name}"
+	end
+
+	last_name = params.fetch "last_name"
+	if last_name.empty?
+		@last_name = ""
+	else 
+		@delimiters << "Last Name: #{last_name},"
+		@last_name = "&last_name=#{last_name}"
+	end
+
+	party = params.fetch "party"
+	if party.empty?
+		@party = ""
+	else 
+		@delimiters << "Party: #{party},"
+		@party = "&party=#{party}"
+	end
+
+	state = params.fetch "state"
+	if state.empty?
+		@state = ""
+	else 
+		@delimiters << "State: #{state},"
+		@state = "&state=#{state}"
+	end
+
+
+	district = params.fetch "district"
+	if district.empty?
+		@district = ""
+	else 
+		@delimiters << "District: #{district},"
+		@district = "&district=#{district}"
+	end
+
+	chamber = params.fetch "chamber"
+	if chamber.empty?
+		@chamber = ""
+	else 
+		@delimiters << "Chamber: #{chamber},"
+		@chamber = "&chamber=#{chamber}"
+	end
+
+	is_incumbent = params.fetch "is_incumbent"
+	if is_incumbent.empty?
+		@is_incumbent = ""
+	else 
+		@delimiters << "Incumbent: #{chamber},"
+		@is_incumbent = "&is_incumbent=#{is_incumbent}"
+	end
+
+	gender = params.fetch "gender"
+	if gender.empty?
+		@gender = ""
+	else 
+		@delimiters << "Gender: #{gender},"
+		@gender = "&gender=#{gender}"
+	end
+
+	term_start = params.fetch "term_start"
+	if term_start.empty?
+		@term_start = ""
+	else 
+		@delimiters << "Term Start: #{term_start},"
+		@term_start = "&term_start=#{term_start}"
+	end
+
+	term_end = params.fetch "term_end"
+	if term_end.empty?
+		@term_end = ""
+	else 
+		@delimiters << "Term End: #{term_end},"
+		@term_end = "&term_end=#{term_end}"
+	end
+
+	api_result = RestClient.get "congress.api.sunlightfoundation.com/legislators?#{@first_name}
+	                           #{@last_name}#{@party}#{@state}#{@district}#{@chamber}#{@chamber}
+	                           #{@is_incumbent}#{@gender}#{@term_start}#{@term_end}
+	                           apikey=" + ENV['SUNLIGHT_API_KEY']
+	@result    = JSON.parse(api_result)
+
+	erb :"legislators/results"
+end 
+
+
 get '/bills' do 
 	erb :bills 
 end
