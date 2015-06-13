@@ -20,5 +20,3 @@ gem 'pry'
 # Development 
 gem 'sass'
 
-
-

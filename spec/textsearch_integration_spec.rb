@@ -4,6 +4,7 @@ require './app'
 Capybara.app = Sinatra::Application 
 set :show_exceptions, false 
 
+
 # Valid congressional search 
 describe 'the congressional search record path with valid search', {:type => :feature} do 
 	it 'follows the user from index through congressional records search results' do 

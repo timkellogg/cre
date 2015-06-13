@@ -66,7 +66,6 @@ post '/legislators' do
 		@state = "&state=#{state}"
 	end
 
-
 	district = params.fetch "district"
 	if district.empty?
 		@district = ""
