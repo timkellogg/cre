@@ -19,7 +19,7 @@
           %tr
             %td.table-title{:colspan => "1"} Born:
             %td.table-content{:colspan => "14"}= result["birthday"]
-          %tr
+          %tr 
             %td.table-title{:colspan => "1"} Representing:
             %td.table-content{:colspan => "14"}
               = result["state_name"]
@@ -38,24 +38,24 @@
           %tr
             %td.table-title{:colspan => "1"} Website:
             %td.table-content{:colspan => "14"}
-              %a{:href => result["website"]}= result["website"]
+              %a{:href => result["website"]}= convert_nil(result["website"])
           %tr
             %td.table-title{:colspan => "1"} Email:
             %td.table-content{:colspan => "14"}
-              %a{:href => "mailto:#{result["oc_email"]}"}= result["oc_email"]
+              %a{:href => "mailto:#{result["oc_email"]}"}= convert_nil(result["oc_email"])
           %tr
             %td.table-title{:colspan => "1"} D.C. Address:
-            %td.table-content{:colspan => "14"}= result["office"]
+            %td.table-content{:colspan => "14"}= convert_nil(result["office"])
           %tr
             %td.table-title{:colspan => "1"} Phone:
-            %td.table-content{:colspan => "14"}= result["phone"]
+            %td.table-content{:colspan => "14"}= convert_nil(result["phone"])
           %tr
             %th.table-sub-heading{:colspan => "15"} Social Media
           %tr
             %td.table-title{:colspan => "1"} Twitter Handle:
-            %td.table-content{:colspan => "14"}= result["twitter_id"]
+            %td.table-content{:colspan => "14"}= convert_nil(result["twitter_id"])
           %tr
             %td.table-title{:colspan => "1"} Youtube:
-            %td.table-content{:colspan => "14"}= result["youtube_id"]
+            %td.table-content{:colspan => "14"}= convert_nil(result["youtube_id"])
   - else
     = haml '_no_match'.to_sym

@@ -71,9 +71,15 @@ body {
 h1,
 h3, 
 p, 
-li {
+li,
+label {
 	font-family: $primary;
 	letter-spacing: 1px;
+}
+
+label {
+	font-weight: bold;
+	color: #000;
 }
 
 h1 {
@@ -185,7 +191,9 @@ h1 small {
 	cursor: pointer;
 }
 
-/* images */
+/* Images 
+**************/
+
 .img-banner-about,
 .img-banner-index,
 .img-banner-finance,
@@ -256,7 +264,8 @@ h1 small {
 	opacity: .5;
 }
 
-/* Forms */
+/* Forms 
+*************/
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   margin-bottom: 15px; 
@@ -270,7 +279,8 @@ input, textarea, select, .uneditable-input {
 	color: #000;
 }
 
-/* Buttons */
+/* Buttons 
+*****************/
 .btn-container {
 	text-align: center;
 }
@@ -300,7 +310,8 @@ input, textarea, select, .uneditable-input {
 	border-color: darkblue;
 }
 
-/* Tables */
+/* Tables 
+*************/
 .table-heading {
 	border-bottom: 2px solid darkgray;
 }
@@ -343,7 +354,8 @@ td {
 	font-style: italic;
 }
 
-/* Footer */
+/* Footer 
+**************/
 
 .footer {
 	width: 100%;
@@ -351,7 +363,8 @@ td {
 	box-sizing: border-box;
 }
 
-/* Widgets */
+/* Widgets
+***************/
 
 .tooltip.top .tooltip-inner {
     background-color: #000;
@@ -364,7 +377,8 @@ canvas {
 	display: inline-block;
 }
 
-/* Icons */
+/* Icons 
+*************/
 
 .glyphicon-home {
 	color: #000;
@@ -375,6 +389,9 @@ canvas {
 	font-size: 14px; 
 	padding-left: 2px;
 }
+
+/* Media Queries 
+********************/
 
 @media(max-width:767px){
 	.main-title {
