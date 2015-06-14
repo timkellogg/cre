@@ -5,6 +5,7 @@ require 'sinatra'
 require 'json'
 require 'rest_client'
 require 'dotenv'
+require 'haml'
 Dotenv.load
 
 # Load all lib files 

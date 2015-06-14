@@ -11,6 +11,7 @@ gem 'dotenv'
 gem 'rest_client'
 gem 'shotgun'
 gem 'sinatra-contrib'
+gem 'haml' # Converting site to haml
 
 # Testing 
 gem 'rspec'

@@ -11,6 +11,8 @@ GEM
     coderay (1.1.0)
     diff-lcs (1.2.5)
     dotenv (2.0.1)
+    haml (4.0.6)
+      tilt
     json (1.8.3)
     method_source (0.8.2)
     mime-types (2.6.1)
@@ -71,6 +73,7 @@ DEPENDENCIES
   bundler
   capybara
   dotenv
+  haml
   json
   pry
   rest-open-uri
