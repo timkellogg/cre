@@ -18,17 +18,39 @@ describe 'the legislator search engine', {:type => :feature} do
 				page.status_code.should be 200
 			end 
 			visit '/legislators'
-			fill_in 'first_name', :with => 'Ed'		
-			fill_in 'last_name', :with => 'Royce'	
+			fill_in 'first_name', :with => 'Edward'		
+			fill_in 'last_name', :with => 'Royce'
+			select 'Yes', :from => 'Incumbent'
+			select 'CA', :from => 'State'
+			select 'Republican', :from => 'Party'
 			click_button 'Search'
 			expect(page).to have_content 'Search again?'
-			# scope to look up result of Ed Royce
+			expect(page).to have_content 'Basic Information'
+			expect(page).to have_content 'Contact Information'
+			expect(page).to have_content 'Social Media'
 			expect(page).to have_content 'Kellogg Web Studio'
 			brand = page.first(:css, '#navbar-brand')
     		visit brand[:src]                                      
     		expect(page.status_code).to be 200 
 		end 
 	end 
+
+	context 'with invalid search terms' do 
+		it 'gives the user the information to search again' do 
+			visit '/legislators'
+			select 'Senate', from: 'Chamber'
+			select 'Female', from: 'Gender'
+			fill_in 'district', :with => '999'
+			click_button 'Search'
+			expect(page).to have_content 'Search again?'
+			expect(page).to_not have_content 'Basic Information'
+			expect(page).to have_css '#result-none'
+			expect(page).to have_content 'Kellogg Web Studio'
+			brand = page.first(:css, '#navbar-brand')
+    		visit brand[:src]                                      
+    		expect(page.status_code).to be 200 
+		end
+	end
 end
 
 

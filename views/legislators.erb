@@ -23,12 +23,17 @@
 	  <div class="form-group">
 		<div class="col-md-4">
 			<label for="party" class="control-label">Party:</label>
-			<input type="text" class="form-control" name="party" id="party">
+			<select name="party" class="form-control" name="party" id="party">
+				<option value=""></option>
+				<option value="D">Democrat</option>
+				<option value="I">Independent</option>
+				<option value="R">Republican</option>
+			</select>
 		</div>
 
 		<div class="col-md-4">
 			<label for="state" class="control-label">State:</label>
-		    	<select name="state" class="form-control">
+		    	<select name="state" id="state" class="form-control">
 		    		<option value="">All</option>
 					<option value="AL">AL</option>
 					<option value="AK">AK</option>
@@ -86,14 +91,14 @@
 
 		<div class="col-md-4">
 			<label for="district" class="control-label">District Number:</label>
-			<input type="number" class="form-control" name="distict" id="district">  
+			<input type="number" class="form-control" name="district" id="district">  
 		</div>
 	</div>
 
 	<div class="form-group">
 		<div class="col-md-4">
 			<label for="chamber" class="control-label">Chamber:</label>
-			<select name="chamber" class="form-control">
+			<select name="chamber" class="form-control" id="chamber">
 				<option value=""></option>
 				<option value="house">House</option>
 				<option value="senate">Senate</option>
@@ -102,7 +107,7 @@
 
 		<div class="col-md-4">
 			<label for="in_office" class="control-label">Incumbent?</label>
-			<select name="in_office" class="form-control">
+			<select name="in_office" class="form-control" id="in_office">
 				<option value=""></option>
 				<option value="false">No</option>
 				<option value="true">Yes</option>
@@ -111,7 +116,7 @@
 
 		<div class="col-md-4">
 			<label for="gender" class="control-label">Gender:</label>
-			<select name="gender" class="form-control">
+			<select name="gender" class="form-control" id="gender">
 				<option value=""></option>
 				<option value="F">Female</option>
 				<option value="M">Male</option>

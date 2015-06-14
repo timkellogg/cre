@@ -35,6 +35,7 @@ post '/legislators' do
 	@delimiters = ""
 
 	first_name = params.fetch "first_name"
+	first_name.capitalize!
 	if first_name.empty?
 		@first_name = ""
 	else 
@@ -43,6 +44,7 @@ post '/legislators' do
 	end
 
 	last_name = params.fetch "last_name"
+	last_name.capitalize!
 	if last_name.empty?
 		@last_name = ""
 	else 
@@ -82,12 +84,12 @@ post '/legislators' do
 		@chamber = "&chamber=#{chamber}"
 	end
 
-	is_incumbent = params.fetch "is_incumbent"
-	if is_incumbent.empty?
-		@is_incumbent = ""
+	in_office = params.fetch "in_office"
+	if in_office.empty?
+		@in_office = ""
 	else 
-		@delimiters << "Incumbent: #{chamber},"
-		@is_incumbent = "&is_incumbent=#{is_incumbent}"
+		@delimiters << "In Office: #{chamber},"
+		@in_office = "&in_office=#{in_office}"
 	end
 
 	gender = params.fetch "gender"
@@ -114,11 +116,10 @@ post '/legislators' do
 		@term_end = "&term_end=#{term_end}"
 	end
 
-	api_result = RestClient.get "congress.api.sunlightfoundation.com/legislators?#{@first_name}
-	                           #{@last_name}#{@party}#{@state}#{@district}#{@chamber}#{@chamber}
-	                           #{@is_incumbent}#{@gender}#{@term_start}#{@term_end}
-	                           apikey=" + ENV['SUNLIGHT_API_KEY']
-	@result    = JSON.parse(api_result)
+	api_result = RestClient.get "congress.api.sunlightfoundation.com/legislators?#{@first_name}#{@last_name}#{@party}#{@state}#{@district}#{@chamber}#{@in_office}#{@gender}#{@term_start}#{@term_end}&apikey=" + ENV['SUNLIGHT_API_KEY']
+
+	base    = JSON.parse(api_result)
+	@result    = base["results"]
 
 	erb :"legislators/results"
 end 
