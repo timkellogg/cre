@@ -3,12 +3,11 @@ require 'bundler'
 Bundler.setup
 require 'sinatra'
 require 'json'
-require 'rest-client'
 require 'dotenv'
 require 'haml'
 Dotenv.load
+require 'rest-client'
 
-# Load all lib files 
 configure do
   $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib")
   Dir.glob("#{File.dirname(__FILE__)}/lib/*.rb") { |lib| 
@@ -16,12 +15,10 @@ configure do
   }
 end
  
-# Main Index
 get '/' do 
 	haml :index
 end
 
-# About 
 get '/about' do 
 	haml :about 
 end 
@@ -32,7 +29,6 @@ end
 
 post '/legislators' do 
 
-	# Retrieving form data and parsing into output/api formats 
 	@delimiters = ""
 
 	first_name = params.fetch "first_name"
@@ -117,9 +113,9 @@ post '/legislators' do
 		@term_end = "&term_end=#{term_end}"
 	end
 
-	api_result = RestClient.get "congress.api.sunlightfoundation.com/legislators?#{@first_name}#{@last_name}#{@party}#{@state}#{@district}#{@chamber}#{@in_office}#{@gender}#{@term_start}#{@term_end}&apikey=" + ENV['SUNLIGHT_API_KEY']
+	response = RestClient::Request.execute(method: :get, url: "congress.api.sunlightfoundation.com/legislators?#{@first_name}#{@last_name}#{@party}#{@state}#{@district}#{@chamber}#{@in_office}#{@gender}#{@term_start}#{@term_end}&apikey=" + ENV['SUNLIGHT_API_KEY'], timeout: 10)
 
-	base    = JSON.parse(api_result)
+	base    = JSON.parse(response)
 	@result    = base["results"]
 
 	haml :"legislators/results"
@@ -129,15 +125,12 @@ get '/bills' do
 	haml :bills 
 end
 
-# Polling Routes
 get '/polls' do 
 	haml :polls
 end
 
-# HuffPo API 
 post '/polls' do 
 
-	# Retrieving form data and parsing into output/api formats 
 	@topic = params.fetch "topic"
 	@delimiters = ""
 
@@ -157,8 +150,8 @@ post '/polls' do
 		@before = "&before=#{before}"
 	end
 
-	api_result = RestClient.get "http://elections.huffingtonpost.com/pollster/api/polls.json?page=1&topic=#{@topic}#{@before}#{@after}"
-	@result    = JSON.parse(api_result)
+	response = RestClient::Request.execute(method: :get, url: "http://elections.huffingtonpost.com/pollster/api/polls.json?page=1&topic=#{@topic}#{@before}#{@after}", timeout: 10)
+	@result    = JSON.parse(response)
 
 	haml :"/polls/results"
 end
@@ -173,7 +166,6 @@ end
 
 post '/finance/pacs' do 
 
-	# Retrieving form data and parsing into output/api formats
 	@delimiters = ""
 
 	ctype = params.fetch "ctype"
@@ -216,11 +208,10 @@ post '/finance/pacs' do
 		@min_coh = "&min_coh=#{min_coh}"
 	end
 
-	# API call outside finance  
-	api_result = RestClient.get "realtime.influenceexplorer.com/api//committee/?format=json&page=1&page_size=100
-	                            #{@fec_id}#{@ctype}#{@min_coh}#{@min_spent}#{@min_raised}&apikey=" + ENV['SUNLIGHT_API_KEY']
+	response = RestClient::Request.execute(method: :get, url: "realtime.influenceexplorer.com/api//committee/?format=json&page=1&page_size=100
+	                         #{@fec_id}#{@ctype}#{@min_coh}#{@min_spent}#{@min_raised}&apikey=" + ENV['SUNLIGHT_API_KEY'], timeout: 10)
 
-	base       = JSON.parse(api_result)
+	base       = JSON.parse(response)
 	@result    = base["results"]
 
 	haml :"finance/pacs/results"
@@ -232,7 +223,6 @@ end
 
 post '/finance/outside_spenders' do 
 
-	# Retrieving form data and parsing into output/api formats 
 	@delimiters = ""
 
 	ctype = params.fetch "ctype"
@@ -259,10 +249,9 @@ post '/finance/outside_spenders' do
 		@min_ies = "&min_ies=#{min_ies}"
 	end 
 
-	# API call outside finance  
-	api_result = RestClient.get "realtime.influenceexplorer.com/api//outside-spenders/?format=json&page=
-	                            1&page_size=100&#{@ctype}#{@fec_id}#{@min_ies}&apikey=" + ENV['SUNLIGHT_API_KEY']
-	base       = JSON.parse(api_result)
+	response = RestClient::Request.execute(method: :get, url: "realtime.influenceexplorer.com/api//outside-spenders/?format=json&page=
+	                            1&page_size=100&#{@ctype}#{@fec_id}#{@min_ies}&apikey=" + ENV['SUNLIGHT_API_KEY'], timeout: 10)
+	base       = JSON.parse(response)
 	@result    = base["results"]
 
 	haml :"finance/outside-spenders/results"
@@ -270,7 +259,6 @@ end
 
 post '/finance/districts' do 
 
-	# Retrieving form data and parsing into output/api formats 
 	@delimiters = ""
 
 	state = params.fetch "state"
@@ -312,17 +300,15 @@ post '/finance/districts' do
 		@delimiters << "Incumbent Party: #{incumbent_party},"
 		@incumbent_party = "&incumbent_party=#{incumbent_party}"
 	end
-
-	# API call to finance  
-	api_result = RestClient.get "realtime.influenceexplorer.com/api//districts/?format=json&page=1&page_size=100
-	                        #{@state}#{@office}#{@office_district}#{@term_class}#{@incumbent_party}&apikey=" + ENV['SUNLIGHT_API_KEY']
-	base       = JSON.parse(api_result)
+ 
+	response = RestClient::Request.execute(method: :get, url: "realtime.influenceexplorer.com/api//districts/?format=json&page=1&page_size=100
+	                        #{@state}#{@office}#{@office_district}#{@term_class}#{@incumbent_party}&apikey=" + ENV['SUNLIGHT_API_KEY'], timeout: 10)
+	base       = JSON.parse(response)
 	@result    = base["results"]
 
 	haml :"finance/districts/results"
 end
 
-# Finance Routes 
 get '/finance' do
 	haml :finance 
 end
@@ -331,7 +317,6 @@ get '/finance/outside-spenders' do
 	haml :"finance/outside-spenders"
 end
 
-# Finance/candidates
 get '/finance/candidates' do 
 	haml :"finance/candidates"
 end
@@ -400,14 +385,12 @@ post '/finance/candidates' do
 	haml :"finance/candidates/results"
 end
 
-# Congressional Full-Text Search Portal
 get '/textsearch' do
 	haml :textsearch
 end
 
 post '/textsearch' do 
 
-	# Retrieving form data and parsing it into output/api formats 
 	@phrase = params.fetch "phrase"
 	@raw    = @phrase.gsub('_', ' ')
 	@delimiters = ""
@@ -427,6 +410,22 @@ post '/textsearch' do
 		@delimiters << "State: #{state},"
 		@state = "&state=#{state}"
 	end
+
+	bioguide_id = params.fetch "bioguide_id"
+	if bioguide_id.empty?
+		@bioguide_id = ""
+	else 
+		@delimiters << "Bioguide id: #{bioguide_id},"
+		@bioguide_id = "&bioguide_id=#{bioguide_id}"
+	end 
+
+	cr_pages = params.fetch "cr_pages"
+	if cr_pages.empty?
+		@cr_pages = ""
+	else
+		@delimiters << "C. Record Pages: #{cr_pages},"
+		@cr_pages = "&cr_pages=#{cr_pages}"
+	end 
 
     party = params.fetch "party"
     if party.empty?
@@ -466,7 +465,7 @@ post '/textsearch' do
 
 	# API call to capitol words 
 	api_result = RestClient.get "capitolwords.org/api/1/text.json?phrase=#{@phrase}&page=0#{@state}#{@chamber}#{@party}
-									#{@start_date}#{@end_date}#{@title}&apikey=" + ENV['SUNLIGHT_API_KEY'] 						
+									#{@start_date}#{@end_date}#{@title}#{@bioguide_id}#{@cr_pages}&apikey=" + ENV['SUNLIGHT_API_KEY'] 						
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 

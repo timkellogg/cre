@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'capybara/rspec'
 require './app'
 
@@ -5,7 +6,6 @@ Capybara.app = Sinatra::Application
 Capybara.default_wait_time = 5
 set :show_exceptions, false 
 
-# Legislative Search
 describe 'the legislator search engine', {:type => :feature} do 
 
 	context 'with valid search terms' do 
