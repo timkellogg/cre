@@ -1,0 +1,42 @@
+%hr.top-divider/
+.container
+  .row.secondary-heading
+    %h3 Congressional District Spending
+    %p.text-info
+      This search engine allows you to find out spending by organizations classified by the Federal Election Commission (FEC) as outside-spenders. To see a breakdown of these types of organizations visit
+      = succeed "." do
+        %a{:href => "http://www.fec.gov/finance/disclosure/metadata/CommitteeTypeCodes.shtml"} the FEC's website
+  %form.form-horizontal{:action => "/finance/outside_spenders", :method => "post"}
+    .form-group
+      .col-md-4
+        %label.control-label{:for => "ctype"} FEC Committee Type:
+        %select.form-control{:name => "ctype"}
+          %option{:value => "C"} Communication Cost
+          %option{:value => "D"} Delegate Committee
+          %option{:value => "E"} Electioneering Communication
+          %option{:value => "H"} House Campaign Committees
+          %option{:value => "I"} Independent Person/Group
+          %option{:value => "N"} PAC (Nonqualified)
+          %option{:value => "O"} Super PACs
+          %option{:value => "P"} Presidential Campaign Committees
+          %option{:value => "Q"} PAC (Qualified)
+          %option{:value => "S"} Senate Campaign Committees
+          %option{:value => "U"} Single Candidate Expenditure
+          %option{:value => "V"} PAC with Non-contribution Accounts (Nonqualified)
+          %option{:value => "W"} PAC with Non-contribution Accounts (Qualified)
+          %option{:value => "X"} Party Committees (Nonqualified)
+          %option{:value => "Y"} Party (Qualified)
+          %option{:value => "Z"} National Party Non-federal Accounts
+      .col-md-4
+        %label.control-label{:for => "fec_id"} FEC ID:
+        %input.form-control{:name => "fec_id", :type => "text"}/
+      .col-md-4
+        %label.control-label{:for => "min_ies"} Min. Amt Spent during 2014 Cycle:
+        .input-group
+          .input-group-addon $
+          %input#min_ies.form-control{:min => "0", :name => "min_ies", :placeholder => "Amount", :type => "number"}/
+          .input-group-addon .00
+    .row.btn-container
+      %button.btn.btn-default.btn-lg
+        Search
+        %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}

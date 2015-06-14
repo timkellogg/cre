@@ -1,0 +1,122 @@
+.row.img-banner-textsearch.img-fade
+.container
+  .row.secondary-heading
+    %h3 Full Congressional Text Search
+    %p.text-info This search engine allows you to research the congressional record to find out different phrases or words that have been admitted into record.
+  %form.form-horizontal{:action => "/textsearch", :method => "post"}
+    .form-group
+      .col-md-12
+        %label.control-label{:for => "phrase"} Search Terms:
+        %input#phrase.form-control{:name => "phrase", :placeholder => "Patriot Act", :required => "", :type => "text"}/
+    .row.secondary-heading
+      %h3 Advanced Options
+    .form-group
+      .col-md-4
+        %label.control-label{:for => "state"} State:
+        %select#state.form-control{:name => "state"}
+          %option{:value => ""} All
+          %option{:value => "AL"} AL
+          %option{:value => "AK"} AK
+          %option{:value => "AZ"} AZ
+          %option{:value => "AR"} AR
+          %option{:value => "CA"} CA
+          %option{:value => "CO"} CO
+          %option{:value => "CT"} CT
+          %option{:value => "DE"} DE
+          %option{:value => "DC"} DC
+          %option{:value => "FL"} FL
+          %option{:value => "GA"} GA
+          %option{:value => "HI"} HI
+          %option{:value => "ID"} ID
+          %option{:value => "IL"} IL
+          %option{:value => "IN"} IN
+          %option{:value => "IA"} IA
+          %option{:value => "KS"} KS
+          %option{:value => "KY"} KY
+          %option{:value => "LA"} LA
+          %option{:value => "ME"} ME
+          %option{:value => "MD"} MD
+          %option{:value => "MA"} MA
+          %option{:value => "MI"} MI
+          %option{:value => "MN"} MN
+          %option{:value => "MS"} MS
+          %option{:value => "MO"} MO
+          %option{:value => "MT"} MT
+          %option{:value => "NE"} NE
+          %option{:value => "NV"} NV
+          %option{:value => "NH"} NH
+          %option{:value => "NJ"} NJ
+          %option{:value => "NM"} NM
+          %option{:value => "NY"} NY
+          %option{:value => "NC"} NC
+          %option{:value => "ND"} ND
+          %option{:value => "OH"} OH
+          %option{:value => "OK"} OK
+          %option{:value => "OR"} OR
+          %option{:value => "PA"} PA
+          %option{:value => "RI"} RI
+          %option{:value => "SC"} SC
+          %option{:value => "SD"} SD
+          %option{:value => "TN"} TN
+          %option{:value => "TX"} TX
+          %option{:value => "UT"} UT
+          %option{:value => "VT"} VT
+          %option{:value => "VA"} VA
+          %option{:value => "WA"} WA
+          %option{:value => "WV"} WV
+          %option{:value => "WI"} WI
+          %option{:value => "WY"} WY
+      .col-md-4
+        %label.control-label{:for => "party"} Party:
+        %select#party.form-control{:name => "party"}
+          %option{:value => ""} All
+          %option{:value => "D"} Democrat
+          %option{:value => "I"} Independent
+          %option{:value => "R"} Republican
+      .col-md-4
+        %label.control-label{:for => "chamber"} Chamber:
+        %select.form-control{:name => "chamber"}
+          %option{:value => ""} All
+          %option{:value => "house"} House
+          %option{:value => "senate"} Senate
+          %option{:value => "extensions"} Extensions
+    .form-group
+      .col-md-4
+        %label.control-label{:for => "title"} Title:
+        %input#title.form-control{"data-placement" => "bottom", "data-toggle" => "tooltip", :name => "title", :title => "The title of the document.", :type => "text"}/
+      .col-md-4
+        %label.control-label{:for => "cr_pages"} C.R. Pages:
+        %input#cr_pages.form-control{"data-placement" => "bottom", "data-toggle" => "tooltip", :name => "cr_pages", :title => "Specify pages in the Congressional Record", :type => "text"}/
+      .col-md-4
+        %label.control-label{:for => "bioguide_id"} Bioguide Id:
+        %input#bioguide_id.form-control{"data-placement" => "bottom", "data-toggle" => "tooltip", :name => "bioguide_id", :title => "The unique, official identifier of members of Congress. Visit the legislative section of this site to research them.", :type => "text"}/
+    .form-group
+      .col-md-6
+        %label.control-label{:for => "start_date"} From:
+        %input#start_date.form-control{:name => "start_date", :type => "text"}/
+      .col-md-6
+        %label.control-label{:for => "end_date"} To:
+        %input#end_date.form-control{:name => "end_date", :type => "text"}/
+    .row.btn-container
+      %button.btn.btn-default.btn-lg
+        Search
+        %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}
+:javascript
+  $(function() {
+    $( "#start_date" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 1,
+      onClose: function( selectedDate ) {
+        $( "#end_date" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#end_date" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 1,
+      onClose: function( selectedDate ) {
+        $( "#start_date" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });

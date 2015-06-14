@@ -1,0 +1,63 @@
+%hr.top-divider/
+.container
+  .row
+    %a.btn.btn-default{:href => "/finance/districts"}
+      %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
+      Search again?
+  = haml '_delimiters'.to_sym
+  - if @result.any?
+    - @result.each_with_index do |result, index|
+      .col-md-12
+        %p.result-number= index + 1
+        %table.table.table-striped.table-hover.table-condensed
+          %tr
+            %th.table-heading{:colspan => "15"}
+              = result["cycle"]
+              \— #{convert_abbreviation(result["state"])}
+          %tr
+            %th.table-sub-heading{:colspan => "15"} Basic Race Information
+          %tr
+            %td.table-title{:colspan => "1"} Race Type:
+            %td.table-content{:colspan => "14"}= result["rothenberg_rating_text"]
+          %tr
+            %td.table-title{:colspan => "1"} Office:
+            %td.table-content{:colspan => "14"}= get_chamber(result["office"])
+          %tr
+            %td.table-title{:colspan => "1"} Incumbent:
+            %td.table-content{:colspan => "14"}= result["incumbent_name"]
+          %tr
+            %td.table-title{:colspan => "1"} Incumbent Party:
+            %td.table-content{:colspan => "14"}= get_party(result["incumbent_party"])
+          %tr
+            %td.table-title{:colspan => "1"} Next Election:
+            %td.table-content{:colspan => "14"}= convert_to_na(result["next_election_date"])
+          %tr
+            %td.table-title{:colspan => "1"} Next Election Type:
+            %td.table-content{:colspan => "14"}= convert_to_na(result["next_election"].capitalize)
+          %tr
+            %td.table-title{:colspan => "1"} Open Seat:
+            %td.table-content{:colspan => "14"}= convert_boolean(result["open_seat"])
+          %tr
+            %td.table-title Profile:
+            %td.table-content
+              %a{:href => "#{ENV['FINANCE_BASE_URL']}#{result["district_url"]}"} Visit Profile
+          %tr
+            %th.table-sub-heading{:colspan => "15"} Financial Summary
+          %tr
+            %td.table-title{:colspan => "1"} Candidate Money Raised:
+            %td.table-content.text-cash{:colspan => "14"}
+              $#{comma_numbers(result["candidate_raised"])}
+          %tr
+            %td.table-title{:colspan => "1"} Candidate Money Spent:
+            %td.table-content.text-loan{:colspan => "14"}
+              $#{comma_numbers(result["candidate_spending"])}
+          %tr
+            %td.table-title{:colspan => "1"} Outside Money Spent:
+            %td.table-content.text-loan{:colspan => "14"}
+              $#{comma_numbers(result["outside_spending"])}
+          %tr
+            %td.table-title{:colspan => "1"} Total Money Spent:
+            %td.table-content.text-loan{:colspan => "14"}
+              $#{comma_numbers(result["total_spending"])}
+  - else
+    = haml '_no_match'.to_sym

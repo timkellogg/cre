@@ -1,0 +1,52 @@
+%hr.top-divider/
+.container
+  .row
+    %a.btn.btn-default{:href => "/polls"}
+      %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
+      Search again?
+  = haml '_delimiters'.to_sym
+  - if @result.any?
+    - @result.each_with_index do |result, index|
+      .col-md-12
+        %p.result-number= index + 1
+        %table.table.table-striped.table-hover.table-condensed
+          %tr
+            %th.table-heading{:colspan => "15"}= result["survey_houses"][0]["name"]
+          %tr
+            %th.table-sub-heading{:colspan => "15"} Basic Poll Information
+          %tr
+            %td.table-title{:colspan => "1"} Source:
+            %td.table-content{:colspan => "14"}
+              %a{:href => result["source"]}= result["source"]
+          %tr
+            %td.table-title{:colspan => "1"} Started:
+            %td.table-content{:colspan => "14"}= result["start_date"]
+          %tr
+            %td.table-title{:colspan => "1"} Ended:
+            %td.table-content{:colspan => "14"}= result["end_date"]
+          %tr
+            %td.table-title{:colspan => "1"} Method:
+            %td.table-content{:colspan => "14"}= result["method"]
+          %tr
+            %th.table-sub-heading{:colspan => "15"} Poll Topics
+          / Topic of Polls
+          - result["questions"].each_with_index do |question, index|
+            %tr
+              %td.table-tertiary-heading{:colspan => "15"}= question["name"]
+            %tr
+              %td.table-title{:colspan => "1"} Pool:
+              %td.table-content{:colspan => "14"}= question["subpopulations"][0]["name"]
+            %tr
+              %td.table-title{:colspan => "1"} Population:
+              %td.table-content{:colspan => "14"}= question["subpopulations"][0]["observations"]
+            %tr
+              %td.table-title{:colspan => "1"} Error Margin:
+              %td.table-content{:colspand => "14"}
+                = convert_nil(question["subpopulations"][0]["margin_of_error"])
+            / Poll Responses
+            - question["subpopulations"][0]["responses"].each do |response|
+              %tr
+                %td.table-title{:colspan => "1"}= response["choice"]
+                %td.table-content{:colspan => "14"}= response["value"]
+  - else
+    = haml '_no_match'.to_sym

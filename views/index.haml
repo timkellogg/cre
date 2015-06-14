@@ -1,0 +1,37 @@
+.row.img-banner-index.img-fade
+  .col-md-12
+    %h1#site-title
+      Political Research Engine
+      %br/
+      %small Empowering Better Citizenship
+%h3.text-center.main-secondary-heading
+  I want to
+  = succeed "..." do
+    %span#word-spin search
+#main-menu
+  .row
+    .col-md-1.empty
+    %a{:href => "/textsearch"}
+      #menu-speaking.col-md-2.text-center.menu-item
+        %img#svg-speaking.img.img-responsive.svg{:src => "icons/speaking.svg"}/
+        %p Congressional Records
+    %a{:href => "/legislators"}
+      #menu-politician.col-md-2.text-center.menu-item
+        %img#svg-politician.img.img-responsive.svg{:src => "icons/politician.svg"}/
+        %p Representatives
+    %a{:href => "/bills"}
+      #menu-congress.col-md-2.text-center.menu-item
+        %img#svg-congress.img.img-responsive.svg{:src => "icons/congress.svg"}/
+        %p Legislation
+    %a{:href => "/polls"}
+      #menu-poll.col-md-2.text-center.menu-item
+        %img#svg-poll.img.img-responsive.svg{:src => "icons/poll.svg"}/
+        %p Polling Data
+    %a{:href => "/finance"}
+      #menu-money.col-md-2.text-center.menu-item
+        %img#svg-money.img.img-responsive.svg{:src => "icons/money.svg"}/
+        %p Campaign Finance
+    .col-md-1.empty
+
+
+

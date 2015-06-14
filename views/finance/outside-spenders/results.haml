@@ -1,0 +1,40 @@
+%hr.top-divider/
+.container
+  .row
+    %a.btn.btn-default{:href => "/finance/outside_spenders"}
+      %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
+      Search again?
+  = haml '_delimiters'.to_sym
+  - if @result.any?
+    - @result.each_with_index do |result, index|
+      .col-md-12
+        %p.result-number= index + 1
+        %table.table.table-striped.table-hover.table-condensed
+          %tr
+            %th.table-heading{:colspan => "15"}
+              = result["name"]
+              \— #{result["display_type"]}
+          %tr
+            %th.table-sub-heading{:colspan => "15"} Basic Information
+          %tr
+            %td.table-title{:colspan => "1"} Committee Type:
+            %td.table-content{:colspan => "14"}= convert_committee(result["ctype"])
+          %tr
+            %td.table-title{:colspan => "1"} FEC ID:
+            %td.table-content{:colspan => "14"}= result["fec_id"]
+          %tr
+            %td.table-title{:colspan => "1"} Affiliation:
+            %td.table-content{:colspan => "14"}= get_party(result["political_orientation"])
+          %tr
+            %td.table-title{:colspan => "1"} Main Function:
+            %td.table-content{:colspan => "14"}= result["major_activity"]
+          %tr
+            %th.table-sub-heading{:colspan => "15"} Financial Information
+          %td.table-title{:colspan => "1"} Cash on Hand:
+          %td.table-content.text-cash{:colspan => "14"}
+            $#{comma_numbers(result["display_coh"])}
+          %tr
+            %td.table-title{:colspan => "1"} Cash Accurate as of:
+            %td.table-content{:colspan => "14"}= convert_nil(result["display_coh_date"])
+  - else
+    = haml '_no_match'.to_sym

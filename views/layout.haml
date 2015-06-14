@@ -1,0 +1,52 @@
+!!!
+%html
+  %head
+    %title Political Research Engine | Powering Better Citizens, Strong Democracy
+    %meta{:charset => "UTF-8"}/
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Raleway:500", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => url("/css/main.css"), :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"}
+    %script{:src => url("/js/tooltip.min.js"), :type => "text/javascript"}
+    %script{:src => url("/js/app.js"), :type => "text/javascript"}
+    / jqueryui
+    %script{:src => url("/js/jquery-ui.js"), :type => "text/javascript"}
+    %link{:href => url("/css/jquery-ui.css"), :rel => "stylesheet", :type => "text/css"}/
+    / Graphics
+    %script{:src => url("/js/chart.min.js"), :type => "text/javascript"}
+    / Icons
+    %link{:href => "icons/favicomatic/favicon-32x32.png", :rel => "icon", :sizes => "32x32", :type => "image/png"}/
+    %link{:href => "icons/favicomatic/favicon-16x16.png", :rel => "icon", :sizes => "16x16", :type => "image/png"}/
+  %body
+    / Site container
+    #container
+      %nav.navbar.navbar-default
+        .container-fluid
+          .row
+            .col-md-12.text-center
+              %a{:href => "/"}
+                %img#navbar-brand.img.img-responsive.svg{:src => url("/icons/congress.svg")}/
+          .row.text-center.navbar-navigation
+            .col-md-2.navbar-item
+              %a{:href => "/textsearch"} C. Records
+            .col-md-2.navbar-item
+              %a{:href => "/bills"} Legislation
+            .col-md-2.navbar-item
+              %a{:href => "/finance"} Finance
+            .col-md-2.navbar-item
+              %a{:href => "/polls"} Polling
+            .col-md-2.navbar-item
+              %a{:href => "/legislators"} Representatives
+            .col-md-2.navbar-item
+              %a{:href => "/about"} About
+      #content-wrapper
+        = yield
+      %hr/
+      %footer.footer
+        %p.muted.text-center
+          Web Design by
+          %a{:href => "http://www.kelloggwebstudio.com"} Kellogg Web Studio
+        %a{:href => "/"}
+          %p.text-center
+            %span.glyphicon.glyphicon-home{"aria-hidden" => "true"}

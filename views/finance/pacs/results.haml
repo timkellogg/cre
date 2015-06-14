@@ -1,0 +1,55 @@
+%hr.top-divider/
+.container
+  .row
+    %a.btn.btn-default{:href => "/finance/pacs"}
+      %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
+      Search again?
+  = haml '_delimiters'.to_sym
+  - if @result.any?
+    - @result.each_with_index do |result, index|
+      .col-md-12
+        %p.result-number= index + 1
+        %table.table.table-striped.table-hover.table-condensed
+          %tr
+            %th.table-heading{:colspan => "15"}= result["name"]
+          %tr
+            %th.table-sub-heading{:colspan => "15"} Basic Information
+          %tr
+            %td.table-title FEC ID:
+            %td.table-content= result["fec_id"]
+          %tr
+            %td.table-title Political Orientation:
+            %td.table-content= get_party(result["political_orientation"])
+          %tr
+            %td.table-title Type:
+            %td.table-content= result["display_type"]
+          %tr
+            %td.table-title Profile:
+            %td.table-content
+              %a{:href => "#{ENV['FINANCE_BASE_URL']}#{result["committee_url"]}"} Visit Profile
+          %tr
+            %th.table-sub-heading{:colspan => "15"} Financial Information
+          %tr
+            %td.table-title Total Receipts:
+            %td.table-content.text-cash
+              $#{comma_numbers(result["total_receipts"])}
+          %tr
+            %td.table-title Total Disbursements:
+            %td.table-content.text-loan
+              $#{comma_numbers(result["total_disbursements"])}
+          %tr
+            %td.table-title Outstanding Loans:
+            %td.table-content.text-loan
+              $#{comma_numbers(result["outstanding_loans"])}
+          %tr
+            %td.table-title Cash on Hand:
+            %td.table-content.text-cash
+              $#{comma_numbers(result["cash_on_hand"])}
+          %tr
+            %td.table-title Cash on Hand Date:
+            %td.table-content= convert_nil(result["cash_on_hand_date"])
+      .chart-container.row
+        .col-md-6.chart-container{:id => "expensesChartContainer#{index}"}
+        .col-md-6.chart-container{:id => "totalChartContainer#{index}"}
+  - else
+    = haml '_no_match'.to_sym

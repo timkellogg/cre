@@ -18,16 +18,16 @@ end
  
 # Main Index
 get '/' do 
-	erb :index
+	haml :index
 end
 
 # About 
 get '/about' do 
-	erb :about 
+	haml :about 
 end 
 
 get '/legislators' do 
-	erb :legislators
+	haml :legislators
 end
 
 post '/legislators' do 
@@ -122,19 +122,17 @@ post '/legislators' do
 	base    = JSON.parse(api_result)
 	@result    = base["results"]
 
-	erb :"legislators/results"
+	haml :"legislators/results"
 end 
 
-
 get '/bills' do 
-	erb :bills 
+	haml :bills 
 end
 
 # Polling Routes
 get '/polls' do 
-	erb :polls
+	haml :polls
 end
-
 
 # HuffPo API 
 post '/polls' do 
@@ -162,17 +160,15 @@ post '/polls' do
 	api_result = RestClient.get "http://elections.huffingtonpost.com/pollster/api/polls.json?page=1&topic=#{@topic}#{@before}#{@after}"
 	@result    = JSON.parse(api_result)
 
-	erb :"/polls/results"
+	haml :"/polls/results"
 end
 
-
-
 get '/finance/districts' do 
-	erb :"finance/districts"
+	haml :"finance/districts"
 end
 
 get '/finance/pacs' do 
-	erb :"finance/pacs"
+	haml :"finance/pacs"
 end
 
 post '/finance/pacs' do 
@@ -187,7 +183,6 @@ post '/finance/pacs' do
 		@delimiters << "Committee Type: #{ctype},"
 		@ctype = "&ctype=#{ctype}"
 	end
-
 
 	fec_id = params.fetch "fec_id"
 	if fec_id.empty?
@@ -228,12 +223,11 @@ post '/finance/pacs' do
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 
-
-	erb :"finance/pacs/results"
+	haml :"finance/pacs/results"
 end
 
 get '/finance/outside_spenders' do 
-	erb :"finance/outside_spenders"
+	haml :"finance/outside_spenders"
 end
 
 post '/finance/outside_spenders' do 
@@ -271,11 +265,8 @@ post '/finance/outside_spenders' do
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 
-
-
-	erb :"finance/outside-spenders/results"
+	haml :"finance/outside-spenders/results"
 end
-
 
 post '/finance/districts' do 
 
@@ -314,7 +305,6 @@ post '/finance/districts' do
 		@term_class = "&term_class=#{term_class}"
 	end
 
-
 	incumbent_party = params.fetch "incumbent_party"
 	if incumbent_party.empty?
 		@incumbent_party = ""
@@ -329,23 +319,21 @@ post '/finance/districts' do
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 
-	erb :"finance/districts/results"
-
+	haml :"finance/districts/results"
 end
-
 
 # Finance Routes 
 get '/finance' do
-	erb :finance 
+	haml :finance 
 end
 
 get '/finance/outside-spenders' do 
-	erb :"finance/outside-spenders"
+	haml :"finance/outside-spenders"
 end
 
 # Finance/candidates
 get '/finance/candidates' do 
-	erb :"finance/candidates"
+	haml :"finance/candidates"
 end
 
 post '/finance/candidates' do 
@@ -386,7 +374,6 @@ post '/finance/candidates' do
 		@term_class = "&term_class=#{term_class}"
 	end
 
-
 	party = params.fetch "party"
 	if party.empty?
 		@party = ""
@@ -394,7 +381,6 @@ post '/finance/candidates' do
 		@delimiters << "Party: #{party},"
 		@party = "&party=#{party}"
 	end
-
 
 	is_incumbent = params.fetch "is_incumbent"
 	if is_incumbent.empty?
@@ -404,7 +390,6 @@ post '/finance/candidates' do
 		@is_incumbent = "&is_incumbent=#{is_incumbent}"
 	end
 
-
 	# API call to campaign finance api  
 	api_result = RestClient.get "realtime.influenceexplorer.com/api//candidates/?format=json&page=1
 								#{@fec_id}#{@office}#{@state}#{@term_class}#{@party}#{@is_incumbent}
@@ -412,17 +397,12 @@ post '/finance/candidates' do
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 
-	erb :"finance/candidates/results"
+	haml :"finance/candidates/results"
 end
-
-
-
-
-
 
 # Congressional Full-Text Search Portal
 get '/textsearch' do
-	erb :textsearch
+	haml :textsearch
 end
 
 post '/textsearch' do 
@@ -480,7 +460,6 @@ post '/textsearch' do
 		@end_date = "&end_date=#{end_date}"
 	end
 	
-
 	# Replace spaces and commas with underscores to make valid html request url 
 	@phrase.sub!(' ', '_')
 	@phrase.sub!(',', '_')
@@ -491,10 +470,5 @@ post '/textsearch' do
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 
-
-	erb :"textsearch/results" 
+	haml :"textsearch/results" 
 end
-
-
-
-

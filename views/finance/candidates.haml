@@ -1,0 +1,119 @@
+%hr.top-divider/
+.container
+  .row.secondary-heading
+    %h3 Candidates' Spending Portal
+    %p.text-info This search engine allows you to find out the spending by those seeking congressional seats.
+  %form{:action => "/finance/candidates", :method => "post"}
+    .form-group
+      .col-md-4
+        %label.control-label{:for => "fec_id"} Candidate FEC id:
+        %input#fec_id.form-control{:name => "fec_id", :placeholder => "H6CA39020", :type => "text"}/
+    .form-group
+      .col-md-4
+        %label.control-label{:for => "office"} Office:
+        %select.form-control{:name => "office"}
+          %option{:value => ""}
+          %option{:value => "H"} House
+          %option{:value => "S"} Senate
+    .form-group
+      .col-md-4
+        %label.control-label{:for => "state"} State:
+        %select.form-control{:name => "state"}
+          %option{:value => ""}
+          %option{:value => "AL"} AL
+          %option{:value => "AK"} AK
+          %option{:value => "AZ"} AZ
+          %option{:value => "AR"} AR
+          %option{:value => "CA"} CA
+          %option{:value => "CO"} CO
+          %option{:value => "CT"} CT
+          %option{:value => "DE"} DE
+          %option{:value => "DC"} DC
+          %option{:value => "FL"} FL
+          %option{:value => "GA"} GA
+          %option{:value => "HI"} HI
+          %option{:value => "ID"} ID
+          %option{:value => "IL"} IL
+          %option{:value => "IN"} IN
+          %option{:value => "IA"} IA
+          %option{:value => "KS"} KS
+          %option{:value => "KY"} KY
+          %option{:value => "LA"} LA
+          %option{:value => "ME"} ME
+          %option{:value => "MD"} MD
+          %option{:value => "MA"} MA
+          %option{:value => "MI"} MI
+          %option{:value => "MN"} MN
+          %option{:value => "MS"} MS
+          %option{:value => "MO"} MO
+          %option{:value => "MT"} MT
+          %option{:value => "NE"} NE
+          %option{:value => "NV"} NV
+          %option{:value => "NH"} NH
+          %option{:value => "NJ"} NJ
+          %option{:value => "NM"} NM
+          %option{:value => "NY"} NY
+          %option{:value => "NC"} NC
+          %option{:value => "ND"} ND
+          %option{:value => "OH"} OH
+          %option{:value => "OK"} OK
+          %option{:value => "OR"} OR
+          %option{:value => "PA"} PA
+          %option{:value => "RI"} RI
+          %option{:value => "SC"} SC
+          %option{:value => "SD"} SD
+          %option{:value => "TN"} TN
+          %option{:value => "TX"} TX
+          %option{:value => "UT"} UT
+          %option{:value => "VT"} VT
+          %option{:value => "VA"} VA
+          %option{:value => "WA"} WA
+          %option{:value => "WV"} WV
+          %option{:value => "WI"} WI
+          %option{:value => "WY"} WY
+      .form-group
+        .col-md-4
+          %label.control-label{:for => "term_class"} Re-Election Year (Senate Only):
+          %select.form-control{:name => "term_class"}
+            %option{:value => ""}
+            %option{:value => "1"} 2018
+            %option{:value => "3"} 2016
+            %option{:value => "2"} 2014
+      .form-group
+        .col-md-4
+          %label.control-label{:for => "party"} Party:
+          %select.form-control{:name => "party"}
+            %option{:value => ""}
+            %option{:value => "D"} Democrat
+            %option{:value => "I"} Independent
+            %option{:value => "R"} Republican
+      .form-group
+        .col-md-4
+          %label.control-label{:for => "is_incumbent"} Incumbent?
+          %select.form-control{:name => "is_incumbent"}
+            %option{:value => ""}
+            %option{:value => "False"} False
+            %option{:value => "True"} True
+      .row.btn-container
+        %button.btn.btn-default.btn-lg
+          Search
+          %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}
+:javascript
+  $(function() {
+    $( "#start_date" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 1,
+      onClose: function( selectedDate ) {
+        $( "#end_date" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#end_date" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 1,
+      onClose: function( selectedDate ) {
+        $( "#start_date" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });

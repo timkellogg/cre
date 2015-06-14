@@ -1,0 +1,52 @@
+%hr.top-divider/
+.container
+  .row.secondary-heading
+    %h3 Political Action Committee (PAC) Spending
+    %p.text-info This search engine returns information about candidate committees, leadership PACs, joint fundraising PACs, super PACs, party committees and corporate PACs.
+  %form{:action => "/finance/pacs", :method => "post"}
+    .form-group
+      .col-md-6
+        %label.control-label{:for => "ctype"} FEC Committee Type:
+        %select.form-control{:name => "ctype"}
+          %option{:value => "C"} Communication Cost
+          %option{:value => "D"} Delegate Committee
+          %option{:value => "E"} Electioneering Communication
+          %option{:value => "H"} House Campaign Committees
+          %option{:value => "I"} Independent Person/Group
+          %option{:value => "N"} PAC (Nonqualified)
+          %option{:value => "O"} Super PACs
+          %option{:value => "P"} Presidential Campaign Committees
+          %option{:value => "Q"} PAC (Qualified)
+          %option{:value => "S"} Senate Campaign Committees
+          %option{:value => "U"} Single Candidate Expenditure
+          %option{:value => "V"} PAC with Non-contribution Accounts (Nonqualified)
+          %option{:value => "W"} PAC with Non-contribution Accounts (Qualified)
+          %option{:value => "X"} Party Committees (Nonqualified)
+          %option{:value => "Y"} Party (Qualified)
+          %option{:value => "Z"} National Party Non-federal Accounts
+      .col-md-6
+        %label.control-label{:for => "fec_id"} FEC ID:
+        %input.form-control{:name => "fec_id", :type => "text"}/
+    .form-group
+      .col-md-4
+        %label.control-label{:for => "min_raised"} Min. Amt Spent during 2014 Cycle:
+        .input-group
+          .input-group-addon $
+          %input#min_raised.form-control{:min => "0", :name => "min_raised", :placeholder => "Amount", :type => "number"}/
+          .input-group-addon .00
+      .col-md-4
+        %label.control-label{:for => "min_spent"} Min. Spent during 2014 Cycle:
+        .input-group
+          .input-group-addon $
+          %input#min_spent.form-control{:min => "0", :name => "min_spent", :placeholder => "Amount", :type => "number"}/
+          .input-group-addon .00
+      .col-md-4
+        %label.control-label{:for => "min_coh"} Min. Cash on Hand
+        .input-group
+          .input-group-addon $
+          %input#min_coh.form-control{:min => "0", :name => "min_coh", :placeholder => "Amount", :type => "number"}/
+          .input-group-addon .00
+    .row.btn-container
+      %button.btn.btn-default.btn-lg
+        Search
+        %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}
