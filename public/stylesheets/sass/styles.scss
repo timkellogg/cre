@@ -1,19 +1,27 @@
-/* General */
+/* General 
+******************/
+
+/* Colors */
+$blue: 		  #000080;
+$white:       #FFF;
+$black:       #000;
+$gray:        #C0C0C0C0;
+
+/* Fonts */
+$primary:     'Raleway', sans-serif;
+$title:       'Droid Serif', serif;
+$siteTitle:   'Open Sans', sans-serif;
+
+/* Sizing */
 
 body {
-	background-color: #fff;
+	background-color: $white;
 }
 
-/*Colors
+/* Navigation 
+****************/
 
-blue: 000080;
-white: FFF;
-black: 000;
-gray: C0C0C0C0;
-*/
-
-/* Navigation */
-
+/* Brand */
 #navbar-brand:hover {
 	-webkit-transform: scale(1.0);
 	    -ms-transform: scale(1.0);
@@ -21,59 +29,56 @@ gray: C0C0C0C0;
 	opacity: 1.0;
 }
 
-.navbar-navigation {
-	margin-bottom: 5px;
+/* Navbar */
+.navbar {
+	margin-bottom: 0;
 }
 
 .navbar-navigation {
 	padding: 5px;
 	padding-top: 3px;
+	margin-bottom: 5px;
+    &:hover {
+    	text-decoration: none;
+    }
+    a:hover {
+    	font-weight: bold;
+		text-decoration: none;
+		color: black;
+		background-color: lightyellow;
+    }
 }
 
-.navbar-navigation:hover {
-	text-decoration: none;
-}
-
-.navbar-navigation a:hover {
-	font-weight: bold;
-	text-decoration: none;
-	color: #000;
-	background-color: lightyellow;
-}
-
-.navbar {
-	margin-bottom: 0;
-}
-
-.result-heading {
-	font-size: 1.1em;
-	font-weight: bold;
-	color: darkblue;
-}
-
-.result-text { 
-	font-style: italic;
-
-}
-
-
-/* Typography */
-h1, h3, p, li {
-	font-family: 'Raleway', sans-serif;
-}
-
-h3 {
+.navbar-item a {
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	color: black;
 }
 
-h1, h3, p {
+/* Menu 
+*********/
+
+.menu-item a,
+.menu-item p {
+	color:  black;
+	font-size: 1.1em;
+}
+
+/* Typography 
+***************/
+
+/* General */
+h1,
+h3, 
+p, 
+li {
+	font-family: $primary;
 	letter-spacing: 1px;
 }
 
 h1 {
-	color: white;
-	font-family: 'Droid Serif', serif;
+	color: $white;
+	font-family: $title;
 	font-weight: 700;
 }
 
@@ -82,18 +87,13 @@ h1 {
 	margin-top: -10px;
 }
 
-.navbar-item a {
-	text-transform: uppercase;
-	letter-spacing: 1px;
-}
-
 #site-title {
 	margin-top: 75px;
 	margin-left: 10px;
 	font-size: 3.1em;
 	font-weight: 700;
 	letter-spacing: 2px;
-	font-family: 'Open Sans';
+	font-family: $siteTitle;
 }
 
 #site-title small {
@@ -125,8 +125,7 @@ h1 {
 
 .text-info {
 	font-weight: bold;
-	color: #000;
-	
+	color: black;
 }
 
 .result-number {
@@ -135,10 +134,9 @@ h1 {
 
 ul {
 	list-style: none;
-}
-
-ul li {
+    li {
 	text-indent: none;
+	}
 }
 
 .menu-list li {
@@ -151,7 +149,7 @@ ul li {
 }
 
 #main-page-header {
-	background-color: white;
+	background-color: $white;
 	height: 90px;
 }
 
@@ -162,8 +160,7 @@ ul li {
 }
 
 h1 small {
-	color: #C0C0C0C0;
-
+	color: $gray;
 }
 
 .secondary-heading {
@@ -173,9 +170,6 @@ h1 small {
 
 /* Links */
 
-.navbar-item a {
-	color: black;
-}
 
 
 /* Main Page */
@@ -184,7 +178,6 @@ h1 small {
 	padding-top: 30px;
 	padding-bottom: 30px;
 }
-
 
 #main-menu {
 	margin-top: 50px;
@@ -249,13 +242,6 @@ h1 small {
 	        transform: scale(1.1);
 }
 
-
-.menu-item a,
-.menu-item p {
-	color:  black;
-	font-size: 1.1em;
-}
-
 .img {
 	margin: auto;
 }
@@ -271,8 +257,6 @@ h1 small {
 }
 
 /* Forms */
-
-
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   margin-bottom: 15px; 
@@ -285,8 +269,8 @@ input, textarea, select, .uneditable-input {
 	background-color: lightyellow;
 	color: #000;
 }
-/* Buttons */
 
+/* Buttons */
 .btn-container {
 	text-align: center;
 }
@@ -349,6 +333,16 @@ td {
 	white-space: nowrap;
 }
 
+.result-heading {
+	font-size: 1.1em;
+	font-weight: bold;
+	color: darkblue;
+}
+
+.result-text { 
+	font-style: italic;
+}
+
 /* Footer */
 
 .footer {
@@ -363,7 +357,7 @@ td {
     background-color: #000;
 }
 .tooltip.top .tooltip-arrow {
-      border-top-color: #000;
+    border-top-color: #000;
 }
 
 canvas {

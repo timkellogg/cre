@@ -9,9 +9,8 @@ gem 'rest-open-uri'
 gem 'json'
 gem 'dotenv'
 gem 'rest_client'
-gem 'shotgun'
 gem 'sinatra-contrib'
-gem 'haml' # Converting site to haml
+gem 'haml' 
 
 # Testing 
 gem 'rspec'
@@ -20,4 +19,4 @@ gem 'pry'
 
 # Development 
 gem 'sass'
-
+gem 'shotgun'
