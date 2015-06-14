@@ -8,4 +8,9 @@ Goals:
 - Add asset pipeline to compile and minify css & js code 
 - Refactor CSS into SASS 
 
-http://recipes.sinatrarb.com/p/asset_management/sinatra_assetpack
+
+$http://recipes.sinatrarb.com/p/asset_management/sinatra_assetpack
+
+Issues:
+
+- Fix polls result submit button
