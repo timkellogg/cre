@@ -3,7 +3,7 @@ require 'bundler'
 Bundler.setup
 require 'sinatra'
 require 'json'
-require 'rest_client'
+require 'rest-client'
 require 'dotenv'
 require 'haml'
 Dotenv.load

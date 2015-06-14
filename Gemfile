@@ -8,7 +8,7 @@ gem 'sinatra'
 gem 'rest-open-uri'
 gem 'json'
 gem 'dotenv'
-gem 'rest_client'
+gem 'rest-client'
 gem 'sinatra-contrib'
 gem 'haml' 
 
