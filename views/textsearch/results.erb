@@ -5,18 +5,9 @@
 		<a href="/textsearch" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Search again?</a>
 	</div>
 
-	<p class="search-term">You searched: <%= convert_result_nil(@raw) %></p>
-	<% if !@delimiters.empty? %>
-	<p class="limiters">Your results were limited to:</p>	
-		<ul>
-		<% @delimiters.split(',').each do |line|  %>
-			<li><%= line %></li>
-		<% end %>
-		</ul>
-	<% end %>
+	<%= erb '_delimiters'.to_sym %>
 
 	<% if @result.any? %>
-	<p>Result Count: <%= @result.count %></p>
 
 		<% @result.each_with_index do |result, index| %> 
 			<ul class="result-item row">
@@ -28,9 +19,7 @@
 			<hr>
 		<% end %>
 	<% else %>
-		<div id="result-none">
-			<p>Oh, no! There were no results for <%= convert_result_nil(@raw) %>. Search <a href="/textsearch">again?</a></p>
-		</div>
+		<%= erb '_no_match'.to_sym %>
 	<% end %>
 </div>
   

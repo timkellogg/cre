@@ -6,16 +6,7 @@
 		<a href="/finance/districts" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Search again?</a>
 	</div>
 
-	<% if !@delimiters.empty? %>
-	<p class="limiters">You searched:</p>	
-		<ul>
-		<% @delimiters.split(',').each do |line|  %>
-			<li><%= line %></li>
-		<% end %>
-		</ul>
-	<% end %>
-
-	<h3>Result Count: <%= @result.count %></h3>
+	<%= erb '_delimiters'.to_sym %>
 
 	<% if @result.any? %>
 		<% @result.each_with_index do |result, index| %> 
@@ -78,8 +69,6 @@
 		</div>
 		<% end %>
 	<% else %>
-		<div class="row" id="result-none">
-			<p>Oh, no! There were no results. Search <a href="/finance/candidates">again?</a></p>
-		</div>
+		<%= erb '_no_match'.to_sym %>
 	<% end %> 
 </div>
