@@ -33,88 +33,51 @@ post '/legislators' do
 
 	first_name = params.fetch "first_name"
 	first_name.capitalize!
-	if first_name.empty?
-		@first_name = ""
-	else 
-		@delimiters << "First Name: #{first_name},"
-		@first_name = "&first_name=#{first_name}"
-	end
+	@delimiters << "First Name: #{first_name},"	if !first_name.empty? 
 
 	last_name = params.fetch "last_name"
 	last_name.capitalize!
-	if last_name.empty?
-		@last_name = ""
-	else 
-		@delimiters << "Last Name: #{last_name},"
-		@last_name = "&last_name=#{last_name}"
-	end
+	@delimiters << "Last Name: #{last_name}," if !last_name.empty?
 
 	party = params.fetch "party"
-	if party.empty?
-		@party = ""
-	else 
-		@delimiters << "Party: #{party},"
-		@party = "&party=#{party}"
-	end
+	@delimiters << "Party: #{party}," if !party.empty?	
 
 	state = params.fetch "state"
-	if state.empty?
-		@state = ""
-	else 
-		@delimiters << "State: #{state},"
-		@state = "&state=#{state}"
-	end
+	@delimiters << "State: #{state}," if !state.empty?
 
 	district = params.fetch "district"
-	if district.empty?
-		@district = ""
-	else 
-		@delimiters << "District: #{district},"
-		@district = "&district=#{district}"
-	end
+	@delimiters << "District: #{district},"	if !district.empty?
 
 	chamber = params.fetch "chamber"
-	if chamber.empty?
-		@chamber = ""
-	else 
-		@delimiters << "Chamber: #{chamber},"
-		@chamber = "&chamber=#{chamber}"
-	end
+	@delimiters << "Chamber: #{chamber}," if !chamber.empty?	
 
 	in_office = params.fetch "in_office"
-	if in_office.empty?
-		@in_office = ""
-	else 
-		@delimiters << "In Office: #{chamber},"
-		@in_office = "&in_office=#{in_office}"
-	end
+	@delimiters << "In Office: #{chamber}," if !in_office.empty?
 
-	gender = params.fetch "gender"
-	if gender.empty?
-		@gender = ""
-	else 
-		@delimiters << "Gender: #{gender},"
-		@gender = "&gender=#{gender}"
-	end
+	gender = params.fetch "gender" 
+	@delimiters << "Gender: #{gender}," if !gender.empty?
 
 	term_start = params.fetch "term_start"
-	if term_start.empty?
-		@term_start = ""
-	else 
-		@delimiters << "Term Start: #{term_start},"
-		@term_start = "&term_start=#{term_start}"
-	end
+	@delimiters << "Term Start: #{term_start},"	if !term_start.empty?
 
 	term_end = params.fetch "term_end"
-	if term_end.empty?
-		@term_end = ""
-	else 
-		@delimiters << "Term End: #{term_end},"
-		@term_end = "&term_end=#{term_end}"
-	end
+	@delimiters << "Term End: #{term_end},"	if !term_end.empty?
 
-	response = RestClient::Request.execute(method: :get, url: "congress.api.sunlightfoundation.com/legislators?#{@first_name}#{@last_name}#{@party}#{@state}#{@district}#{@chamber}#{@in_office}#{@gender}#{@term_start}#{@term_end}&apikey=" + ENV['SUNLIGHT_API_KEY'], timeout: 10)
-
+	response = RestClient::Request.execute(method: :get, 
+		                                      url: "congress.api.sunlightfoundation.com/legislators",
+		                                  headers: {params: {
+		                                  					  :first_name => first_name,
+		                                  					  :last_name => last_name,
+		                                  					  :party => party,
+		                                  					  :state => state,
+		                                  					  :district => district,
+		                                  					  :chamber => chamber,
+		                                  					  :in_office => in_office,
+		                                  					  :gender => gender,
+		                                  					  :term_start => term_start,
+		                                  					  :term_end => term_end,
+										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 
+										  timeout: 8000)
 	base    = JSON.parse(response)
 	@result    = base["results"]
 
@@ -195,7 +158,6 @@ post '/finance/pacs' do
 		                                  					  :page_size => 100,
 										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 
 										  timeout: 8000)  				      				                
-
 	base       = JSON.parse(response)
 	@result    = base["results"]
 
@@ -229,7 +191,6 @@ post '/finance/outside_spenders' do
 		                                  					  :page_size => 100,
 										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 		                                  					  
 		                                  timeout: 8000)
-
 	base       = JSON.parse(response)
 	@result    = base["results"]
 
@@ -267,7 +228,6 @@ post '/finance/districts' do
 										  				      :page_size => 100,
 										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 
 										 timeout: 8000)	                     
-
 	base       = JSON.parse(response)
 	@result    = base["results"]
 
@@ -321,7 +281,6 @@ post '/finance/candidates' do
 									     				  	:page_size => 50,
 									     				  	:apikey => ENV['SUNLIGHT_API_KEY']}}, 
 									     timeout: 8000) 
-
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 

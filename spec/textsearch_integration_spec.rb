@@ -12,6 +12,12 @@ describe 'the congressional search engine', {:type => :feature} do
 			expect(page).to have_content 'Full Congressional Text Search'	
 			expect(page).to have_content 'C. Records'						
 			expect(page).to have_content 'Web Design by Kellogg Web Studio' 
+			expect(page).to have_css '.text-info'
+			page.all('link[rel~="icon"]').each do |fav|				
+				visit fav[:href]
+				page.status_code.should be 200
+			end 
+			visit '/textsearch'
 			fill_in 'phrase', :with => 'Energy'		
 			select 'All', :from => 'State'		
 			select 'All', :from => 'Party'					

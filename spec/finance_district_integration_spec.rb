@@ -10,7 +10,13 @@ describe 'the financial district search engine', {:type => :feature} do
 		it 'retrieves the correct result page' do 
 			visit '/finance/districts'
 			expect(page).to have_content "Districts' Spending Portal"							
-			expect(page).to have_content 'Web Design by Kellogg Web Studio' 	
+			expect(page).to have_content 'Web Design by Kellogg Web Studio' 
+			expect(page).to have_css '.text-info'
+			page.all('link[rel~="icon"]').each do |fav|				
+				visit fav[:href]
+				page.status_code.should be 200
+			end 
+			visit '/finance/districts'	
 			select 'H', :from => 'office'		
 			select 'CA', :from => 'state'					
 			select 'Republican', :from => 'incumbent_party'

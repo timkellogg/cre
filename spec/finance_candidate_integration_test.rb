@@ -11,6 +11,12 @@ describe 'the financial candidate search engine', {:type => :feature} do
 			visit '/finance/candidates'
 			expect(page).to have_content "Candidate's Spending Portal"							
 			expect(page).to have_content 'Web Design by Kellogg Web Studio' 
+			expect(page).to have_css '.text-info'
+			page.all('link[rel~="icon"]').each do |fav|				
+				visit fav[:href]
+				page.status_code.should be 200
+			end 
+			visit '/finance/candidates'
 			fill_in 'fec_id', :with => 'H6CA39020'		
 			select 'House', :from => 'Office'		
 			select 'CA', :from => 'State'					

@@ -11,6 +11,12 @@ describe 'the financial pac search engine', {:type => :feature} do
 			visit '/finance/pacs'
 			expect(page).to have_content "Political Action Committee (PAC) Spending Portal"							
 			expect(page).to have_content 'Web Design by Kellogg Web Studio' 	
+			expect(page).to have_css '.text-info'
+			page.all('link[rel~="icon"]').each do |fav|				
+				visit fav[:href]
+				page.status_code.should be 200
+			end 
+			visit '/finance/pacs'
 			select 'Super PACs', :from => 'ctype'		
 			fill_in 'fec_id', :with => 'C00484642'
 			fill_in 'min_coh', :with => '70,000'
