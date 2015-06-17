@@ -19,6 +19,8 @@ describe 'the congressional search engine', {:type => :feature} do
 			fill_in 'title', :with => 'CULTIVATING AMERICAN ENERGY RESOURCES'	
 			select 'All', :from => 'Chamber'	
 			fill_in 'bioguide_id', :with => 'F000450'
+			fill_in 'start_date', :with => '20011111'
+			fill_in 'end_date', :with => '20150228'
 			click_button 'Search'											
 			expect(page).to have_content 'Search again?'					
 			expect(page).to have_content 'Your results were limited to:'	

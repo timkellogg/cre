@@ -93,10 +93,10 @@
     .form-group
       .col-md-6
         %label.control-label{:for => "start_date"} From:
-        %input#start_date.form-control{:name => "start_date", :type => "text"}/
+        %input#start_date.form-control{:name => "start_date", :type => "text", :required => ""}/
       .col-md-6
         %label.control-label{:for => "end_date"} To:
-        %input#end_date.form-control{:name => "end_date", :type => "text"}/
+        %input#end_date.form-control{:name => "end_date", :type => "text", :required => ""}/
     .row.btn-container
       %button.btn.btn-default.btn-lg
         Search

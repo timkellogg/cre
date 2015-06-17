@@ -391,83 +391,54 @@ end
 
 post '/textsearch' do 
 
-	@phrase = params.fetch "phrase"
-	@raw    = @phrase.gsub('_', ' ')
+	phrase = params.fetch "phrase"
 	@delimiters = ""
 
 	title = params.fetch "title"
-	if title.empty?
-		@title = "" 
-	else 
-		@delimiters << "Title: #{title},"
-		@title = "&title=#{title}"
-	end
+	@delimiters << "Title: #{title}," if !title.empty?
 
 	state = params.fetch "state"
-	if state.empty? 
-		@state = ""
-	else 
-		@delimiters << "State: #{state},"
-		@state = "&state=#{state}"
-	end
+	@delimiters << "State: #{state}," if !state.empty?
 
 	bioguide_id = params.fetch "bioguide_id"
-	if bioguide_id.empty?
-		@bioguide_id = ""
-	else 
-		@delimiters << "Bioguide id: #{bioguide_id},"
-		@bioguide_id = "&bioguide_id=#{bioguide_id}"
-	end 
+	@delimiters << "Bioguide id: #{bioguide_id}," if !bioguide_id.empty?
 
 	cr_pages = params.fetch "cr_pages"
-	if cr_pages.empty?
-		@cr_pages = ""
-	else
-		@delimiters << "C. Record Pages: #{cr_pages},"
-		@cr_pages = "&cr_pages=#{cr_pages}"
-	end 
+	@delimiters << "C. Record Pages: #{cr_pages},"	if !cr_pages.empty?
 
     party = params.fetch "party"
-    if party.empty?
-    	@party = ""
-    else 
-    	@delimiters << "Party: #{party},"
-    	@party = "&party=#{party}"
-    end 
+	@delimiters << "Party: #{party}," if !party.empty?   
 
     chamber = params.fetch "chamber"
-    if chamber.empty?
-    	@chamber = ""
-    else 
-    	@delimiters << "Chamber: #{chamber}," 
-    	@chamber ="&chamber=#{chamber}"
-    end
+    @delimiters << "Chamber: #{chamber}," if !chamber.empty?
 
 	start_date = params.fetch "start_date"
-	if start_date.empty?
-		@start_date = ""
-	else 
-		@delimiters << "From #{start_date},"
-		@start_date = "&start_date=#{start_date}"
-	end
+	@delimiters << "From #{start_date},"
 
 	end_date = params.fetch "end_date" 
-	if end_date.empty?
-		@end_date = ""
-	else 
-		@delimiters << "To #{end_date}"
-		@end_date = "&end_date=#{end_date}"
-	end
-	
-	# Replace spaces and commas with underscores to make valid html request url 
-	@phrase.sub!(' ', '_')
-	@phrase.sub!(',', '_')
+	@delimiters << "To #{end_date}"
 
-	# API call to capitol words 
-	api_result = RestClient.get "capitolwords.org/api/1/text.json?phrase=#{@phrase}&page=0#{@state}#{@chamber}#{@party}
-									#{@start_date}#{@end_date}#{@title}#{@bioguide_id}#{@cr_pages}&apikey=" + ENV['SUNLIGHT_API_KEY'] 						
+	# Replace spaces and commas with underscores to make valid html request url 
+	phrase.sub!(' ', '_')
+	phrase.sub!(',', '_')
+
+	api_result = RestClient::Request.execute(method: :get, 
+                                            url: "capitolwords.org/api/1/text.json", 
+                                        headers: {params: { 
+                                        				   :phrase => phrase, 
+                                        				   :state => state,
+                                        				   :bioguide_id => bioguide_id,
+                                        				   :cr_pages => cr_pages,
+                                        				   :party => party,
+                                        				   :chamber => chamber,
+                                        				   :start_date => start_date,
+                                        				   :end_date => end_date,
+                                                           :page => 0,
+                                                           :apikey => ENV['SUNLIGHT_API_KEY']}}, 
+                                        timeout: 8000)    						
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 
 	haml :"textsearch/results" 
 end
+

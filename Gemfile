@@ -11,6 +11,7 @@ gem 'dotenv'
 gem 'rest-client'
 gem 'sinatra-contrib'
 gem 'haml' 
+gem 'sinatra-cache'
 
 # Testing 
 gem 'rspec'
