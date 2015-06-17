@@ -226,31 +226,25 @@ post '/finance/outside_spenders' do
 	@delimiters = ""
 
 	ctype = params.fetch "ctype"
-	if ctype.empty?
-		@ctype = ""
-	else 
-		@delimiters << "Committee Type: #{ctype},"
-		@ctype = "&ctype=#{ctype}"
-	end 
+	@delimiters << "Committee Type: #{ctype}," if !ctype.empty?
 
 	fec_id = params.fetch "fec_id"
-	if fec_id.empty?
-		@fec_id = ""
-	else 
-		@delimiters << "FEC id: #{fec_id},"
-		@fec_id = "&fec_id=#{fec_id}"
-	end
+	@delimiters << "FEC id: #{fec_id},"	if !fec_id.empty?
 
 	min_ies = params.fetch "min_ies"
-	if min_ies.empty?
-		@min_ies = ""
-	else 
-		@delimiters << "Min. Amount Given: #{min_ies},"
-		@min_ies = "&min_ies=#{min_ies}"
-	end 
+	@delimiters << "Min. Amount Given: #{min_ies},"	if !min_ies.empty?
 
-	response = RestClient::Request.execute(method: :get, url: "realtime.influenceexplorer.com/api//outside-spenders/?format=json&page=
-	                            1&page_size=100&#{@ctype}#{@fec_id}#{@min_ies}&apikey=" + ENV['SUNLIGHT_API_KEY'], timeout: 10)
+	response = RestClient::Request.execute(method: :get, 
+		                                      url: "realtime.influenceexplorer.com/api//outside-spenders/",
+		                                  headers: {params: {
+		                                  					  :ctype => ctype,
+		                                  					  :fec_id => fec_id,
+		                                  					  :min_ies => min_ies,
+		                                  					  :page => 1,
+		                                  					  :page_size => 100,
+										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 		                                  					  
+		                                  timeout: 8000)
+
 	base       = JSON.parse(response)
 	@result    = base["results"]
 
