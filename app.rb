@@ -262,47 +262,33 @@ post '/finance/districts' do
 	@delimiters = ""
 
 	state = params.fetch "state"
-	if state.empty?
-		@state = ""
-	else
-		@delimiters << "State: #{state}," 
-		@state = "&state=#{state}"
-	end
+	@delimiters << "State: #{state}," if !state.empty?
 
 	office = params.fetch "office"
-	if office.empty?
-		@office = ""
-	else 
-		@delimiters << "Office: #{office},"
-		@office = "&office=#{office}"
-	end
+	@delimiters << "Office: #{office},"	if !office.empty?
 
 	office_district = params.fetch "office_district"
-	if office_district.empty?
-		@office_district = ""
-	else 
-		@delimiters << "Office District: #{office_district},"
-		@office_district = "&office_district=#{office_district}"
-	end
+	@delimiters << "Office District: #{office_district}," if !office_district.empty?
 
 	term_class = params.fetch "term_class"
-	if term_class.empty?
-		@term_class = ""
-	else 
-		@delimiters << "Re-Election Year: #{term_class},"
-		@term_class = "&term_class=#{term_class}"
-	end
+	@delimiters << "Re-Election Year: #{term_class}," if !term_class.empty?
 
 	incumbent_party = params.fetch "incumbent_party"
-	if incumbent_party.empty?
-		@incumbent_party = ""
-	else 
-		@delimiters << "Incumbent Party: #{incumbent_party},"
-		@incumbent_party = "&incumbent_party=#{incumbent_party}"
-	end
- 
-	response = RestClient::Request.execute(method: :get, url: "realtime.influenceexplorer.com/api//districts/?format=json&page=1&page_size=100
-	                        #{@state}#{@office}#{@office_district}#{@term_class}#{@incumbent_party}&apikey=" + ENV['SUNLIGHT_API_KEY'], timeout: 10)
+	@delimiters << "Incumbent Party: #{incumbent_party}," if !incumbent_party.empty?
+
+	response = RestClient::Request.execute(method: :get, 
+										      url: "realtime.influenceexplorer.com/api//districts/",
+										  headers: {params: {
+										  				      :state => state, 
+										  				      :office => office,
+										  				      :office_district => office_district,
+										  				      :term_class => term_class,
+										  				      :incumbent_party => incumbent_party,
+										  				      :page => 1,
+										  				      :page_size => 100,
+										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 
+										 timeout: 8000)	                     
+
 	base       = JSON.parse(response)
 	@result    = base["results"]
 
@@ -329,7 +315,7 @@ post '/finance/candidates' do
 	@delimiters << "FEC id: #{fec_id}," if !fec_id.empty?
 
 	office = params.fetch "office"
-	@delimiters << "Office: #{office},"	if !office.empty?
+	@delimiters << "Office: #{office}," if !office.empty?
 
 	state = params.fetch "state"
 	@delimiters << "State: #{state}," if !state.empty?	
