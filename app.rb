@@ -323,62 +323,40 @@ end
 
 post '/finance/candidates' do 
 
-	# Retrieving form data and parsing into output/api formats
-	@state = params.fetch "state"
 	@delimiters = ""
 
 	fec_id = params.fetch "fec_id"
-	if fec_id.empty?
-		@fec_id = ""
-	else 
-		@delimiters << "FEC id: #{fec_id},"
-		@fec_id = "&fec_id=#{fec_id}"
-	end
+	@delimiters << "FEC id: #{fec_id}," if !fec_id.empty?
 
 	office = params.fetch "office"
-	if office.empty?
-		@office = ""
-	else 
-		@delimiters << "Office: #{office},"
-		@office = "&office=#{office}"
-	end
+	@delimiters << "Office: #{office},"	if !office.empty?
 
 	state = params.fetch "state"
-	if state.empty?
-		@state = ""
-	else 
-		@delimiters << "State: #{state},"
-		@state = "&state=#{state}"
-	end
+	@delimiters << "State: #{state}," if !state.empty?	
 
 	term_class = params.fetch "term_class"
-	if term_class.empty?
-		@term_class = ""
-	else 
-		@delimiters << "Re-Election Year: #{term_class},"
-		@term_class = "&term_class=#{term_class}"
-	end
+	@delimiters << "Re-Election Year: #{term_class}," if !term_class.empty?	
 
 	party = params.fetch "party"
-	if party.empty?
-		@party = ""
-	else 
-		@delimiters << "Party: #{party},"
-		@party = "&party=#{party}"
-	end
+	@delimiters << "Party: #{party}," if !party.empty?	
 
 	is_incumbent = params.fetch "is_incumbent"
-	if is_incumbent.empty?
-		@is_incumbent = ""
-	else 
-		@delimiters << "Incumbent: #{is_incumbent},"
-		@is_incumbent = "&is_incumbent=#{is_incumbent}"
-	end
+	@delimiters << "Incumbent: #{is_incumbent}," if !is_incumbent.empty?	
+ 
+	api_result = RestClient::Request.execute(method: :get,
+											 url: "realtime.influenceexplorer.com/api//candidates/",
+									     headers: {params: {
+									     				  	:state => state,
+									     				  	:fec_id => fec_id,
+									     				  	:office => office,
+									     				  	:term_class => term_class,
+									     				  	:party => party,
+									     				  	:is_incumbent => is_incumbent,
+									     				  	:page => 1,
+									     				  	:page_size => 50,
+									     				  	:apikey => ENV['SUNLIGHT_API_KEY']}}, 
+									     timeout: 8000) 
 
-	# API call to campaign finance api  
-	api_result = RestClient.get "realtime.influenceexplorer.com/api//candidates/?format=json&page=1
-								#{@fec_id}#{@office}#{@state}#{@term_class}#{@party}#{@is_incumbent}
-								&page_size=50&apikey=" + ENV['SUNLIGHT_API_KEY']
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 
