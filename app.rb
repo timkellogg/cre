@@ -169,47 +169,32 @@ post '/finance/pacs' do
 	@delimiters = ""
 
 	ctype = params.fetch "ctype"
-	if ctype.empty?
-		@ctype = ""
-	else 
-		@delimiters << "Committee Type: #{ctype},"
-		@ctype = "&ctype=#{ctype}"
-	end
+	@delimiters << "Committee Type: #{ctype}," if !ctype.empty?
 
 	fec_id = params.fetch "fec_id"
-	if fec_id.empty?
-		@fec_id = ""
-	else 
-		@delimiters << "FEC id: #{fec_id},"
-		@fec_id = "&fec_id=#{fec_id}"
-	end
+	@delimiters << "FEC id: #{fec_id},"	if !fec_id.empty?
 
 	min_raised = params.fetch "min_raised"
-	if min_raised.empty?
-		@min_raised = ""
-	else 
-		@delimiters << "Min. Cash Raised (2014): #{min_raised},"
-		@min_raised = "&min_raised=#{min_raised}"
-	end
+	@delimiters << "Min. Cash Raised (2014): #{min_raised}," if !min_raised.empty?	
 
 	min_spent = params.fetch "min_spent"
-	if min_spent.empty?
-		@min_spent = ""
-	else 
-		@delimiters << "Min. Cash Spent (2014): #{min_spent},"
-		@min_spent = "&min_spent=#{min_spent}"
-	end
+	@delimiters << "Min. Cash Spent (2014): #{min_spent}," if !min_spent.empty?	
 
 	min_coh = params.fetch "min_coh"
-	if min_coh.empty?
-		@min_coh = ""
-	else 
-		@delimiters << "Min. Cash on Hand: #{min_coh},"
-		@min_coh = "&min_coh=#{min_coh}"
-	end
+	@delimiters << "Min. Cash on Hand: #{min_coh}," if !min_coh.empty?
 
-	response = RestClient::Request.execute(method: :get, url: "realtime.influenceexplorer.com/api//committee/?format=json&page=1&page_size=100
-	                         #{@fec_id}#{@ctype}#{@min_coh}#{@min_spent}#{@min_raised}&apikey=" + ENV['SUNLIGHT_API_KEY'], timeout: 10)
+	response = RestClient::Request.execute(method: :get, 
+		                                      url: "realtime.influenceexplorer.com/api//committee/",
+		                                  headers: {params: {
+		                                  					  :ctype => ctype,
+		                                  					  :fec_id => fec_id,
+		                                  					  :min_raised => min_raised,
+		                                  					  :min_spent => min_spent,
+		                                  					  :min_coh => min_coh,
+		                                  					  :page => 1,
+		                                  					  :page_size => 100,
+										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 
+										  timeout: 8000)  				      				                
 
 	base       = JSON.parse(response)
 	@result    = base["results"]
