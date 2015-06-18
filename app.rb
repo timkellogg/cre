@@ -76,11 +76,13 @@ post '/legislators' do
 		                                  					  :gender => gender,
 		                                  					  :term_start => term_start,
 		                                  					  :term_end => term_end,
+		                                  					  :page => 1,
 										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 
 										  timeout: 8000)
+
 	base    = JSON.parse(response)
 	@result    = base["results"]
-s
+
 	haml :"legislators/results"
 end 
 
@@ -124,7 +126,7 @@ post '/bills' do
 
 	response = RestClient::Request.execute(method: :get,
 			                                  url: 'openstates.org/api/v1//bills/',
-			                              headers: params: {
+			                              headers: {params: {
 			                              					 :query => query,
 			                              					 :state => state,
 			                              					 :chamber => chamber,
@@ -135,7 +137,7 @@ post '/bills' do
 			                              					 :bill_id => bill_id,
 			                              					 :updated_since => updated_since,
 			                              					 :last_action_since => last_action_since,
-			                              					 :apikey = ENV['SUNLIGHT_API_KEY'] }}
+			                              					 :apikey => ENV['SUNLIGHT_API_KEY'] }},
 			                              	timeout: 8000)
 	base = JSON.parse(response)
 	@result = base["results"]
