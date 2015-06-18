@@ -1,14 +1,6 @@
 require 'spec_helper'
-require 'capybara/rspec'
-require './app'
 
-Capybara.app = Sinatra::Application 
-Capybara.default_wait_time = 5
-set :show_exceptions, false 
-
-# Legislative Search
 describe 'the poll search engine', {:type => :feature} do 
-
 	context 'with valid search terms' do 
 		it 'lets the user search for polls' do 
 			visit '/polls'

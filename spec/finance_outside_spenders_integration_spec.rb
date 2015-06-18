@@ -1,9 +1,4 @@
 require 'spec_helper'
-require 'capybara/rspec'
-require './app'
-
-Capybara.app = Sinatra::Application 
-set :show_exceptions, false 
 
 describe 'the financial outside_spenders search engine', {:type => :feature} do 
 	context 'with valid search terms' do 

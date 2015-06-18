@@ -199,7 +199,8 @@ ul {
 .img-banner-polls,
 .img-banner-textsearch,
 .img-banner-legislators,
-.img-banner-representatives {	
+.img-banner-representatives,
+.img-banner-bills {	
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -228,13 +229,17 @@ ul {
 	background: url('images/pollportalbanner.jpg') no-repeat center center fixed;
 }
 
+.img-banner-legislators {
+	background: url('images/legislatorbanner.jpg') no-repeat center center fixed;
+}
+
+.img-banner-bills {
+	background: url('images/billbanner.jpg') no-repeat center center fixed; 
+}
+
 .img-banner-
 .svg path {
 	fill: #000;
-}
-
-.img-banner-legislators {
-	background: url('images/legislatorbanner.jpg') no-repeat center center fixed;
 }
 
 .svg {

@@ -1,1 +1,174 @@
+.row.img-banner-bills.img-fade
+.container
+  .row.secondary-heading
+    %h3 Bill Search Engine
+    %p.text-info This search engine allows you to track federal legislation as it moves towards becomming a law. You can search for particular topics, states, sponsors, and within a timeframe.
+  %form.form-horizontal{:action => "/bills", :method => "post"}
+    .form-group
+      .col-md-12
+        %label.control-label{:for => "query"} Keywords 
+        %input#query.form-control{:name => "query", :placeholder => "Health Care", :type => "text"}/
+    .row.secondary-heading
+      %h3 Advanced Options 
+    .form-group
+      .col-md-4
+        %label.control-label{:for => "state"} State:
+        %select#state.form-control{:name => "state"}
+          %option{:value => ""} All
+          %option{:value => "AL"} AL
+          %option{:value => "AK"} AK
+          %option{:value => "AZ"} AZ
+          %option{:value => "AR"} AR
+          %option{:value => "CA"} CA
+          %option{:value => "CO"} CO
+          %option{:value => "CT"} CT
+          %option{:value => "DE"} DE
+          %option{:value => "DC"} DC
+          %option{:value => "FL"} FL
+          %option{:value => "GA"} GA
+          %option{:value => "HI"} HI
+          %option{:value => "ID"} ID
+          %option{:value => "IL"} IL
+          %option{:value => "IN"} IN
+          %option{:value => "IA"} IA
+          %option{:value => "KS"} KS
+          %option{:value => "KY"} KY
+          %option{:value => "LA"} LA
+          %option{:value => "ME"} ME
+          %option{:value => "MD"} MD
+          %option{:value => "MA"} MA
+          %option{:value => "MI"} MI
+          %option{:value => "MN"} MN
+          %option{:value => "MS"} MS
+          %option{:value => "MO"} MO
+          %option{:value => "MT"} MT
+          %option{:value => "NE"} NE
+          %option{:value => "NV"} NV
+          %option{:value => "NH"} NH
+          %option{:value => "NJ"} NJ
+          %option{:value => "NM"} NM
+          %option{:value => "NY"} NY
+          %option{:value => "NC"} NC
+          %option{:value => "ND"} ND
+          %option{:value => "OH"} OH
+          %option{:value => "OK"} OK
+          %option{:value => "OR"} OR
+          %option{:value => "PA"} PA
+          %option{:value => "RI"} RI
+          %option{:value => "SC"} SC
+          %option{:value => "SD"} SD
+          %option{:value => "TN"} TN
+          %option{:value => "TX"} TX
+          %option{:value => "UT"} UT
+          %option{:value => "VT"} VT
+          %option{:value => "VA"} VA
+          %option{:value => "WA"} WA
+          %option{:value => "WV"} WV
+          %option{:value => "WI"} WI
+          %option{:value => "WY"} WY
+      .col-md-4
+        %label.control-label{:for => "chamber"} Chamber:
+        %select#chamber.form-control{:name => "chamber"}
+          %option{:value => ""} All
+          %option{:value => "upper"} Upper
+          %option{:value => "lower"} Lower
+      .col-md-4
+        %label.control-label{:for => "subject"} Subject:
+        %select#subject.form-control{:name => "subject"}
+          %option{:value => ""} All
+          %option{:value => "Agriculture and Food"} Agriculture and Food
+          %option{:value => "Animal Rights and Wildlife Issues"} Animal Rights and Wildlife Issues
+          %option{:value => "Arts and Humanities"} Arts and Humanities 
+          %option{:value => "Budget, Spending and Taxes"} Budget, Spending and Taxes
+          %option{:value => "Business and Consumers"} Business and Consumers 
+          %option{:value => "Campaign Finance and Election Issues"} Campaign Finance and Election Issues
+          %option{:value => "Civil Liberties and Civil Rights"} Civil Liberties and Civil Rights
+          %option{:value => "Commerce"} Commerce
+          %option{:value => "Crime"} Crime
+          %option{:value => "Drugs"} Drugs
+          %option{:value => "Education"} Education
+          %option{:value => "Energy"} Energy
+          %option{:value => "Environmental"} Environmental
+          %option{:value => "Executive Branch"} Executive Branch
+          %option{:value => "Family and Children Issues"} Family and Children Issues
+          %option{:value => "Federal, State and Local Relations"} Federal, State and Local Relations
+          %option{:value => "Gambling and Gaming"} Gambling and Gaming
+          %option{:value => "Government Reform"} Government Reform
+          %option{:value => "Housing and Property"} Housing and Property
+          %option{:value => "Immigration"} Immigration 
+          %option{:value => "Indigenous Peoples"} Indigenous Peoples
+          %option{:value => "Insurance"} Insurance 
+          %option{:value => "Judiciary"} Judiciary
+          %option{:value => "Labor and Employment"} Labor and Employment
+          %option{:value => "Legal Issues"} Legal Issues
+          %option{:value => "Legislative Affairs"} Legislative Affairs
+          %option{:value => "Military"} Military
+          %option{:value => "Municipal and County Issues"} Municipal and County Issues
+          %option{:value => "Nominations"} Nominations
+          %option{:value => "Other"} Other
+          %option{:value => "Public Services"} Public Services
+          %option{:value => "Recreation"} Recreation
+          %option{:value => "Reproductive Issues"} Reproductive Issues
+          %option{:value => "Resolutions"} Resolutions
+          %option{:value => "Science and Medical Research"} Science and Medical Research 
+          %option{:value => "Senior Issues"} Senior Issues
+          %option{:value => "Sexual Orientation and Gender Issues"} Sexual Orientation and Gender Issues
+          %option{:value => "Social Issues"} Social Issues
+          %option{:value => "State Agencies"} State Agencies 
+          %option{:value => "Technology and Communication"} Technology and Communication 
+          %option{:value => "Trade"} Trade 
+          %option{:value => "Transportation"} Transportation 
+          %option{:value => "Welfare and Poverty"} Welfare and Poverty
+    .form-group
+      .col-md-4
+        %label.control-label{:for => "status"} Status:
+        %select#status.form-control{:name => "status"}
+          %option{:value => ""} All
+          %option{:value => "passed_upper"} Passed Upper
+          %option{:value => "passed_lower"} Passed Lower
+          %option{:value => "signed"} Signed
+      .col-md-4
+        %label.control-label{:for => "sponsor_id"} Sponsor Id:
+        %input#sponsor_id.form-control{:name => "sponsor_id", :type => "text"}/
+      .col-md-4
+        %label.control-label{:for => "type"} Type:
+        %input#type.form-control{:name => "type", :type => "text"}/
+    .form-group
+      .col-md-4
+        %label.control-label{:for => "bill_id"} Bill Id:
+        %input#bill_in.form-control{:name => "bill_in", :type => "text"}/
+      .col-md-4
+        %label.control-label{:for => "updated_since"} Updated Since:
+        %input#updated_since.form-control{:name => "updated_since", :type => "text"}/
+      .col-md-4
+        %label.control-label{:for => "last_action_since"} Last Action Since:
+        %input#last_action_since.form-control{:name => "last_action_since", :type => "text"}/
+      .row.btn-container
+        %button.btn.btn-default.btn-lg
+          Search
+          %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

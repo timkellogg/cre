@@ -12,12 +12,13 @@ gem 'rest-client'
 gem 'sinatra-contrib'
 gem 'haml' 
 gem 'sinatra-cache'
-
-# Testing 
-gem 'rspec'
-gem 'capybara'
-gem 'pry'
-
-# Development 
 gem 'sass'
 gem 'shotgun'
+
+group :test do 
+	gem 'rspec'
+	gem 'capybara'
+	gem 'pry'
+end 
+
+
