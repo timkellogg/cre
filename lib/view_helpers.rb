@@ -69,6 +69,11 @@ def convert_committee(committee)
 	committee_hash[committee]
 end
 
+# Convert Dates for HuffPo API
+def convert_date(date)
+	date.gsub('%2F', '-')
+end
+
 
 
 

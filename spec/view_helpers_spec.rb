@@ -79,6 +79,13 @@ describe '#convert_committee' do
 	end
 end
 
+describe '#convert_date' do 
+	it 'changes out %2F with -' do 
+		original_date = '06%2F14%2F2015'
+		expect(convert_date(original_date)).to eql '06-14-2015'
+	end
+end
+
 
 
 

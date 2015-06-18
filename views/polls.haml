@@ -7,7 +7,7 @@
     .form-group
       .col-md-4
         %label.control-label{:for => "topic"} Topic:
-        %select#topic.form-control{:name => "topic"}
+        %select#topic.form-control{:name => "topic", :required => ""}
           %optgroup{:label => "Gubernatorial"}
             %option{:value => "2014-governor"} 2014: General
             %option{:value => "2014-governor-dem-primary"} 2014: Dem Primary
@@ -40,18 +40,16 @@
             = succeed "\"2012-senate-dem-primary\">2012:" do
               %option
           %option{:value => "2012-senate-gop-primary"} 2012: GOP Primary
-  .form-group
-    .col-md-4
-      %label.control-label{:for => "after"} From:
-      %input#after.form-control{:name => "after", :type => "text"}
-    .form-group
+      .col-md-4
+        %label.control-label{:for => "after"} From:
+        %input#after.form-control{:name => "after", :type => "text"}
       .col-md-4
         %label.control-label{:for => "before"} To:
         %input#before.form-control{:name => "before", :type => "text"}
-    .row.btn-container
-      %button.btn.btn-default.btn-lg
-        Search
-        %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}
+      .row.btn-container
+        %button.btn.btn-default.btn-lg{:type => "submit"}
+          Search
+          %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}
 :javascript
   $(function() {
     $( "#after" ).datepicker({

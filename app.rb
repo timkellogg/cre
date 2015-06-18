@@ -94,30 +94,36 @@ end
 
 post '/polls' do 
 
+	# RestClient's header parameter syntax like the other routes automatically adds a formatting on the dates that HufPost's 
+	# API doesn't work with. As a result, I've went with the older, less concise syntax to avoid this problem 
+
 	@topic = params.fetch "topic"
 	@delimiters = ""
 
 	after = params.fetch "after"
-	if after.empty?
-		@after = ""
+	formatted_after = convert_date(after) 
+	if formatted_after.empty?
+		formatted_after = ""
 	else 
 		@delimiters << "After #{after},"
-		@after = "&after=#{after}"
+		formatted_after = "&after=#{formatted_after}"
 	end
 
 	before = params.fetch "before" 
+	formatted_before = convert_date(before)
 	if before.empty?
-		@before = ""
+		before = ""
 	else 
 		@delimiters << "To #{before}"
-		@before = "&before=#{before}"
+		formatted_before = "&before=#{formatted_before}"
 	end
 
-	response = RestClient::Request.execute(method: :get, url: "http://elections.huffingtonpost.com/pollster/api/polls.json?page=1&topic=#{@topic}#{@before}#{@after}", timeout: 10)
+	response = RestClient::Request.execute(method: :get, url: "http://elections.huffingtonpost.com/pollster/api/polls/?topic=#{@topic}#{formatted_before}#{formatted_after}", timeout: 8000)
 	@result    = JSON.parse(response)
-
+																		
 	haml :"/polls/results"
 end
+
 
 get '/finance/districts' do 
 	haml :"finance/districts"
