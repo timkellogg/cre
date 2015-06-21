@@ -76,7 +76,7 @@ post '/legislators' do
 		                                  					  :gender => gender,
 		                                  					  :term_start => term_start,
 		                                  					  :term_end => term_end,
-		                                  					  :page => 1,
+		                                  					  :page => 0,
 										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 
 										  timeout: 8000)
 
@@ -87,62 +87,29 @@ post '/legislators' do
 end 
 
 get '/bills' do 
-	haml :polls
+	haml :bills
 end
 
 post '/bills' do 
 
 	@delimiters = ""
 
-	query = params.fetch "query"
-	@delimiters << "Search Terms: #{query}," if !query.empty?
+	bill_number = params.fetch "bill_number"
+	@delimiters << "Bill Number: #{bill_number}," if !bill.empty?
 
-	state = params.fetch "state"
-	@delimiters << "State: #{state}," if !state.empty?
+	bill_type   = params.fetch "bill_type"
+	@delimiters << "Bill Type: #{bill_type}," if !bill_type.empty?
 
-	chamber = params.fetch "chamber"
-	@delimiters << "Chamber: #{chamber}," if !chamber.empty?
+	bill_title  = params.fetch "bill_title"
+	@delimiters << "Full Title: #{bill_title}" if !bill_title.empty?	
 
-	subject = params.fetch "subject"
-	@delimiters << "Subject: #{subject}," if !subject.empty?
+	@response_data = RestClient::Request.execute(method: :get,
+			        url: "https://www.govtrack.us/data/congress/#{bill_number}/bills/#{bill_type}/#{bill_title}/data.json", timeout: 1000)
+    
+    @response_text = RestClient::Request.execute(method: :get, 
+    				url: "https://www.govtrack.us/data/congress/#{bill_number}/bills/#{bill_type}/#{bill_title}/text-versions/is/data.json", timeout: 1000)
 
-	status = params.fetch "status"
-	@delimiters << "Status: #{status}," if !state.empty?
-
-	sponsor_id = params.fetch "sponsor_id"
-	@delimiters << "Sponsor Id: #{sponsor_id}," if !sponsor_id.empty?
-
-	type = params.fetch "type"
-	@delimiters << "Type: #{type}," if !type.empty? 
-
-	bill_id = params.fetch "bill_id"
-	@delimiters << "Bill Id: #{bill_id}," if !bill_id.empty?
-
-	updated_since = params.fetch "updated_since"
-	@delimiters << "Updated Since: #{updated_since}," if !updated_since.empty?
-
-	last_action_since = params.fetch "last_action_since"
-	@delimiters << "Last Action Since: #{last_action_since}," if !last_action_since.empty?
-
-	response = RestClient::Request.execute(method: :get,
-			                                  url: 'openstates.org/api/v1//bills/',
-			                              headers: {params: {
-			                              					 :query => query,
-			                              					 :state => state,
-			                              					 :chamber => chamber,
-			                              					 :subject => subject, 
-			                              					 :status => status,
-			                              					 :sponsor_id => sponsor_id,
-			                              					 :type => type,
-			                              					 :bill_id => bill_id,
-			                              					 :updated_since => updated_since,
-			                              					 :last_action_since => last_action_since,
-			                              					 :apikey => ENV['SUNLIGHT_API_KEY'] }},
-			                              	timeout: 8000)
-	base = JSON.parse(response)
-	@result = base["results"]
-
-	haml :"polls/results" 
+	haml :"bills/results" 
 end
 
 get '/polls' do 
@@ -265,6 +232,7 @@ post '/finance/districts' do
 	@delimiters = ""
 
 	state = params.fetch "state"
+	state.downcase!
 	@delimiters << "State: #{state}," if !state.empty?
 
 	office = params.fetch "office"
