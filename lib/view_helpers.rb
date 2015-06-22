@@ -74,6 +74,15 @@ def convert_date(date)
 	date.gsub('%2F', '-')
 end
 
+# Convert Bill Abbreviations into Full Messages
+def convert_bill(abb)
+	bill_hash = {"hres" => "House Simple Resolutions", "s" => "Senate Bills", "hr" => "House Bills", "hjres" => "Joint Resolutions in House",
+				 "sconres" => "Concurrent Resolutions Originating in Senate", "hconres" => "Concurrent Resolutions Originating in House",
+				 "sres" => "Senate Simple Resolutions", "sjres" => "Join Resolutions Originating in Senate"
+				}
+	bill_hash[abb]
+end 
+
 
 
 

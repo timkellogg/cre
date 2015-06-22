@@ -98,7 +98,9 @@ post '/bills' do
 	@delimiters << "Bill Number: #{bill_number}," if !bill_number.empty?
 
 	bill_type   = params.fetch "bill_type"
-	@delimiters << "Bill Type: #{bill_type}," if !bill_type.empty?
+	full_bill_type = convert_bill(bill_type)
+	
+	@delimiters << "Bill Type: #{full_bill_type}," if !bill_type.empty?
 
 	begin 
 		response = RestClient::Request.execute(method: :get,

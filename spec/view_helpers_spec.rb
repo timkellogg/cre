@@ -86,8 +86,12 @@ describe '#convert_date' do
 	end
 end
 
-
-
+describe '#convert_bill' do 
+	it 'changes the abbreviation into full name' do 
+		abb = "hres"
+		expect(convert_bill(abb)).to eql 'House Simple Resolutions'
+	end
+end
 
 
 
