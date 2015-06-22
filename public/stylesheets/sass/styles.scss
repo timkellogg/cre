@@ -361,10 +361,6 @@ select,
 	word-wrap: break-word;
 }
 
-table {
-	table-layout: fixed;
-}
-
 /* Footer 
 **************/
 
@@ -434,9 +430,6 @@ canvas {
 		text-indent: none;
 		list-style-type: none;
 		padding-bottom: 15px;
-	}
-	table {
-		table-layout: auto;
 	}
 }
 @media screen and (min-width:501px) and (max-width:999px) {

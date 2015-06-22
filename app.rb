@@ -100,7 +100,6 @@ post '/bills' do
 	bill_type   = params.fetch "bill_type"
 	@delimiters << "Bill Type: #{bill_type}," if !bill_type.empty?
 
-	# Rescues all errors so still renders view 
 	begin 
 		response = RestClient::Request.execute(method: :get,
 			url: "https://www.govtrack.us/data/congress/#{bill_number}/bills/#{bill_type}/#{bill_type}#{bill_number}/data.json", timeout: 1000) 
