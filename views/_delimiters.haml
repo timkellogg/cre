@@ -5,5 +5,5 @@
     - @delimiters.split(',').each do |line|
       %li= line
 %h3
-- if @result  
+- if @result.class == Array
   Result Count: #{@result.count}

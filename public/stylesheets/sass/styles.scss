@@ -346,9 +346,6 @@ select,
 	text-align: left;
 }
 
-td {
-	white-space: nowrap;
-}
 
 .result-heading {
 	font-size: 1.1em;
@@ -358,6 +355,14 @@ td {
 
 .result-text { 
 	font-style: italic;
+}
+
+.wrappable {
+	word-wrap: break-word;
+}
+
+table {
+	table-layout: fixed;
 }
 
 /* Footer 
@@ -400,10 +405,17 @@ canvas {
 ********************/
 
 /* Phones */
-@media(max-width:767px){
+
+@media screen and (max-width:767px){
 	h3,
 	ol.menu-list {
 		text-align: center;
+	}
+	#site-title {
+		font-size: 27px;
+		small {
+			font-size: 12px;
+		}
 	}
 	.navbar-item {
 		margin-top: 10px;
@@ -423,8 +435,24 @@ canvas {
 		list-style-type: none;
 		padding-bottom: 15px;
 	}
-
+	table {
+		table-layout: auto;
+	}
 }
-@media(min-width:768px){}
-@media(min-width:992px){}
-@media(min-width:1200px){}
+@media screen and (min-width:501px) and (max-width:999px) {
+	h3,
+	ol.menu-list {
+		text-align: center;
+	}	
+	.navbar-item {
+		margin-top: 10px;
+		a {
+			font-size: 24px;
+		}
+	}
+	ol.menu-list {
+		text-indent: none;
+		list-style-type: none;
+		padding-bottom: 15px;
+	}
+}

@@ -1,11 +1,55 @@
-%hr.page-divider
+%hr.top-divider/
 .container
   .row
     %a.btn.btn-default{:href => "/bills"}
       %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
       Search again?
   = haml '_delimiters'.to_sym
-
-
-
+  - if @result.any?
+    .col-md-12
+      %table.table.table-striped.table-hover.table-condensed
+        %tr
+          %th.table-heading{:colspan => "15"}
+            = @result["official_title"]
+        %tr
+          %th.table-sub-heading{:colspan => "15"} Basic  Information
+        %tr
+          %td.table-title{:colspan => "2"} Introduced:
+          %td.table-content{:colspan => "13"}
+            = @result["introduced_at"]
+        %tr
+          %td.table-title{:colspan => "2"} Current Status:
+          %td.table-content{:colspan => "13"} 
+            = @result["status"]
+        %tr
+          %td.table-title{:colspan => "2"} Last Action:
+          %td.table-content{:colspan => "13"}
+            = @result["status_at"]
+        %tr 
+          %td.table-title{:colspan => "2"} Subjects:
+          %td.table-content{:colspan => "13"} 
+            - @result["subjects"].each do |subject|
+              = subject 
+              | 
+        %tr 
+          %td.table-title{:colspan => "2"} Full Text:
+          %td.table-content{:colspan => "13"} 
+            = convert_nil(@result["url"])
+        %tr 
+          %td.table-title{:colspan => "2"} Summary:
+          %td.wrappable.table-content{:colspan => "13"} 
+            = @result["summary"]["text"]
+        %tr
+          %th.table-sub-heading{:colspan => "15"} Sponsor Information 
+        %tr 
+          %td.table-title{:colspan => "2"} Sponsor:
+          %td.table-content{:colspan => "13"} 
+            = @result["sponsor"]["name"]
+        %tr 
+          %td.table-title{:colspan => "2"} Representing:
+          %td.table-content{:colspan => "13"}
+            = convert_abbreviation(@result["sponsor"]["state"])
+            = @result["sponsor"]["district"]
+  - else
+    = haml '_no_match'.to_sym
 
