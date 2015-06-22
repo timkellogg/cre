@@ -95,21 +95,22 @@ post '/bills' do
 	@delimiters = ""
 
 	bill_number = params.fetch "bill_number"
-	@delimiters << "Bill Number: #{bill_number}," if !bill.empty?
+	@delimiters << "Bill Number: #{bill_number}," if !bill_number.empty?
 
 	bill_type   = params.fetch "bill_type"
 	@delimiters << "Bill Type: #{bill_type}," if !bill_type.empty?
 
-	bill_title  = params.fetch "bill_title"
-	@delimiters << "Full Title: #{bill_title}" if !bill_title.empty?	
+	begin 
+		@response_data = RestClient::Request.execute(method: :get,
+			url: "https://www.govtrack.us/data/congress/#{bill_number}/bills/#{bill_type}/#{bill_type}#{bill_number}/data.json", timeout: 1000) 
+		
+	    @response_text = RestClient::Request.execute(method: :get, 
+    		url: "https://www.govtrack.us/data/congress/#{bill_number}/bills/#{bill_type}/#{bill_type}#{bill_number}/text-versions/is/data.json", timeout: 1000)
+	rescue => e 
+		@delimiters = "Your search terms were invalid - please try again."
+	end 
 
-	@response_data = RestClient::Request.execute(method: :get,
-			        url: "https://www.govtrack.us/data/congress/#{bill_number}/bills/#{bill_type}/#{bill_title}/data.json", timeout: 1000)
-    
-    @response_text = RestClient::Request.execute(method: :get, 
-    				url: "https://www.govtrack.us/data/congress/#{bill_number}/bills/#{bill_type}/#{bill_title}/text-versions/is/data.json", timeout: 1000)
-
-	haml :"bills/results" 
+	haml :"bills/results" 	
 end
 
 get '/polls' do 

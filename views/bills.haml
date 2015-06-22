@@ -5,12 +5,12 @@
     %p.text-info This search engine allows you to search bills and resolutions introduced in the United States Congress since 1973.  Some limited legacy bills may be found as well depending on the bill. 
   %form.form-horizontal{:action => "/bills", :method => "post"}
     .form-group
-      .col-md-4
-        %label.control-label{:for => "congress"} Congressional Session:
-        %input#congress.form-control{:name => "congress", :max => 114, :min => 93, :placeholder => "97"}
-      .col-md-4
+      .col-md-6
+        %label.control-label{:for => "bill_number"} Congressional Session:
+        %input#bill_number.form-control{:name => "bill_number", :max => 114, :min => 93, :placeholder => "113", :required => ""}
+      .col-md-6
         %label.control-label{:for => "bill_type"} Bill Type:
-        %select#bill_type.form-control{:name => "bill_type"}
+        %select#bill_type.form-control{:name => "bill_type", :required => ""}
           %option{:value => "hres"} House Simple Resolutions
           %option{:value => "hr"} House Bills 
           %option{:value => "s"} Senate Bills
@@ -19,9 +19,6 @@
           %option{:value => "hconres"} Concurrent Resolutions Originating in House
           %option{:value => "sres"} Senate Simple Resolutions
           %option{:value => "hjres"} Joint Resolutions Originating in Senate
-      .col-md-4
-        %label.control-label{:for => "title"} Bill Title:
-        %input#title.form-control{:name => "title", :placeholder => "hres1"}
       .row.btn-container
         %button.btn.btn-default.btn-lg
           Search

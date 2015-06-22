@@ -4,8 +4,7 @@ It is currently being developed.
 
 Goals:
 - Add searching/sorting capabilities on result pages via jquery/ajax
-- Add asset pipeline to compile and minify css & js code 
+- Add pagination to results 
 
-Issues:
-
-- Refactor polls 
+Issues: 
+- Add error handling for 404/500 routes in api calls 

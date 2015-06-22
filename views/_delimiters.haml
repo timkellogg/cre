@@ -1,7 +1,9 @@
+.error-box
 - if !@delimiters.empty?
   %p.limiters Your results were limited to:
   %ul
     - @delimiters.split(',').each do |line|
       %li= line
 %h3
+- if @result  
   Result Count: #{@result.count}
