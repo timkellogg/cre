@@ -12,13 +12,12 @@ describe 'the bill search engine', {:type => :feature} do
 				page.status_code.should be 200
 			end 
 			visit '/bills'
-			fill_in 'fec_id', :with => 'H6CA39020'		
-
+			fill_in 'bill_number', :with => '113'
+			select 'Senate Bills', :from => 'bill_type'
 			click_button 'Search'											
 			expect(page).to have_content 'Search again?'					
 			expect(page).to have_content 'Your results were limited to:'	
-			expect(page).to have_css '.result-item'	
-			expect(page).to have_content 'Royce'	
+			expect(page).to have_content 'Private Student Loan Act of 2013'	
 			expect(page).to_not have_css '#result-none'					
 		end
 	end
@@ -28,11 +27,14 @@ describe 'the bill search engine', {:type => :feature} do
 			visit '/bills'
 			expect(page).to have_content 'Bill Search Engine'						
 			expect(page).to have_content 'Web Design by Kellogg Web Studio' 
-
-			click_button 'Search'
-			expect(page).to have_content 'Search again?'					
-			expect(page).to have_no_content '.result_item:'	
-			expect(page).to have_css '#result-none'				
+			fill_in 'bill_number', :with => '34j5b9asdfc%'
+			select 'House Simple Resolutions', :from => 'bill_type'
+			begin 
+				click_button 'Search'
+			rescue => e  	
+				expect(page).to have_content 'Search again?'					
+				expect(page).to have_css '#result-none'			
+			end 	
 		end
 	end
 end

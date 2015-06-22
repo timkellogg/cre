@@ -7,3 +7,6 @@ Features to Add:
 -  pagination to results 
 -  google trends api for comparing candidates (http://stackoverflow.com/questions/7805711/javascript-json-google-trends-api) 
 -  google analytics as partial 
+-  helper methods for bill abbr
+-  spec for helper methods 
+

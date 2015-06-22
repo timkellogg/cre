@@ -105,7 +105,7 @@ post '/bills' do
 			url: "https://www.govtrack.us/data/congress/#{bill_number}/bills/#{bill_type}/#{bill_type}#{bill_number}/data.json", timeout: 1000) 
 		@result = JSON.parse(response)	
 	rescue => e 
-		@delimiters = "Your search terms were invalid - please try again."
+		@delimiters = ""
 	end 
 
 	haml :"bills/results" 	

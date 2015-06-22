@@ -5,7 +5,7 @@
       %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
       Search again?
   = haml '_delimiters'.to_sym
-  - if @result.any?
+  - if @result
     .col-md-12
       %table.table.table-striped.table-hover.table-condensed
         %tr
