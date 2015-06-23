@@ -7,6 +7,8 @@ require 'dotenv'
 require 'haml'
 Dotenv.load
 require 'rest-client'
+require 'rack-google-analytics'
+use Rack::GoogleAnalytics, :tracker => 'UA-62305611-3'
 
 configure do
   $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib")

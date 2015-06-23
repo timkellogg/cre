@@ -16,6 +16,8 @@ gem 'sass'
 gem 'shotgun'
 gem 'puma'
 gem 'foreman'
+gem 'rack-google-analytics'
+
 
 group :test do 
 	gem 'rspec'
