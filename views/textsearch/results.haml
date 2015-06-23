@@ -13,17 +13,18 @@
   = haml '_delimiters'.to_sym
   - if @result.any?
     - @result.each_with_index do |result, index|
-      %ul.result-item.row
-        %li.result-heading.searchable
-          = index + 1
-          = result["title"]
-          , Congressional Section: #{result["congress"]}, #{result["date"]}
-        %li.result-link
-          %a{:href => result["origin_url"]}= result["origin_url"]
-        %li.result-source-data
-          = result["volume"]
-          Vol., ##{result["number"]}, #{result["chamber"]}
-        %li.result-text= result["speaking"][0]
-      %hr/
+      .searchable-results
+        %ul.result-item.row
+          %li.result-heading
+            = index + 1
+            = result["title"]
+            , Congressional Section: #{result["congress"]}, #{result["date"]}
+          %li.result-link
+            %a{:href => result["origin_url"]}= result["origin_url"]
+          %li.result-source-data
+            = result["volume"]
+            Vol., ##{result["number"]}, #{result["chamber"]}
+          %li.result-text= result["speaking"][0]
+        %hr/
   - else
     = haml '_no_match'.to_sym

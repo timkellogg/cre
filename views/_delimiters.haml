@@ -1,7 +1,7 @@
 .error-box
 - if !@delimiters.empty?
   %p Your results were limited to:
-  %ul
+  %ol
     - @delimiters.split(',').each do |line|
       %li= line
 - if @result.class == Array
