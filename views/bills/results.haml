@@ -1,13 +1,6 @@
 %hr.top-divider/
 .container
-  .row
-    .col-md-6
-      %a.btn.btn-default{:href => "/bills"}
-        %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
-        Search again?
-    .col-md-6.text-right
-      %input.input-search#search-term{:placeholder => "Search within..."}
-  = haml '_delimiters'.to_sym
+  = haml '_header'.to_sym
   - if @result
     .col-md-12
       %table.table.table-striped.table-hover.table-condensed
@@ -15,7 +8,7 @@
           %th.table-heading{:colspan => "15"}
             = @result["official_title"]
         %tr
-          %th.table-sub-heading{:colspan => "15"} Basic  Information
+          %th.table-sub-heading{:colspan => "15"} Basic Information
         %tr
           %td.table-title{:colspan => "2"} Introduced:
           %td.table-content{:colspan => "13"}

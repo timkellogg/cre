@@ -1,8 +1,0 @@
-.error-box
-- if !@delimiters.empty?
-  %p Your results were limited to:
-  %ol
-    - @delimiters.split(',').each do |line|
-      %li= line
-- if @result.class == Array
-  %h3 Result Count: #{@result.count}

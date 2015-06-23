@@ -29,6 +29,7 @@ end
 
 post '/legislators' do 
 
+	@link_back = "/legislators"
 	@delimiters = ""
 
 	first_name = params.fetch "first_name"
@@ -92,6 +93,7 @@ end
 
 post '/bills' do 
 
+	@link_back = "/bills"
 	@delimiters = ""
 
 	bill_number = params.fetch "bill_number"
@@ -122,6 +124,7 @@ post '/polls' do
 	# RestClient's header parameter syntax like the other routes automatically adds a formatting on the dates that HufPost's 
 	# API doesn't work with. As a result, I've went with the older, less concise syntax to avoid this problem 
 
+	@link_back = "/polls"
 	@topic = params.fetch "topic"
 	@delimiters = ""
 
@@ -165,6 +168,7 @@ end
 
 post '/finance/pacs' do 
 
+	@link_back = "/finance/pacs"
 	@delimiters = ""
 
 	ctype = params.fetch "ctype"
@@ -235,6 +239,7 @@ end
 
 post '/finance/districts' do 
 
+	@link_back = "/finance/districts"
 	@delimiters = ""
 
 	state = params.fetch "state"
@@ -285,6 +290,7 @@ end
 
 post '/finance/candidates' do 
 
+	@link_back = "/finance/candidates"
 	@delimiters = ""
 
 	fec_id = params.fetch "fec_id"
@@ -330,8 +336,10 @@ end
 
 post '/textsearch' do 
 
-	phrase = params.fetch "phrase"
+	@link_back = "/textsearch"
 	@delimiters = ""
+
+	phrase = params.fetch "phrase"
 
 	title = params.fetch "title"
 	@delimiters << "Title: #{title}," if !title.empty?

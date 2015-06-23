@@ -1,0 +1,15 @@
+.row
+  .col-md-6
+    %a.btn.btn-default{:href => "#{@link_back}"}
+      %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
+      Search again?
+  .col-md-6.text-right
+    %input.input-search#search-term{:placeholder => "Search within..."}
+.error-box
+- if !@delimiters.empty?
+  %p Your results were limited to:
+  %ol
+    - @delimiters.split(',').each do |line|
+      %li= line
+- if @result.class == Array
+  %h3 Result Count: #{@result.count}
