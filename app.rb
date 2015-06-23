@@ -131,7 +131,7 @@ post '/polls' do
 		formatted_after = ""
 	else 
 		@delimiters << "After #{after},"
-		formatted_after = "&after=#{formatted_after}"
+		@formatted_after = "&after=#{formatted_after}"
 	end
 
 	before = params.fetch "before" 
@@ -140,15 +140,20 @@ post '/polls' do
 		before = ""
 	else 
 		@delimiters << "To #{before}"
-		formatted_before = "&before=#{formatted_before}"
+		@formatted_before = "&before=#{formatted_before}"
 	end
+	
+	begin 
+		response = RestClient::Request.execute(method: :get, 
+			url: "http://elections.huffingtonpost.com/pollster/api/polls/?topic=#{@topic}#{@formatted_before}#{@formatted_after}")
+		@result    = JSON.parse(response)
+	rescue => e 
+	    @result = {}
+		@delimiters = ""
+	end 
 
-	response = RestClient::Request.execute(method: :get, url: "http://elections.huffingtonpost.com/pollster/api/polls/?topic=#{@topic}#{formatted_before}#{formatted_after}", timeout: 8000)
-	@result    = JSON.parse(response)
-																		
 	haml :"/polls/results"
 end
-
 
 get '/finance/districts' do 
 	haml :"finance/districts"
@@ -375,4 +380,10 @@ post '/textsearch' do
 
 	haml :"textsearch/results" 
 end
+
+get '/*' do 
+  
+  haml :index
+end 
+
 

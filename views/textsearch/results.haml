@@ -1,9 +1,15 @@
 %hr.top-divider/
 .container
   .row
-    %a.btn.btn-default{:href => "/textsearch"}
-      %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
-      Search again?
+    .col-md-6.text-left
+      %a.btn.btn-default{:href => "/textsearch"}
+        %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
+        Search again?
+    .col-md-6.text-right
+      %input.btn.input-search
+        %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
+        Limit results?
+        
   = haml '_delimiters'.to_sym
   - if @result.any?
     - @result.each_with_index do |result, index|
@@ -21,3 +27,4 @@
       %hr/
   - else
     = haml '_no_match'.to_sym
+
