@@ -6,10 +6,10 @@
         %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
         Search again?
     .col-md-6.text-right
-      %input.btn.input-search
-        %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
-        Limit results?
-        
+      .input-group 
+        %input.input-search{:placeholder => "Search within..."}
+          %span.input-group-btn
+            %button.btn.btn-search{:type => "button"} Go!
   = haml '_delimiters'.to_sym
   - if @result.any?
     - @result.each_with_index do |result, index|
