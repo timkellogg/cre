@@ -78,8 +78,8 @@ post '/legislators' do
 		                                  					  :term_start => term_start,
 		                                  					  :term_end => term_end,
 		                                  					  :page => 0,
-										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 
-										  timeout: 8000)
+										  				      :apikey => ENV['SUNLIGHT_API_KEY']}},
+										timeout: 100)
 
 	base    = JSON.parse(response)
 	@result    = base["results"]
@@ -106,7 +106,7 @@ post '/bills' do
 
 	begin 
 		response = RestClient::Request.execute(method: :get,
-			url: "https://www.govtrack.us/data/congress/#{bill_number}/bills/#{bill_type}/#{bill_type}#{bill_number}/data.json", timeout: 1000) 
+			url: "https://www.govtrack.us/data/congress/#{bill_number}/bills/#{bill_type}/#{bill_type}#{bill_number}/data.json", timeout: 100) 
 		@result = JSON.parse(response)	
 	rescue => e 
 		@delimiters = ""
@@ -197,7 +197,7 @@ post '/finance/pacs' do
 		                                  					  :page => 1,
 		                                  					  :page_size => 100,
 										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 
-										  timeout: 8000)  				      				                
+										  timeout: 100)  				      				                
 	base       = JSON.parse(response)
 	@result    = base["results"]
 
@@ -230,7 +230,7 @@ post '/finance/outside_spenders' do
 		                                  					  :page => 1,
 		                                  					  :page_size => 100,
 										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 		                                  					  
-		                                  timeout: 8000)
+		                                  timeout: 100)
 	base       = JSON.parse(response)
 	@result    = base["results"]
 
@@ -269,7 +269,7 @@ post '/finance/districts' do
 										  				      :page => 1,
 										  				      :page_size => 100,
 										  				      :apikey => ENV['SUNLIGHT_API_KEY']}}, 
-										 timeout: 8000)	                     
+										 timeout: 100)	                     
 	base       = JSON.parse(response)
 	@result    = base["results"]
 
@@ -323,7 +323,7 @@ post '/finance/candidates' do
 									     				  	:page => 1,
 									     				  	:page_size => 50,
 									     				  	:apikey => ENV['SUNLIGHT_API_KEY']}}, 
-									     timeout: 8000) 
+									     timeout: 100) 
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 
@@ -382,7 +382,7 @@ post '/textsearch' do
                                         				   :end_date => end_date,
                                                            :page => 0,
                                                            :apikey => ENV['SUNLIGHT_API_KEY']}}, 
-                                        timeout: 8000)    						
+                                        timeout: 100)    						
 	base       = JSON.parse(api_result)
 	@result    = base["results"]
 
