@@ -1,17 +1,20 @@
 %hr.top-divider/
 .container
   .row
-    %a.btn.btn-default{:href => "/finance/outside_spenders"}
-      %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
-      Search again?
+    .col-md-6
+      %a.btn.btn-default{:href => "/finance/outside_spenders"}
+        %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
+        Search again?
+    .col-md-6.text-right
+      %input.input-search#search-term{:placeholder => "Search within..."}
   = haml '_delimiters'.to_sym
   - if @result.any?
     - @result.each_with_index do |result, index|
       .col-md-12
-        %p.result-number= index + 1
         %table.table.table-striped.table-hover.table-condensed
           %tr
             %th.table-heading{:colspan => "15"}
+              = index + 1 
               = result["name"]
               \— #{result["display_type"]}
           %tr
