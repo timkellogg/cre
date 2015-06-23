@@ -6,10 +6,7 @@
         %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}
         Search again?
     .col-md-6.text-right
-      .input-group 
-        %input.input-search#search-term{:placeholder => "Search within..."}
-          %span.input-group-btn
-            %button.btn.btn-search#search-btn{:type => "button"} Go!
+      %input.input-search#search-term{:placeholder => "Search within..."}
   = haml '_delimiters'.to_sym
   - if @result.any?
     - @result.each_with_index do |result, index|
@@ -25,6 +22,6 @@
             = result["volume"]
             Vol., ##{result["number"]}, #{result["chamber"]}
           %li.result-text= result["speaking"][0]
-        %hr/
+          %hr/
   - else
     = haml '_no_match'.to_sym

@@ -285,6 +285,40 @@ select,
 	color: #000;
 }
 
+
+.input-search {
+  width: 200px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid black;
+  color: black;
+  background-color: white;
+  border-radius: 0;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  cursor: text;
+  &:focus {
+  	outline: none;
+  }
+}
+
+
 /* Buttons 
 *****************/
 
@@ -323,34 +357,6 @@ select,
 
 /* Tables 
 *************/
-
-.input-search {
-  width: 200px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px solid darkblue;
-  color: darkblue;
-  background-color: #fff;
-  border-radius: 0;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-image: none;
-}
 
 .table-heading {
 	border-bottom: 2px solid darkgray;

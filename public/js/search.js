@@ -7,7 +7,6 @@ $(document).ready(function() {
 		var selector = "ul:contains(" + query + ")";
 
 		$('ul').not(selector).hide();
-
 	});
 	
 });	
