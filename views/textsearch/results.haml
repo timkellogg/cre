@@ -7,14 +7,14 @@
         Search again?
     .col-md-6.text-right
       .input-group 
-        %input.input-search{:placeholder => "Search within..."}
+        %input.input-search#search-term{:placeholder => "Search within..."}
           %span.input-group-btn
-            %button.btn.btn-search{:type => "button"} Go!
+            %button.btn.btn-search#search-btn{:type => "button"} Go!
   = haml '_delimiters'.to_sym
   - if @result.any?
     - @result.each_with_index do |result, index|
       %ul.result-item.row
-        %li.result-heading
+        %li.result-heading.searchable
           = index + 1
           = result["title"]
           , Congressional Section: #{result["congress"]}, #{result["date"]}
@@ -27,4 +27,3 @@
       %hr/
   - else
     = haml '_no_match'.to_sym
-

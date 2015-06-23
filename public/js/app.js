@@ -1,5 +1,5 @@
 $(document).ready(function() {   
-
+    
     // Allows for CSS manipulation of svg assets      
         $('img.svg').each(function(){
             var $img = jQuery(this);
