@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby '2.2.1'
 
-# Production
+# Production/Development 
 gem 'rubygems-update'
 gem 'bundler'
 gem 'sinatra'
