@@ -14,6 +14,8 @@ gem 'haml'
 gem 'sinatra-cache'
 gem 'sass'
 gem 'shotgun'
+gem 'puma'
+gem 'foreman'
 
 group :test do 
 	gem 'rspec'
