@@ -15,9 +15,7 @@ configure do
   }
 end
 
-get '/public/*' do
-   cache_control [:public, max_age: 60 * 60 * 24 * 365]
-end
+set :static_cache_control, [:public, max_age: 60 * 60 * 24 * 365]
  
 get '/' do 
 	haml :index
