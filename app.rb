@@ -121,9 +121,6 @@ end
 
 post '/polls' do 
 
-	# RestClient's header parameter syntax like the other routes automatically adds a formatting on the dates that HufPost's 
-	# API doesn't work with. As a result, I've went with the older, less concise syntax to avoid this problem 
-
 	@link_back = "/polls"
 	@topic = params.fetch "topic"
 	@delimiters = ""

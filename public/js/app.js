@@ -35,6 +35,7 @@ $(document).ready(function() {
         $('#cr_pages').tooltip();
         $('#bioguide_id').tooltip();
         $('#title').tooltip();
+        $('#fec_id').tooltip();
     });
 
     // Animations 

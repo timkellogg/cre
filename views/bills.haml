@@ -2,12 +2,12 @@
 .container
   .row.secondary-heading
     %h3 Bill Search Engine
-    %p.text-info This search engine allows you to search bills and resolutions introduced in the United States Congress since 1973.  Some limited legacy bills may be found as well depending on the bill. 
+    %p.text-info This search engine allows you to search bills and resolutions introduced in the United States Congress since 1973.  Some limited legacy bills may be found as well depending on the bill.  Note, the bill search engine works best with recent Congresses, 93 to 114.  Other congressional classes are supported less.
   %form.form-horizontal{:action => "/bills", :method => "post"}
     .form-group
       .col-md-6
         %label.control-label{:for => "bill_number"} Congressional Session:
-        %input#bill_number.form-control{:name => "bill_number", :max => 114, :min => 93, :placeholder => "113", :required => ""}
+        %input#bill_number.form-control{:name => "bill_number", :max => 114, :min => 93, :placeholder => "Example: 113", :required => ""}
       .col-md-6
         %label.control-label{:for => "bill_type"} Bill Type:
         %select#bill_type.form-control{:name => "bill_type", :required => ""}

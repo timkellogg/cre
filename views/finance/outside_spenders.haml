@@ -29,7 +29,7 @@
           %option{:value => "Z"} National Party Non-federal Accounts
       .col-md-4
         %label.control-label{:for => "fec_id"} FEC ID:
-        %input.form-control{:name => "fec_id", :type => "text"}/
+        %input#fec_id.form-control{:name => "fec_id", :type => "text", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Federal Election Commission ID Number"}
       .col-md-4
         %label.control-label{:for => "min_ies"} Min. Amt Spent during 2014 Cycle:
         .input-group

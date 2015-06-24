@@ -26,7 +26,7 @@
           %option{:value => "Z"} National Party Non-federal Accounts
       .col-md-6
         %label.control-label{:for => "fec_id"} FEC ID:
-        %input.form-control{:name => "fec_id", :type => "text"}/
+        %input#fec_id.form-control{:name => "fec_id", :type => "text", "data-placement" => "top", "data-toggle" => "tooltip", :title => "Federal Election Commission ID Number"}
     .form-group
       .col-md-4
         %label.control-label{:for => "min_raised"} Min. Amt Spent during 2014 Cycle:
@@ -41,7 +41,7 @@
           %input#min_spent.form-control{:min => "0", :name => "min_spent", :placeholder => "Amount", :type => "number"}/
           .input-group-addon .00
       .col-md-4
-        %label.control-label{:for => "min_coh"} Min. Cash on Hand
+        %label.control-label{:for => "min_coh"} Min. Cash on Hand:
         .input-group
           .input-group-addon $
           %input#min_coh.form-control{:min => "0", :name => "min_coh", :placeholder => "Amount", :type => "number"}/

@@ -2,12 +2,12 @@
 .container
   .row.secondary-heading
     %h3 Full Congressional Text Search
-    %p.text-info This search engine allows you to research the congressional record to find out different phrases or words that have been admitted into record.
+    %p.text-info This search engine allows you to research the congressional record to find out different phrases or words that have been admitted into record. 
   %form.form-horizontal{:action => "/textsearch", :method => "post"}
     .form-group
       .col-md-12
         %label.control-label{:for => "phrase"} Search Terms:
-        %input#phrase.form-control{:name => "phrase", :placeholder => "Patriot Act", :required => "", :type => "text"}/
+        %input#phrase.form-control{:name => "phrase", :placeholder => "Enter a search term here...", :required => "", :type => "text"}/
     .row.secondary-heading
       %h3 Advanced Options
     .form-group
