@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 ruby '2.2.1'
 
-# Production/Development 
 gem 'rubygems-update'
 gem 'bundler'
 gem 'sinatra'
@@ -23,4 +22,7 @@ group :test do
 	gem 'pry'
 end 
 
+group :production do
+   gem 'heroku-deflater'
+end 
 

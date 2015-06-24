@@ -17,6 +17,8 @@ GEM
       thor (~> 0.19.1)
     haml (4.0.6)
       tilt
+    heroku-deflater (0.5.3)
+      rack (>= 1.4.5)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     json (1.8.3)
@@ -94,6 +96,7 @@ DEPENDENCIES
   dotenv
   foreman
   haml
+  heroku-deflater
   json
   pry
   puma
