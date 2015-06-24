@@ -22,7 +22,4 @@ group :test do
 	gem 'pry'
 end 
 
-group :production do
-   gem 'heroku-deflater'
-end 
 

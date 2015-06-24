@@ -14,6 +14,10 @@ configure do
     require File.basename(lib, '.*') 
   }
 end
+
+get '/public/*' do
+   cache_control [:public, max_age: 60 * 60 * 24 * 365]
+end
  
 get '/' do 
 	haml :index
